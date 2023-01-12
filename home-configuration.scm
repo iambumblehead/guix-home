@@ -12,6 +12,12 @@
              (guix gexp)
              (gnu home services shells))
 
+(define (make-file path name)
+  (local-file
+   (string-append (getenv "HOME") "/software/guix-home/" path)
+   name
+   #:recursive? #t))
+
 (define %dotfiles
   `((".config/qutebrowser/config.py"
      ,(make-file
