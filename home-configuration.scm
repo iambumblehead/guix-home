@@ -43,7 +43,15 @@
 ;;    ("waybar.css" . "waybar/style.css")))
 
 (define %dotfiles
-  `((".config/qutebrowser/config.py"
+  `((".config/waybar/waybar"
+     ,(make-file
+       "waybar/.config/waybar/waybar"
+       "waybar-config"))
+    (".config/waybar/waybar.css"
+     ,(make-file
+       "waybar/.config/waybar/waybar.css"
+       "waybarcss-config"))
+    (".config/qutebrowser/config.py"
      ,(make-file
        "qutebrowser/.config/qutebrowser/config.py"
        "qutebrowser-config"))))
