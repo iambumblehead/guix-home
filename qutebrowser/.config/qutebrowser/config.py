@@ -23,7 +23,7 @@ c.url.searchengines = { "DEFAULT" : "https://searx.info/search?q={}" }
 # config.bind(',sd', 'config-cycle content.user_stylesheets ~/software/solarized-everything-css/css/solarized-dark/solarized-dark-all-sites.css ""')
 # config.bind(',sl', 'config-cycle content.user_stylesheets ~/software/solarized-everything-css/css/solarized-light/solarized-light-all-sites.css ""')
 
-c.zoom.default = '110%'
+# c.zoom.default = '110%'
 c.url.default_page = 'https://searx.info'
 c.url.start_pages = ['https://searx.info']
 c.tabs.background = True

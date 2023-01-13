@@ -8,6 +8,7 @@
 	     (gnu home services)
              (gnu packages)
 	     (gnu packages qt)
+	     (gnu packages fonts)
              (gnu services)
              (guix gexp)
              (gnu home services shells))
@@ -28,6 +29,11 @@
  ;; Below is the list of packages that will show up in your
  ;; Home profile, under ~/.guix-home/profile.
  (packages (specifications->packages (list "git"
+					   "font-google-noto"
+					   "font-google-noto-sans-cjk"
+					   "font-google-noto-serif-cjk"
+					   "font-liberation"
+					   "font-sarasa-gothic"
 					   "qtwayland@5.15.5"
 					   "qutebrowser")))
 
