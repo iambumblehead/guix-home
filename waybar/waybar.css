@@ -1,0 +1,73 @@
+/* ('s dotfiles
+ *
+ * See the COPYRIGHT file for copying terms.
+ */
+
+* {
+    font-family: "JetBrains Mono";
+    font-size: 12px;
+    min-height: 0;
+}
+
+window {
+    background: transparent;
+}
+
+window#waybar > box {
+    background: #122;
+    color: #e5e9f0;
+}
+
+#workspaces button {
+    padding: 3px;
+    color: #e5e9f0;
+    font-size: 13px;
+    border-radius: 0;
+}
+
+#workspaces button.focused {
+    color: #122;
+    background-color: #e5e9f0;
+    border: 1.5px solid #e5e9f0;
+}
+
+#workspaces button.urgent {
+    background-color: #bf616a;
+}
+
+#mode {
+    background: #64727D;
+    border-bottom: 3px solid #ffffff;
+}
+
+#clock, #battery, #network, #pulseaudio, #mode {
+    padding: 0 10px;
+    margin: 0 5px;
+}
+
+#clock.time {
+    font-size: 18px;
+}
+
+#custom-label {
+    color: #111;
+    background-color: #e5e9f0;
+    padding: 5px 10px;
+    margin-left: 25px;
+    border-radius: 0;
+}
+
+@keyframes blink {
+    to {
+        /*background-color: #ffffff;*/
+        color: #aa8208;
+    }
+}
+
+#battery.critical:not(.charging) {
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}

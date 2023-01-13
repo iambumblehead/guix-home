@@ -19,6 +19,29 @@
    name
    #:recursive? #t))
 
+;;(define %waybar-config
+;;  (computed-file "waybar.json"
+;;    #~(begin
+;;       (use-modules (ice-9 format)
+;;                    (ice-9 rdelim)
+;;                    (ice-9 textual-ports)
+;;                    (language tree-il))
+;;       (primitive-load #$(config-file "common.scm"))
+;;       (call-with-input-file #$(config-file "waybar.json")
+;;         (lambda (in)
+;;           (call-with-output-file #$output
+;;             (lambda (out)
+;;               (do ((line "" (read-line in)))
+;;                   ((eof-object? line))
+;;                 (when (not (string-prefix? "//" line))
+;;                   (format out "~a~%" line))))))))))
+
+;;(define %config-files
+;;  `("guix/channels.scm"
+;;    ;; ("sway.conf" . "sway/config")
+;;    (,%waybar-config . "waybar/config")
+;;    ("waybar.css" . "waybar/style.css")))
+
 (define %dotfiles
   `((".config/qutebrowser/config.py"
      ,(make-file
@@ -30,13 +53,16 @@
  ;; Home profile, under ~/.guix-home/profile.
  (packages (specifications->packages (list "git"
                                            "curl"
+                                           "ncurses"
 					   "font-google-noto"
 					   "font-google-noto-sans-cjk"
 					   "font-google-noto-serif-cjk"
 					   "font-liberation"
 					   "font-sarasa-gothic"
 					   "qtwayland@5.15.5"
-					   "qutebrowser")))
+					   "qutebrowser"
+                                           "waybar"
+                                           "wireplumber")))
 
   ;; Below is the list of Home services.  To search for available
   ;; services, run 'guix home search KEYWORD' in a terminal.
@@ -49,6 +75,8 @@
 			   ("QT_SCALE_FACTOR" . "1")))
 	 (simple-service 'dotfiles-installation home-files-service-type
 			 %dotfiles)
+         ;;(service home-xdg-configuration-files-service-type
+         ;;         (map normalize-config %config-files))
 	 (service home-bash-service-type
                   (home-bash-configuration
 		   (guix-defaults? #f)

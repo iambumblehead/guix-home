@@ -1,0 +1,38 @@
+{
+  "position": "bottom",
+  "modules-left": ["sway/workspaces", "sway/mode", "custom/label#date", "clock#date", "custom/label#battery", "battery"],
+  "modules-center": ["clock#time"],
+  "modules-right": ["custom/label#wifi", "network", "custom/label#volume", "pulseaudio"],
+  "tray": {
+    "spacing": 10
+  },
+  "clock#time": {
+    "interval": 1,
+    "format": "{:<span weight=\"extra-bold\">%H</span>:<span weight=\"extra-bold\">%M</span>:<span weight=\"extra-bold\">%S</span>}"
+  },
+  "clock#date": {
+    "format": "{:<span weight=\"extra-bold\">%Y</span>-<span weight=\"extra-bold\">%m</span>-<span weight=\"extra-bold\">%d</span>}"
+  },
+  "battery": {
+    "interval": 3,
+    "format": "<span weight=\"extra-bold\">{capacity}</span>%"
+  },
+  "network": {
+    "format-wifi": "<span weight=\"extra-bold\">{signalStrength}</span>% (<span weight=\"extra-bold\">{essid}</span>)"
+  },
+  "pulseaudio": {
+    "format": "<span weight=\"extra-bold\">{volume}</span>%"
+  },
+  "custom/label#date": {
+    "format": "date"
+  },
+  "custom/label#battery": {
+    "format": "battery"
+  },
+  "custom/label#wifi": {
+    "format": "wifi"
+  },
+  "custom/label#volume": {
+    "format": "volume"
+  }
+}
