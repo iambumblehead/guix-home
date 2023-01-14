@@ -42,7 +42,6 @@
  (packages (specifications->packages (list "git"
                                            "curl"
                                            "ncurses"
-					   "font-awesome"
 					   "font-google-noto"
 					   "font-google-noto-sans-cjk"
 					   "font-google-noto-serif-cjk"
@@ -51,6 +50,8 @@
 					   "qtwayland@5.15.5"
 					   "qutebrowser"
                                            "waybar"
+                                           "bemenu"
+                                           "foot"
                                            "wireplumber")))
 
   ;; Below is the list of Home services.  To search for available
