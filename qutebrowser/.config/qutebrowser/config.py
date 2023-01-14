@@ -5,12 +5,12 @@ c.colors.webpage.bg = "black"
 # c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.threshold.background = 205
 
-c.fonts.completion.category = 'bold 14pt monospace'
-c.fonts.completion.entry = '14pt monospace'
-c.fonts.statusbar = '14pt monospace'
-c.fonts.tabs.selected = '14pt monospace'
-c.fonts.tabs.unselected = '14pt monospace'
-c.fonts.contextmenu = '14pt monospace'
+c.fonts.completion.category = 'bold 12pt monospace'
+c.fonts.completion.entry = '12pt monospace'
+c.fonts.statusbar = '12pt monospace'
+c.fonts.tabs.selected = '12pt monospace'
+c.fonts.tabs.unselected = '12pt monospace'
+c.fonts.contextmenu = '12pt monospace'
 c.qt.args=["blink-settings=darkMode=4"]
 
 c.content.headers.accept_language = "ja-JP,js;q=0.9"

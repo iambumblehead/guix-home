@@ -1,5 +1,5 @@
 # Honor per-interactive-shell startup file
-if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
+# if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 
 export GUIX_PROFILE=$HOME/.config/guix/current
 . $GUIX_PROFILE/etc/profile
