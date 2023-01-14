@@ -1,194 +1,73 @@
-/* =============================================================================
+/* ('s dotfiles
  *
- * Waybar configuration
- *
- * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
- *
- * =========================================================================== */
+ * See the COPYRIGHT file for copying terms.
+ */
 
-/* -----------------------------------------------------------------------------
- * Keyframes
- * -------------------------------------------------------------------------- */
-
-@keyframes blink-warning {
-    70% {
-        color: white;
-    }
-
-    to {
-        color: white;
-        background-color: orange;
-    }
-}
-
-@keyframes blink-critical {
-    70% {
-      color: white;
-    }
-
-    to {
-        color: white;
-        background-color: red;
-    }
-}
-
-
-/* -----------------------------------------------------------------------------
- * Base styles
- * -------------------------------------------------------------------------- */
-
-/* Reset all styles */
 * {
-    border: none;
-    border-radius: 0;
+    font-family: "Noto Sans", "Noto Sans JP", sans-serif; 
+    font-size: 12px;
     min-height: 0;
-    margin: 0;
-    padding: 0;
 }
 
-/* The whole bar */
-#waybar {
-    background: #323232;
-    color: white;
-    font-family: Cantarell, Noto Sans, sans-serif;
+window {
+    background: transparent;
+}
+
+window#waybar > box {
+    background: #122;
+    color: #e5e9f0;
+}
+
+#workspaces button {
+    padding: 3px;
+    color: #e5e9f0;
     font-size: 13px;
+    border-radius: 0;
 }
 
-/* Each module */
-#battery,
-#clock,
-#cpu,
-#custom-keyboard-layout,
-#memory,
-#mode,
-#network,
-#pulseaudio,
-#temperature,
-#tray {
-    padding-left: 10px;
-    padding-right: 10px;
+#workspaces button.focused {
+    color: #122;
+    background-color: #e5e9f0;
+    border: 1.5px solid #e5e9f0;
 }
 
-
-/* -----------------------------------------------------------------------------
- * Module styles
- * -------------------------------------------------------------------------- */
-
-#battery {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#battery.warning {
-    color: orange;
-}
-
-#battery.critical {
-    color: red;
-}
-
-#battery.warning.discharging {
-    animation-name: blink-warning;
-    animation-duration: 3s;
-}
-
-#battery.critical.discharging {
-    animation-name: blink-critical;
-    animation-duration: 2s;
-}
-
-#clock {
-    font-weight: bold;
-}
-
-#cpu {
-  /* No styles */
-}
-
-#cpu.warning {
-    color: orange;
-}
-
-#cpu.critical {
-    color: red;
-}
-
-#memory {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#memory.warning {
-    color: orange;
-}
-
-#memory.critical {
-    color: red;
-    animation-name: blink-critical;
-    animation-duration: 2s;
+#workspaces button.urgent {
+    background-color: #bf616a;
 }
 
 #mode {
     background: #64727D;
-    border-top: 2px solid white;
-    /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 2px;
+    border-bottom: 3px solid #ffffff;
 }
 
-#network {
-    /* No styles */
+#clock, #battery, #network, #pulseaudio, #mode {
+    padding: 0 10px;
+    margin: 0 5px;
 }
 
-#network.disconnected {
-    color: orange;
+#clock.time {
+    font-size: 18px;
 }
 
-#pulseaudio {
-    /* No styles */
+#custom-label {
+    color: #111;
+    background-color: #e5e9f0;
+    padding: 5px 10px;
+    margin-left: 25px;
+    border-radius: 0;
 }
 
-#pulseaudio.muted {
-    /* No styles */
+@keyframes blink {
+    to {
+        /*background-color: #ffffff;*/
+        color: #aa8208;
+    }
 }
 
-#custom-spotify {
-    color: rgb(102, 220, 105);
-}
-
-#temperature {
-    /* No styles */
-}
-
-#temperature.critical {
-    color: red;
-}
-
-#tray {
-    /* No styles */
-}
-
-#window {
-    font-weight: bold;
-}
-
-#workspaces button {
-    border-top: 2px solid transparent;
-    /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: #888888;
-}
-
-#workspaces button.focused {
-    border-color: #4c7899;
-    color: white;
-    background-color: #285577;
-}
-
-#workspaces button.urgent {
-    border-color: #c9545d;
-    color: #c9545d;
+#battery.critical:not(.charging) {
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
