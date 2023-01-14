@@ -31,3 +31,17 @@ then
 else
     PS1='\u@\h \w\$ '
 fi
+
+RESET="\[$(tput sgr0)\]"
+YELLOW="\[$(tput setaf 3)\]"
+GREEN="\[$(tput setaf 2)\]"
+BLUE="\[$(tput setaf 4)\]"
+BOLD="\[$(tput bold)\]"
+day() {
+    date +%a
+}
+
+myfunc() { 
+    export PS1="${BOLD}${YELLOW}\u${GREEN}@${BLUE}\h ${GREEN}\W$(day)\\$ ${RESET}"
+}
+PROMPT_COMMAND="myfunc"
