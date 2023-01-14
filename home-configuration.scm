@@ -76,8 +76,11 @@
 		   (guix-defaults? #f)
 		   ;(environment-variables
 		   ; '(("XDG_RUNTIME_DIR" . "/tmp/")))
-                   (aliases '(("grep" . "grep --color=auto") ("ll" . "ls -l")
-                              ("ls" . "ls -p --color=auto")))
+                   (aliases '(("grep" . "grep --color=auto")
+                              ("ll" . "ls -l")
+                              ("ls" . "ls -p --color=auto")
+                              ("ghr" . "guix home reconfigure")
+                              ("gsr" . "sudo guix system reconfigure")))
                    (bashrc
                     (list (local-file ".bashrc" "bashrc")))
                    (bash-profile
