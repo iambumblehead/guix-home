@@ -1,5 +1,6 @@
 {
-  "position": "bottom",
+  "position": "top",
+  "height": 18,
   "modules-left": ["sway/workspaces", "sway/mode", "custom/label#date", "clock#date", "custom/label#battery", "battery"],
   "modules-center": ["clock#time"],
   "modules-right": ["custom/label#wifi", "network", "custom/label#volume", "custom/pipewire"],

@@ -3,6 +3,16 @@
  * See the COPYRIGHT file for copying terms.
  */
 
+/*
+:root {
+   --label-color-primary-bg: rgba(17, 40, 40, 1);
+   --label-color-primary-fg: rgba(100, 114, 125, 1);
+   --label-color-background-bg: rgba(100, 114, 125, 1);
+   --box-color-background-bg: rgba(17, 34, 34, 1);
+   --box-color-background-fg: rgba(229, 233, 240, 1); 
+}
+*/
+
 * {
     font-family: "Noto Sans", "Noto Sans JP", sans-serif; 
     font-size: 12px;
@@ -14,8 +24,8 @@ window {
 }
 
 window#waybar > box {
-    background: #122;
-    color: #e5e9f0;
+    background: rgba(17, 34, 34, 1);
+    color: rgba(229, 233, 240, 1);
 }
 
 #workspaces button {
@@ -26,9 +36,9 @@ window#waybar > box {
 }
 
 #workspaces button.focused {
-    color: #122;
-    background-color: #e5e9f0;
-    border: 1.5px solid #e5e9f0;
+    color: rgba(100, 114, 125, 1);
+    background-color: rgba(17, 40, 40, 1);
+    border: 1.5px solid rgba(17, 40, 40, 1);
 }
 
 #workspaces button.urgent {
@@ -36,7 +46,7 @@ window#waybar > box {
 }
 
 #mode {
-    background: #64727D;
+    background: rgba(100, 114, 125, 1);
     border-bottom: 3px solid #ffffff;
 }
 
@@ -50,9 +60,10 @@ window#waybar > box {
 }
 
 #custom-label {
-    color: #111;
-    background-color: #e5e9f0;
-    padding: 5px 10px;
+    color: rgba(100, 114, 125, 1);
+    background-color: rgba(17, 40, 40, 1);
+    /*padding: 5px 10px;*/
+    padding: 0 10px;
     margin-left: 25px;
     border-radius: 0;
 }
