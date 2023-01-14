@@ -19,39 +19,19 @@
    name
    #:recursive? #t))
 
-;;(define %waybar-config
-;;  (computed-file "waybar.json"
-;;    #~(begin
-;;       (use-modules (ice-9 format)
-;;                    (ice-9 rdelim)
-;;                    (ice-9 textual-ports)
-;;                    (language tree-il))
-;;       (primitive-load #$(config-file "common.scm"))
-;;       (call-with-input-file #$(config-file "waybar.json")
-;;         (lambda (in)
-;;           (call-with-output-file #$output
-;;             (lambda (out)
-;;               (do ((line "" (read-line in)))
-;;                   ((eof-object? line))
-;;                 (when (not (string-prefix? "//" line))
-;;                   (format out "~a~%" line))))))))))
 
-;;(define %config-files
-;;  `("guix/channels.scm"
-;;    ;; ("sway.conf" . "sway/config")
-;;    (,%waybar-config . "waybar/config")
-;;    ("waybar.css" . "waybar/style.css")))
-
-(define %dotfiles
-  `((".config/waybar/waybar"
+(define %xdg-config-files
+  `(("waybar/config"
      ,(make-file
        "waybar/.config/waybar/waybar"
        "waybar-config"))
-    (".config/waybar/waybar.css"
+    ("waybar/style.css"
      ,(make-file
        "waybar/.config/waybar/waybar.css"
-       "waybarcss-config"))
-    (".config/qutebrowser/config.py"
+       "waybarcss-config"))))  
+
+(define %dotfiles
+  `((".config/qutebrowser/config.py"
      ,(make-file
        "qutebrowser/.config/qutebrowser/config.py"
        "qutebrowser-config"))))
@@ -79,13 +59,17 @@
    (list (simple-service 'env-vars home-environment-variables-service-type
 			 '(("EDITOR" . "emacs")
 			   ("BROWSER" . "qutebrowser")
-			   ("TERM" . "xterm")
-			   ("QT_QPA_PLATFORM" . "WAYLAND")
-			   ("QT_SCALE_FACTOR" . "1")))
+			   ("QT_QPA_PLATFORM" . "wayland")
+			   ("QT_SCALE_FACTOR" . "1")
+                           ("XDG_SESSION_TYPE" . "wayland")
+                           ("XDG_SESSION_DESKTOP" . "sway")
+                           ("XDG_CURRENT_DESKTOP" . "sway")
+                           ("DESKTOP_SESSION" . "sway")
+                           ("LIBSEAT_BACKEND" . "seatd")))
+         (service home-xdg-configuration-files-service-type
+                  %xdg-config-files)
 	 (simple-service 'dotfiles-installation home-files-service-type
 			 %dotfiles)
-         ;;(service home-xdg-configuration-files-service-type
-         ;;         (map normalize-config %config-files))
 	 (service home-bash-service-type
                   (home-bash-configuration
 		   (guix-defaults? #f)
