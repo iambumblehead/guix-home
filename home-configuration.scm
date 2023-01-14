@@ -78,9 +78,7 @@
 		   ; '(("XDG_RUNTIME_DIR" . "/tmp/")))
                    (aliases '(("grep" . "grep --color=auto") ("ll" . "ls -l")
                               ("ls" . "ls -p --color=auto")))
-                   (bashrc (list (local-file
-                                  "/home/bumble/src/guix-config/.bashrc"
-                                  "bashrc")))
-                   (bash-profile (list (local-file
-                                        "/home/bumble/src/guix-config/.bash_profile"
-                                        "bash_profile"))))))))
+                   (bashrc
+                    (list (local-file ".bashrc" "bashrc")))
+                   (bash-profile
+                    (list (local-file ".bash_profile" "bash_profile"))))))))
