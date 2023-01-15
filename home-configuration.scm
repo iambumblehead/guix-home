@@ -31,10 +31,10 @@
        "waybarcss-config"))))  
 
 (define %dotfiles
-  `((".config/qutebrowser/config.py"
-     ,(make-file
-       "qutebrowser/.config/qutebrowser/config.py"
-       "qutebrowser-config"))))
+  `((".config/sway/config"
+     ,(make-file "sway.config" "sway-config"))
+    (".config/qutebrowser/config.py"
+     ,(make-file "qutebrowser.config.py" "qutebrowser-config"))))
 
 (home-environment
  ;; Below is the list of packages that will show up in your
@@ -42,6 +42,7 @@
  (packages (specifications->packages (list "git"
                                            "curl"
                                            "ncurses"
+                                           "adwaita-icon-theme"
 					   "font-google-noto"
 					   "font-google-noto-sans-cjk"
 					   "font-google-noto-serif-cjk"
