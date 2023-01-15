@@ -19,9 +19,12 @@
    name
    #:recursive? #t))
 
-
 (define %xdg-config-files
-  `(("waybar/config"
+  `(("foot/foot.ini"
+     ,(make-file
+       "foot.ini"
+       "foot-config"))
+    ("waybar/config"
      ,(make-file
        "waybar/.config/waybar/waybar"
        "waybar-config"))
