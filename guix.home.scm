@@ -31,7 +31,9 @@
        "waybarcss-config"))))  
 
 (define %dotfiles
-  `((".config/sway/config"
+  `((".git/gitconfig"
+     ,(make-file "git.config" "git-config"))
+    (".config/sway/config"
      ,(make-file "sway.config" "sway-config"))
     (".config/qutebrowser/config.py"
      ,(make-file "qutebrowser.config.py" "qutebrowser-config"))
