@@ -34,7 +34,9 @@
   `((".config/sway/config"
      ,(make-file "sway.config" "sway-config"))
     (".config/qutebrowser/config.py"
-     ,(make-file "qutebrowser.config.py" "qutebrowser-config"))))
+     ,(make-file "qutebrowser.config.py" "qutebrowser-config"))
+    (".icons/default/index.theme"
+     ,(make-file "icon.theme" "icon-theme"))))
 
 (home-environment
  ;; Below is the list of packages that will show up in your
@@ -75,8 +77,6 @@
 	 (service home-bash-service-type
                   (home-bash-configuration
 		   (guix-defaults? #f)
-		   ;(environment-variables
-		   ; '(("XDG_RUNTIME_DIR" . "/tmp/")))
                    (aliases '(("grep" . "grep --color=auto")
                               ("ll" . "ls -l")
                               ("ls" . "ls -p --color=auto")
