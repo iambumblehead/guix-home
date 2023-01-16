@@ -13,6 +13,8 @@ c.fonts.tabs.unselected = '12pt monospace'
 c.fonts.contextmenu = '12pt monospace'
 c.qt.args=["blink-settings=darkMode=4"]
 
+c.content.cookies.accept = 'no-3rdparty'
+c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
 c.content.headers.accept_language = "ja-JP,js;q=0.9"
 c.url.searchengines = { "DEFAULT" : "https://searx.info/search?q={}" }
 
@@ -23,7 +25,7 @@ c.url.searchengines = { "DEFAULT" : "https://searx.info/search?q={}" }
 # config.bind(',sd', 'config-cycle content.user_stylesheets ~/software/solarized-everything-css/css/solarized-dark/solarized-dark-all-sites.css ""')
 # config.bind(',sl', 'config-cycle content.user_stylesheets ~/software/solarized-everything-css/css/solarized-light/solarized-light-all-sites.css ""')
 
-# c.zoom.default = '110%'
+c.zoom.default = '80%'
 c.url.default_page = 'https://searx.info'
 c.url.start_pages = ['https://searx.info']
 c.tabs.background = True
