@@ -48,8 +48,11 @@
  ;; Home profile, under ~/.guix-home/profile.
  (packages (specifications->packages (list "git"
                                            "curl"
+                                           "bemenu"
                                            "ncurses"
                                            "adwaita-icon-theme"
+                                           "glib:bin"
+                                           "gsettings-desktop-schemas"
 					   "font-google-noto"
 					   "font-google-noto-sans-cjk"
 					   "font-google-noto-serif-cjk"
