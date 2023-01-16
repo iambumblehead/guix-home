@@ -104,39 +104,48 @@
   ;; an SSH server.
   (services (append (list (simple-service 'env-vars session-environment-service-type
 					  '(("XDG_RUNTIME_DIR" . "/tmp/")))
-                          (service greetd-service-type
-                                   (greetd-configuration
-                                    (greeter-supplementary-groups
-                                     (list "video" "input" "seat"))
-                                    (terminals
-                                     (list (greetd-terminal-configuration
-                                            (terminal-vt "1")
-                                            (terminal-switch #t)
-                                            (default-session-command
-                                              (greetd-wlgreet-sway-session
-                                               (sway sway)
-                                               (wlgreet-session
-                                                (greetd-wlgreet-session
-                                                 (command (file-append sway "/bin/sway"))))
-                                               (sway-configuration
-                                                (make-file "sway-greetd.conf" "greeter")))))
-                                           (greetd-terminal-configuration
-                                            (terminal-vt "2")
-                                            (terminal-switch #t))
-                                           (greetd-terminal-configuration
-                                            (terminal-vt "3")
-                                            (terminal-switch #t))
-                                           (greetd-terminal-configuration
-                                            (terminal-vt "4")
-                                            (terminal-switch #t))
-                                           (greetd-terminal-configuration
-                                            (terminal-vt "5")
-                                            (terminal-switch #t))
-                                           (greetd-terminal-configuration
-                                            (terminal-vt "6")
-                                            (terminal-switch #t))))))
+                          ;;; (service greetd-service-type
+                          ;;;          (greetd-configuration
+                          ;;;           (greeter-supplementary-groups
+                          ;;;            (list "video" "input" "seat"))
+                          ;;;           (terminals
+                          ;;;            (list (greetd-terminal-configuration
+                          ;;;                   (terminal-vt "1")
+                          ;;;                   (terminal-switch #t)
+                          ;;;                   (default-session-command
+                          ;;;                     (greetd-wlgreet-sway-session
+                          ;;;                      (sway sway)
+                          ;;;                      (wlgreet-session
+                          ;;;                       (greetd-wlgreet-session
+                          ;;;                        (command (file-append sway "/bin/sway"))))
+                          ;;;                      (sway-configuration
+                          ;;;                       (make-file "sway-greetd.conf" "greeter")))))
+                          ;;;                  (greetd-terminal-configuration
+                          ;;;                   (terminal-vt "2")
+                          ;;;                   (terminal-switch #t))
+                          ;;;                  (greetd-terminal-configuration
+                          ;;;                   (terminal-vt "3")
+                          ;;;                   (terminal-switch #t))
+                          ;;;                  (greetd-terminal-configuration
+                          ;;;                   (terminal-vt "4")
+                          ;;;                   (terminal-switch #t))
+                          ;;;                  (greetd-terminal-configuration
+                          ;;;                   (terminal-vt "5")
+                          ;;;                   (terminal-switch #t))
+                          ;;;                  (greetd-terminal-configuration
+                          ;;;                   (terminal-vt "6")
+                          ;;;                   (terminal-switch #t))))))
                           ;;(service mingetty-service-type
                           ;;         (mingetty-configuration (tty "tty8")))
+                          fontconfig-file-system-service
+                          ;;(service thermald-service-type)
+                          (service upower-service-type
+                                   (upower-configuration
+                                    (use-percentage-for-policy? #t)
+                                    (percentage-low 12)
+                                    (percentage-critical 8)
+                                    (percentage-action 5)
+                                    (critical-power-action 'power-off)))
 		          (service dhcp-client-service-type)
                           (service wpa-supplicant-service-type)
 			  (service seatd-service-type) ;; for sway
@@ -149,11 +158,6 @@
                           ;;                 (delete agetty-service-type)
                           ;;                 (delete mingetty-service-type))
                           )
-                    ;;%base-services)))
-                    (modify-services %base-services
-                                     ;; greetd-service-type provides "greetd" PAM service
-                                     (delete login-service-type)
-                                     ;; can be used in place of mingetty-service-type
-                                     (delete mingetty-service-type))
-
-                    )))
+                    %base-services)))
+                    ;;; (modify-services %base-services
+                    ;;;                  (delete mingetty-service-type))
