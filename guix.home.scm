@@ -31,7 +31,7 @@
     ("waybar/style.css"
      ,(make-file
        "waybar/.config/waybar/waybar.css"
-       "waybarcss-config"))))  
+       "waybarcss-config"))))
 
 (define %dotfiles
   `((".git/gitconfig"
@@ -53,38 +53,40 @@
                                            "adwaita-icon-theme"
                                            "glib:bin"
                                            "gsettings-desktop-schemas"
-					   "font-google-noto"
-					   "font-google-noto-sans-cjk"
-					   "font-google-noto-serif-cjk"
-					   "font-liberation"
-					   "font-sarasa-gothic"
-					   "qtwayland@5.15.5"
-					   "qutebrowser"
+                                           "font-google-noto"
+                                           "font-google-noto-sans-cjk"
+                                           "font-google-noto-serif-cjk"
+                                           "font-liberation"
+                                           "font-sarasa-gothic"
+                                           "qtwayland@5.15.5"
+                                           "qutebrowser"
                                            "waybar"
                                            "bemenu"
                                            "foot"
+                                           "pipewire"
                                            "wireplumber")))
 
   ;; Below is the list of Home services.  To search for available
   ;; services, run 'guix home search KEYWORD' in a terminal.
   (services
    (list (simple-service 'env-vars home-environment-variables-service-type
-			 '(("EDITOR" . "emacs")
-			   ("BROWSER" . "qutebrowser")
-			   ("QT_QPA_PLATFORM" . "wayland")
-			   ("QT_SCALE_FACTOR" . "1")
+                         '(("EDITOR" . "emacs")
+                           ("BROWSER" . "qutebrowser")
+                           ("QT_QPA_PLATFORM" . "wayland")
+                           ("QT_SCALE_FACTOR" . "1")
                            ("XDG_SESSION_TYPE" . "wayland")
                            ("XDG_SESSION_DESKTOP" . "sway")
                            ("XDG_CURRENT_DESKTOP" . "sway")
                            ("DESKTOP_SESSION" . "sway")
                            ("LIBSEAT_BACKEND" . "seatd")))
+         ;; (service pipewire-service-type)
          (service home-xdg-configuration-files-service-type
                   %xdg-config-files)
-	 (simple-service 'dotfiles-installation home-files-service-type
-			 %dotfiles)
-	 (service home-bash-service-type
+         (simple-service 'dotfiles-installation home-files-service-type
+                         %dotfiles)
+         (service home-bash-service-type
                   (home-bash-configuration
-		   (guix-defaults? #f)
+                   (guix-defaults? #f)
                    (aliases '(("grep" . "grep --color=auto")
                               ("ll" . "ls -l")
                               ("ls" . "ls -p --color=auto")

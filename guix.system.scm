@@ -91,7 +91,7 @@
                      swaylock-effects
                      ;; for HTTPS access
                      nss-certs)
-                    %base-packages))  
+                    %base-packages))
 
   (setuid-programs
    (append (map (lambda (prog)
@@ -99,7 +99,7 @@
                    (program prog)))
                 %privileged-programs)
            %setuid-programs))
-  
+
   ;; Add services to the baseline: a DHCP client and
   ;; an SSH server.
   (services (append (list (simple-service 'env-vars session-environment-service-type
@@ -139,6 +139,12 @@
                           ;;         (mingetty-configuration (tty "tty8")))
                           fontconfig-file-system-service
                           ;;(service thermald-service-type)
+
+                          ;;;(pam-limits-service ;; Enables wireplumber to enter realtime
+                          ;;; (list
+                          ;;;  (pam-limits-entry "@realtime" 'both 'rtprio 99)
+                          ;;;  (pam-limits-entry "@realtime" 'both 'nice -11)
+                          ;;;  (pam-limits-entry "@realtime" 'both 'memlock 256)))
                           (service upower-service-type
                                    (upower-configuration
                                     (use-percentage-for-policy? #t)
@@ -146,9 +152,9 @@
                                     (percentage-critical 8)
                                     (percentage-action 5)
                                     (critical-power-action 'power-off)))
-		          (service dhcp-client-service-type)
+                          (service dhcp-client-service-type)
                           (service wpa-supplicant-service-type)
-			  (service seatd-service-type) ;; for sway
+                          (service seatd-service-type) ;; for sway
                           (service openssh-service-type
                                    (openssh-configuration
                                     (openssh openssh-sans-x)
