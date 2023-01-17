@@ -36,6 +36,8 @@
 (define %dotfiles
   `((".git/gitconfig"
      ,(make-file "git.config" "git-config"))
+    (".config/guix/channels.scm"
+     ,(make-file "guix.channels.scm" "channels-config"))
     (".config/sway/config"
      ,(make-file "sway.config" "sway-config"))
     (".config/qutebrowser/config.py"
