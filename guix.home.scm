@@ -5,10 +5,10 @@
 ;; See the "Replicating Guix" section in the manual.
 
 (use-modules (gnu home)
-	     (gnu home services)
+             (gnu home services)
              (gnu packages)
-	     (gnu packages qt)
-	     (gnu packages fonts)
+             (gnu packages qt)
+             (gnu packages fonts)
              (gnu services)
              (guix gexp)
              (gnu home services shells))
