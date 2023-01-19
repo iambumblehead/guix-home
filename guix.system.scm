@@ -82,12 +82,11 @@
                %base-user-accounts))
 
   ;; Globally-installed packages.
-  (packages (append (list
-                     screen emacs
-		     sway;;-latest
-                     swaylock-effects
-                     ;; for HTTPS access
-                     nss-certs)
+  (packages (append (list screen
+                          emacs
+		          sway;;-latest
+                          swaylock-effects
+                          nss-certs)
                     %base-packages))
 
   (setuid-programs
@@ -100,7 +99,7 @@
   ;; Add services to the baseline: a DHCP client and
   ;; an SSH server.
   (services (append (list (simple-service 'env-vars session-environment-service-type
-					  '(("XDG_RUNTIME_DIR" . "/tmp/")))
+                                          '(("XDG_RUNTIME_DIR" . "/tmp/")))
                           (service cups-service-type
                                    (cups-configuration
                                     (web-interface? #t)
@@ -116,16 +115,14 @@
                                       (greetd-terminal-configuration
                                        (terminal-vt "1")
                                        (terminal-switch #t))
-                                   ;;; (default-session-command
-                                   ;;;  (greetd-wlgreet-sway-session
-                                   ;;;   (sway sway)
-                                   ;;;   (wlgreet-session
-                                   ;;;    (greetd-wlgreet-session
-                                   ;;;     (command (file-append sway "/bin/sway"))))
-                                   ;;;   (sway-configuration
-                                   ;;;    (make-file "sway-greetd.conf" "greeter")))))
-                                      ;; we can make environment without XDG_RUNTIME_DIR set
-                                      ;; even provide our own environment variables
+                                       ;;(default-session-command
+                                       ;;  (greetd-wlgreet-sway-session
+                                       ;;   (sway sway)
+                                       ;;   (wlgreet-session
+                                       ;;    (greetd-wlgreet-session
+                                       ;;     (command (file-append sway "/bin/sway"))))
+                                       ;;   (sway-configuration
+                                       ;;    (make-file "sway-greetd.conf" "greeter")))))
                                       (greetd-terminal-configuration
                                        (terminal-vt "2"))
                                       (greetd-terminal-configuration
