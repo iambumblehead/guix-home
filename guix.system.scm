@@ -3,6 +3,7 @@
 
 (use-modules (gnu)
 	     (gnu home)
+             
              (gnu packages admin)
 	     (gnu packages wm)
 	     (gnu packages xdisorg)
@@ -10,12 +11,15 @@
 	     (gnu services)
 	     (gnu services desktop)
              (gnu system setuid)
+
+             (guix packages)
+             (guix download)
              ;;(guixrus packages wayland-xyz)
              (nongnu packages linux)
              (nongnu system linux-initrd))
 
-(use-service-modules networking ssh)
-(use-package-modules bootloaders certs emacs screen ssh)
+(use-service-modules cups ssh networking)
+(use-package-modules cups ssh bootloaders certs emacs screen)
 
 (define %conf-dir
     (dirname (current-filename)))
@@ -55,9 +59,6 @@
    (list
     (swap-space (target (uuid "5b7826f3-fd1f-4b7d-a12b-9c5cabbf0087")))))
 
-  ;; It's fitting to support the equally bare bones ‘-nographic’
-  ;; QEMU option, which also nicely sidesteps forcing QWERTY.
-  ;; (kernel-arguments (list "console=ttyS0,115200"))
   (file-systems (append
                  (list (file-system
                          (device (file-system-label "my-root"))
@@ -76,12 +77,7 @@
                 (name "bumble")
                 (comment "honey worker")
                 (group "users")
-
-                ;; Adding the account to the "wheel" group
-                ;; makes it a sudoer.  Adding it to "audio"
-                ;; and "video" allows the user to play sound
-                ;; and access the webcam.
-                (supplementary-groups '("wheel" "netdev" "seat" ;; seat for sway
+                (supplementary-groups '("wheel" "netdev" "seat"
                                         "audio" "video")))
                %base-user-accounts))
 
@@ -110,39 +106,39 @@
                                     (web-interface? #t)
                                     (extensions
                                      (list cups-filters hplip))))
-                          ;;;(service greetd-service-type
-                          ;;;         (greetd-configuration
-                          ;;;          (greeter-supplementary-groups
-                          ;;;           (list "video" "input" "seat"))
-                          ;;;          (terminals
-                          ;;;           (list (greetd-terminal-configuration
-                          ;;;                  (terminal-vt "1")
-                          ;;;                  (terminal-switch #t)
-                          ;;;                  (default-session-command
-                          ;;;                    (greetd-wlgreet-sway-session
-                          ;;;                     (sway sway)
-                          ;;;                     (wlgreet-session
-                          ;;;                      (greetd-wlgreet-session
-                          ;;;                       (command (file-append sway "/bin/sway"))))
-                          ;;;                     (sway-configuration
-                          ;;;                      (make-file "sway-greetd.conf" "greeter")))))
-                          ;;;                 (greetd-terminal-configuration
-                          ;;;                  (terminal-vt "2")
-                          ;;;                  (terminal-switch #t))
-                          ;;;                 (greetd-terminal-configuration
-                          ;;;                  (terminal-vt "3")
-                          ;;;                  (terminal-switch #t))
-                          ;;;                 (greetd-terminal-configuration
-                          ;;;                  (terminal-vt "4")
-                          ;;;                  (terminal-switch #t))
-                          ;;;                 (greetd-terminal-configuration
-                          ;;;                  (terminal-vt "5")
-                          ;;;                  (terminal-switch #t))
-                          ;;;                 (greetd-terminal-configuration
-                          ;;;                  (terminal-vt "6")
-                          ;;;                  (terminal-switch #t))))))
-                          ;;;(service mingetty-service-type
-                          ;;;         (mingetty-configuration (tty "tty8")))
+                          (service greetd-service-type
+                                   (greetd-configuration
+                                    (greeter-supplementary-groups
+                                     (list "video" "input" "seat"))
+                                    (terminals
+                                     (list
+                                      ;; we can make any terminal active by default
+                                      (greetd-terminal-configuration
+                                       (terminal-vt "1")
+                                       (terminal-switch #t))
+                                   ;;; (default-session-command
+                                   ;;;  (greetd-wlgreet-sway-session
+                                   ;;;   (sway sway)
+                                   ;;;   (wlgreet-session
+                                   ;;;    (greetd-wlgreet-session
+                                   ;;;     (command (file-append sway "/bin/sway"))))
+                                   ;;;   (sway-configuration
+                                   ;;;    (make-file "sway-greetd.conf" "greeter")))))
+                                      ;; we can make environment without XDG_RUNTIME_DIR set
+                                      ;; even provide our own environment variables
+                                      (greetd-terminal-configuration
+                                       (terminal-vt "2"))
+                                      (greetd-terminal-configuration
+                                       (terminal-vt "3"))
+                                      (greetd-terminal-configuration
+                                       (terminal-vt "4"))
+                                      (greetd-terminal-configuration
+                                       (terminal-vt "5"))
+                                      (greetd-terminal-configuration
+                                       (terminal-vt "6"))
+                                      ))))
+                          (service mingetty-service-type
+                                   (mingetty-configuration (tty "tty8")))
                           fontconfig-file-system-service
                           ;;(service thermald-service-type)
 
@@ -164,13 +160,21 @@
                           (service openssh-service-type
                                    (openssh-configuration
                                     (openssh openssh-sans-x)
-                                    (port-number 2222)))
-
-                          ;;(modify-services %base-services
-                          ;;                 (delete agetty-service-type)
-                          ;;                 (delete mingetty-service-type))
-                          )
-                    %base-services)))
-                    ;;;(modify-services %base-services
-                    ;;;                 (delete login-service-type)
-                    ;;;                 (delete mingetty-service-type)))))
+                                    (port-number 2222))))
+                    (modify-services %base-services
+                                     (delete mingetty-service-type)
+                                     (guix-service-type config =>
+                                                        (guix-configuration
+                                                         (inherit config)
+                                                         (substitute-urls
+                                                          (cons* "https://nonguix.org"
+                                                                 %default-substitute-urls))
+                                                         (authorized-keys
+                                                          (cons* (origin
+                                                                  (method url-fetch)
+                                                                  (uri "https://substitutes.nonguix.org/signing-key.pub")
+                                                                  (file-name "nonguix.pub")
+                                                                  (sha256
+                                                                   (base32
+                                                                    "0j66nq1bxvbxf5n8q2py14sjbkn57my0mjwq7k1qm9ddghca7177")))
+                                                                 %default-authorized-guix-keys))))))))
