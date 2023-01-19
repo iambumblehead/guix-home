@@ -41,12 +41,15 @@
   (firmware (list linux-firmware))
   (initrd-modules (cons "i915" %base-initrd-modules))
 
-  ;; Use the UEFI variant of GRUB with the EFI System
-  ;; Partition mounted on /boot/efi.
   (bootloader (bootloader-configuration
-                (bootloader grub-efi-bootloader)
-                (targets (list "/boot/efi"))
-                (keyboard-layout keyboard-layout)))
+               (bootloader grub-efi-bootloader)
+               (targets (list "/boot/efi"))
+               (keyboard-layout keyboard-layout)
+               ;;(theme (grub-theme
+               ;;        (inherit (grub-theme))
+               ;;        (gfxmode '("auto"))
+               ;;        (image (local-file "/home/bumble/software/guix-home/guix-checkered-16-9.svg"))))
+                ))
 
   (swap-devices
    (list
@@ -102,6 +105,11 @@
   ;; an SSH server.
   (services (append (list (simple-service 'env-vars session-environment-service-type
 					  '(("XDG_RUNTIME_DIR" . "/tmp/")))
+                          (service cups-service-type
+                                   (cups-configuration
+                                    (web-interface? #t)
+                                    (extensions
+                                     (list cups-filters hplip))))
                           ;;;(service greetd-service-type
                           ;;;         (greetd-configuration
                           ;;;          (greeter-supplementary-groups
