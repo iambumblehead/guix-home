@@ -2,17 +2,15 @@
 ;; for a "bare bones" setup, w/ no display server.
 
 (use-modules (gnu)
-	     ;; -----
 	     (gnu home)
              (gnu packages admin)
 	     (gnu packages wm)
 	     (gnu packages xdisorg)
 	     (gnu packages terminals)
-	     ;; -----
 	     (gnu services)
 	     (gnu services desktop)
-             ;;(gnu system)
              (gnu system setuid)
+             ;;(guixrus packages wayland-xyz)
              (nongnu packages linux)
              (nongnu system linux-initrd))
 
@@ -87,7 +85,7 @@
   ;; Globally-installed packages.
   (packages (append (list
                      screen emacs
-		     sway
+		     sway;;-latest
                      swaylock-effects
                      ;; for HTTPS access
                      nss-certs)
@@ -104,39 +102,39 @@
   ;; an SSH server.
   (services (append (list (simple-service 'env-vars session-environment-service-type
 					  '(("XDG_RUNTIME_DIR" . "/tmp/")))
-                          ;;; (service greetd-service-type
-                          ;;;          (greetd-configuration
-                          ;;;           (greeter-supplementary-groups
-                          ;;;            (list "video" "input" "seat"))
-                          ;;;           (terminals
-                          ;;;            (list (greetd-terminal-configuration
-                          ;;;                   (terminal-vt "1")
-                          ;;;                   (terminal-switch #t)
-                          ;;;                   (default-session-command
-                          ;;;                     (greetd-wlgreet-sway-session
-                          ;;;                      (sway sway)
-                          ;;;                      (wlgreet-session
-                          ;;;                       (greetd-wlgreet-session
-                          ;;;                        (command (file-append sway "/bin/sway"))))
-                          ;;;                      (sway-configuration
-                          ;;;                       (make-file "sway-greetd.conf" "greeter")))))
-                          ;;;                  (greetd-terminal-configuration
-                          ;;;                   (terminal-vt "2")
-                          ;;;                   (terminal-switch #t))
-                          ;;;                  (greetd-terminal-configuration
-                          ;;;                   (terminal-vt "3")
-                          ;;;                   (terminal-switch #t))
-                          ;;;                  (greetd-terminal-configuration
-                          ;;;                   (terminal-vt "4")
-                          ;;;                   (terminal-switch #t))
-                          ;;;                  (greetd-terminal-configuration
-                          ;;;                   (terminal-vt "5")
-                          ;;;                   (terminal-switch #t))
-                          ;;;                  (greetd-terminal-configuration
-                          ;;;                   (terminal-vt "6")
-                          ;;;                   (terminal-switch #t))))))
-                          ;;(service mingetty-service-type
-                          ;;         (mingetty-configuration (tty "tty8")))
+                          ;;;(service greetd-service-type
+                          ;;;         (greetd-configuration
+                          ;;;          (greeter-supplementary-groups
+                          ;;;           (list "video" "input" "seat"))
+                          ;;;          (terminals
+                          ;;;           (list (greetd-terminal-configuration
+                          ;;;                  (terminal-vt "1")
+                          ;;;                  (terminal-switch #t)
+                          ;;;                  (default-session-command
+                          ;;;                    (greetd-wlgreet-sway-session
+                          ;;;                     (sway sway)
+                          ;;;                     (wlgreet-session
+                          ;;;                      (greetd-wlgreet-session
+                          ;;;                       (command (file-append sway "/bin/sway"))))
+                          ;;;                     (sway-configuration
+                          ;;;                      (make-file "sway-greetd.conf" "greeter")))))
+                          ;;;                 (greetd-terminal-configuration
+                          ;;;                  (terminal-vt "2")
+                          ;;;                  (terminal-switch #t))
+                          ;;;                 (greetd-terminal-configuration
+                          ;;;                  (terminal-vt "3")
+                          ;;;                  (terminal-switch #t))
+                          ;;;                 (greetd-terminal-configuration
+                          ;;;                  (terminal-vt "4")
+                          ;;;                  (terminal-switch #t))
+                          ;;;                 (greetd-terminal-configuration
+                          ;;;                  (terminal-vt "5")
+                          ;;;                  (terminal-switch #t))
+                          ;;;                 (greetd-terminal-configuration
+                          ;;;                  (terminal-vt "6")
+                          ;;;                  (terminal-switch #t))))))
+                          ;;;(service mingetty-service-type
+                          ;;;         (mingetty-configuration (tty "tty8")))
                           fontconfig-file-system-service
                           ;;(service thermald-service-type)
 
@@ -165,5 +163,6 @@
                           ;;                 (delete mingetty-service-type))
                           )
                     %base-services)))
-                    ;;; (modify-services %base-services
-                    ;;;                  (delete mingetty-service-type))
+                    ;;;(modify-services %base-services
+                    ;;;                 (delete login-service-type)
+                    ;;;                 (delete mingetty-service-type)))))
