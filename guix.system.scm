@@ -2,14 +2,13 @@
 ;; for a "bare bones" setup, w/ no display server.
 
 (use-modules (gnu)
-	     (gnu home)
-             
+             (gnu home)
              (gnu packages admin)
-	     (gnu packages wm)
-	     (gnu packages xdisorg)
-	     (gnu packages terminals)
-	     (gnu services)
-	     (gnu services desktop)
+             (gnu packages wm)
+             (gnu packages xdisorg)
+             (gnu packages terminals)
+             (gnu services)
+             (gnu services desktop)
              (gnu system setuid)
 
              (guix packages)
@@ -26,9 +25,9 @@
 
 (define (make-file path name)
   (local-file
-   (string-append %conf-dir "/" path)
-   name
-   #:recursive? #t))
+   (string-append %conf-dir "/" path)))
+   ;;name
+   ;;#:recursive? #t))
 
 (define %privileged-programs
   (list (file-append swaylock-effects "/bin/swaylock")
@@ -84,7 +83,7 @@
   ;; Globally-installed packages.
   (packages (append (list screen
                           emacs
-		          sway;;-latest
+                          sway
                           swaylock-effects
                           nss-certs)
                     %base-packages))
@@ -98,9 +97,7 @@
 
   ;; Add services to the baseline: a DHCP client and
   ;; an SSH server.
-  (services (append (list (simple-service 'env-vars session-environment-service-type
-                                          '(("XDG_RUNTIME_DIR" . "/tmp/")))
-                          (service cups-service-type
+  (services (append (list (service cups-service-type
                                    (cups-configuration
                                     (web-interface? #t)
                                     (extensions
