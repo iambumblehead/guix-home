@@ -76,8 +76,8 @@
                 (name "bumble")
                 (comment "honey worker")
                 (group "users")
-                (supplementary-groups '("wheel" "netdev" "seat"
-                                        "audio" "video")))
+                (supplementary-groups
+                 (list "wheel" "netdev" "seat" "audio" "video")))
                %base-user-accounts))
 
   ;; Globally-installed packages.
@@ -112,14 +112,14 @@
                                       (greetd-terminal-configuration
                                        (terminal-vt "1")
                                        (terminal-switch #t))
-                                       ;;(default-session-command
-                                       ;;  (greetd-wlgreet-sway-session
-                                       ;;   (sway sway)
-                                       ;;   (wlgreet-session
-                                       ;;    (greetd-wlgreet-session
-                                       ;;     (command (file-append sway "/bin/sway"))))
-                                       ;;   (sway-configuration
-                                       ;;    (make-file "sway-greetd.conf" "greeter")))))
+                                       ;;;(default-session-command
+                                       ;;;  (greetd-wlgreet-sway-session
+                                       ;;;   (sway sway)
+                                       ;;;   (wlgreet-session
+                                       ;;;    (greetd-wlgreet-session
+                                       ;;;     (command (file-append sway "/bin/sway"))))
+                                       ;;;   (sway-configuration
+                                       ;;;    (make-file "sway-greetd.conf" "greeter")))))
                                       (greetd-terminal-configuration
                                        (terminal-vt "2"))
                                       (greetd-terminal-configuration
@@ -156,6 +156,7 @@
                                     (openssh openssh-sans-x)
                                     (port-number 2222))))
                     (modify-services %base-services
+                                     (delete agetty-service-type)
                                      (delete mingetty-service-type)
                                      (guix-service-type config =>
                                                         (guix-configuration
