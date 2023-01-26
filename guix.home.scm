@@ -22,16 +22,13 @@
 (define %xdg-config-files
   `(("foot/foot.ini"
      ,(make-file
-       "foot.ini"
-       "foot-config"))
+       "foot.ini" "foot-config"))
     ("waybar/config"
      ,(make-file
-       "waybar/.config/waybar/waybar"
-       "waybar-config"))
+       "waybar.config" "waybar-config"))
     ("waybar/style.css"
      ,(make-file
-       "waybar/.config/waybar/waybar.css"
-       "waybarcss-config"))))
+       "waybar.css" "waybarcss-config"))))
 
 (define %dotfiles
   `((".git/gitconfig"
