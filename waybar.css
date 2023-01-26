@@ -55,7 +55,8 @@ window#waybar > box {
     margin: 0 5px;
 }
 
-#clock.time {
+#clock.time,
+#clock.date {
     font-size: 18px;
 }
 
