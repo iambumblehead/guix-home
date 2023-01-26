@@ -149,8 +149,11 @@
                                     (percentage-action 5)
                                     (critical-power-action 'power-off)))
                           (service dhcp-client-service-type)
-                          (service wpa-supplicant-service-type)
                           (service seatd-service-type) ;; for sway
+                          (service wpa-supplicant-service-type
+                                   (wpa-supplicant-configuration
+                                    (interface "wlp2s0")
+                                    (config-file (make-file "wpa_supplicant.conf" "wpa-supplicant"))))
                           (service openssh-service-type
                                    (openssh-configuration
                                     (openssh openssh-sans-x)
