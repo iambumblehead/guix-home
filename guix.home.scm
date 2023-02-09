@@ -13,6 +13,9 @@
              (guix gexp)
              (gnu home services shells))
 
+;;;(define wireplumber-sans-elogind
+;;;  (load "guix.package.wireplumber-sans-elogind.scm"))
+
 (define (make-file path name)
   (local-file
    (string-append (getenv "HOME") "/software/guix-home/" path)
@@ -35,12 +38,22 @@
      ,(make-file "git.config" "git-config"))
     (".config/guix/channels.scm"
      ,(make-file "guix.channels.scm" "channels-config"))
+    ;;;(".config/wireplumber/bluetooth.lua.d/80-disable-logind.lua"
+    ;;; ,(make-file "wireplumber.disable-logind.lua" "wireplumber-no-logind"))
+    ;;;(".config/wireplumber/main.lua.d/80-disable-dbus.lua"
+    ;;; ,(make-file "wireplumber.disable-dbus.lua" "wireplumber-no-dbus"))
     (".config/sway/config"
      ,(make-file "sway.config" "sway-config"))
     (".config/qutebrowser/config.py"
      ,(make-file "qutebrowser.config.py" "qutebrowser-config"))
     (".icons/default/index.theme"
      ,(make-file "icon.theme" "icon-theme"))))
+
+;;;(define-public wireplumber-sans-elogind
+;;;  (package
+;;;   (inherit wireplumber)
+;;;   (inputs (modify-inputs (package-inputs wireplumber)
+;;;                          (delete "elogind")))))
 
 (home-environment
  ;; Below is the list of packages that will show up in your
@@ -62,6 +75,7 @@
                                            "waybar"
                                            "bemenu"
                                            "foot"
+                                           ;;;"wireplumber-sans-elogind"
                                            "pipewire"
                                            "wireplumber")))
 

@@ -48,11 +48,10 @@
                (bootloader grub-efi-bootloader)
                (targets (list "/boot/efi"))
                (keyboard-layout keyboard-layout)
-               ;;(theme (grub-theme
-               ;;        (inherit (grub-theme))
-               ;;        (gfxmode '("auto"))
-               ;;        (image (local-file "/home/bumble/software/guix-home/guix-checkered-16-9.svg"))))
-                ))
+               (theme (grub-theme
+                       (inherit (grub-theme))
+                       (gfxmode '("auto"))
+                       (image (make-file "guix-checkered-16-9.svg" "checker"))))))
 
   (swap-devices
    (list
