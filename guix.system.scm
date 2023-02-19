@@ -51,7 +51,7 @@
                (theme (grub-theme
                        (inherit (grub-theme))
                        (gfxmode '("auto"))
-                       (image (make-file "guix-checkered-16-9.svg" "checker"))))))
+                       (image (make-file "guix-checkered-16-10.svg" "checker"))))))
 
   (swap-devices
    (list
