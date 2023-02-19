@@ -30,13 +30,13 @@ window#waybar > box {
 
 #workspaces button {
     padding: 3px;
-    color: #e5e9f0;
+    color: rgba(100, 114, 125, 1);
     font-size: 13px;
     border-radius: 0;
 }
 
 #workspaces button.focused {
-    color: rgba(100, 114, 125, 1);
+    color: #e5e9f0;
     background-color: rgba(17, 40, 40, 1);
     border: 1.5px solid rgba(17, 40, 40, 1);
 }
@@ -57,7 +57,7 @@ window#waybar > box {
 
 #clock.time,
 #clock.date {
-    font-size: 18px;
+    /*font-size: 18px;*/
 }
 
 #custom-label {
