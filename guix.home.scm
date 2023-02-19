@@ -13,8 +13,8 @@
              (guix gexp)
              (gnu home services shells))
 
-;;;(define wireplumber-sans-elogind
-;;;  (load "guix.package.wireplumber-sans-elogind.scm"))
+(define wireplumber-sans-elogind
+  (load "guix.package.wireplumber-sans-elogind.scm"))
 
 (define (make-file path name)
   (local-file
@@ -38,22 +38,20 @@
      ,(make-file "git.config" "git-config"))
     (".config/guix/channels.scm"
      ,(make-file "guix.channels.scm" "channels-config"))
-    ;;;(".config/wireplumber/bluetooth.lua.d/80-disable-logind.lua"
-    ;;; ,(make-file "wireplumber.disable-logind.lua" "wireplumber-no-logind"))
-    ;;;(".config/wireplumber/main.lua.d/80-disable-dbus.lua"
-    ;;; ,(make-file "wireplumber.disable-dbus.lua" "wireplumber-no-dbus"))
+    (".config/pipewire/pipewire.conf"
+     ,(make-file "pipewire.conf" "pipewire-conf"))
+    (".config/wireplumber/wireplumber.conf"
+     ,(make-file "wireplumber.conf" "wireplumber-conf"))
+    (".config/wireplumber/bluetooth.lua.d/80-disable-logind.lua"
+     ,(make-file "wireplumber.disable-logind.lua" "wireplumber-no-logind"))
+    (".config/wireplumber/main.lua.d/80-disable-dbus.lua"
+     ,(make-file "wireplumber.disable-dbus.lua" "wireplumber-no-dbus"))
     (".config/sway/config"
      ,(make-file "sway.config" "sway-config"))
     (".config/qutebrowser/config.py"
      ,(make-file "qutebrowser.config.py" "qutebrowser-config"))
     (".icons/default/index.theme"
      ,(make-file "icon.theme" "icon-theme"))))
-
-;;;(define-public wireplumber-sans-elogind
-;;;  (package
-;;;   (inherit wireplumber)
-;;;   (inputs (modify-inputs (package-inputs wireplumber)
-;;;                          (delete "elogind")))))
 
 (home-environment
  ;; Below is the list of packages that will show up in your
@@ -73,11 +71,14 @@
                                            "qtwayland@5.15.5"
                                            "qutebrowser"
                                            "waybar"
-                                           "bemenu"
-                                           "foot"
-                                           ;;;"wireplumber-sans-elogind"
                                            "pipewire"
-                                           "wireplumber")))
+                                           ;;; "qview"
+                                           ;;; "nheko"
+                                           ;;; "wireplumber"
+                                           "bemenu"
+                                           "mpv"
+                                           "yt-dlp"
+                                           "foot")))
 
   ;; Below is the list of Home services.  To search for available
   ;; services, run 'guix home search KEYWORD' in a terminal.
@@ -92,7 +93,6 @@
                            ("XDG_CURRENT_DESKTOP" . "sway")
                            ("DESKTOP_SESSION" . "sway")
                            ("LIBSEAT_BACKEND" . "seatd")))
-         ;; (service pipewire-service-type)
          (service home-xdg-configuration-files-service-type
                   %xdg-config-files)
          (simple-service 'dotfiles-installation home-files-service-type

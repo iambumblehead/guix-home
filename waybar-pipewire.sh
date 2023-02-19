@@ -1,4 +1,4 @@
-##!/bin/sh
+#!/bin/sh
 
 volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | \
     sed 's/Volume: //' | \
