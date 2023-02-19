@@ -39,6 +39,10 @@ c.colors.webpage.darkmode.grayscale.images = 0.0
 c.colors.webpage.darkmode.policy.images = 'smart'
 c.colors.webpage.darkmode.policy.page = 'smart'
 c.colors.webpage.darkmode.threshold.background = 128
-c.colors.webpage.darkmode.threshold.text = 128 
+c.colors.webpage.darkmode.threshold.text = 128
 
 c.qt.args = ['disable-seccomp-filter-sandbox']
+
+
+# config.source('/home/bumble/software/guix-home/qutebrowser.theme.gruvbox.dark.py')
+config.source('qutebrowser.theme.city-lights.py')

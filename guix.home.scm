@@ -48,6 +48,10 @@
      ,(make-file "wireplumber.disable-dbus.lua" "wireplumber-no-dbus"))
     (".config/sway/config"
      ,(make-file "sway.config" "sway-config"))
+    (".config/qutebrowser/qutebrowser.theme.gruvbox.dark.py"
+     ,(make-file "qutebrowser.theme.gruvbox.dark.py" "qutebrowser-gruv"))
+    (".config/qutebrowser/qutebrowser.theme.city-lights.py"
+     ,(make-file "qutebrowser.theme.city-lights.py" "qutebrowser-city"))
     (".config/qutebrowser/config.py"
      ,(make-file "qutebrowser.config.py" "qutebrowser-config"))
     (".icons/default/index.theme"
