@@ -16,6 +16,9 @@
 (define wireplumber-sans-elogind
   (load "guix.package.wireplumber-sans-elogind.scm"))
 
+(define anki
+  (load "guix.package.anki-bin.scm"))
+
 (define (make-file path name)
   (local-file
    (string-append (getenv "HOME") "/software/guix-home/" path)
@@ -82,7 +85,8 @@
                                            "bemenu"
                                            "mpv"
                                            "yt-dlp"
-                                           "foot")))
+                                           "foot"
+                                           "zstd")))
 
   ;; Below is the list of Home services.  To search for available
   ;; services, run 'guix home search KEYWORD' in a terminal.
