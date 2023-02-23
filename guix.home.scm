@@ -82,6 +82,7 @@
                                            ;;; "qview"
                                            ;;; "nheko"
                                            ;;; "wireplumber"
+                                           "light"
                                            "bemenu"
                                            "mpv"
                                            "yt-dlp"

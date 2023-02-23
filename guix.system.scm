@@ -5,6 +5,7 @@
              (gnu home)
              (gnu packages admin)
              (gnu packages wm)
+             (gnu packages linux) ;; for light
              (gnu packages xdisorg)
              (gnu packages terminals)
              (gnu services)
@@ -76,7 +77,7 @@
                 (comment "honey worker")
                 (group "users")
                 (supplementary-groups
-                 (list "wheel" "netdev" "seat" "audio" "video")))
+                 (list "wheel" "netdev" "seat" "audio" "video" "light")))
                %base-user-accounts))
 
   ;; Globally-installed packages.
@@ -101,6 +102,8 @@
                                     (web-interface? #t)
                                     (extensions
                                      (list cups-filters hplip))))
+                          (udev-rules-service 'light light
+                                              #:groups '("light"))
                           (service greetd-service-type
                                    (greetd-configuration
                                     (greeter-supplementary-groups
