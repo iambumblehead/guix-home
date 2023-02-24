@@ -42,7 +42,10 @@
   (keyboard-layout (keyboard-layout "us" #:options '("ctrl:nocaps")))
   (kernel linux)
   (initrd microcode-initrd)
-  (firmware (list linux-firmware))
+  (firmware
+   (append (list iwlwifi-firmware
+                 i915-firmware)
+           %base-firmware))
   (initrd-modules (cons "i915" %base-initrd-modules))
 
   (bootloader (bootloader-configuration
