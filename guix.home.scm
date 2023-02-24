@@ -82,9 +82,12 @@
                                            ;;; "qview"
                                            ;;; "nheko"
                                            ;;; "wireplumber"
+                                           "grimshot"
+                                           "pamixer"
                                            "light"
                                            "bemenu"
                                            "mpv"
+                                           "wob"
                                            "yt-dlp"
                                            "foot"
                                            "zstd")))
