@@ -82,6 +82,7 @@
                                            ;;; "qview"
                                            ;;; "nheko"
                                            ;;; "wireplumber"
+                                           "swayidle"
                                            "grimshot"
                                            "pamixer"
                                            "light"
