@@ -51,6 +51,8 @@
      ,(make-file "wireplumber.disable-dbus.lua" "wireplumber-no-dbus"))
     (".config/sway/config"
      ,(make-file "sway.config" "sway-config"))
+    (".config/sway/inactive-windows-transparent.py"
+     ,(make-file "sway.inactive-windows-transparent.py" "sway-inactive"))
     (".config/qutebrowser/qutebrowser.theme.gruvbox.dark.py"
      ,(make-file "qutebrowser.theme.gruvbox.dark.py" "qutebrowser-gruv"))
     (".config/qutebrowser/qutebrowser.theme.city-lights.py"
@@ -79,10 +81,13 @@
                                            "qutebrowser"
                                            "waybar"
                                            "pipewire"
+                                           "wl-clipboard"
                                            ;;; "qview"
                                            ;;; "nheko"
                                            ;;; "wireplumber"
                                            "swayidle"
+                                           ;;;"python"
+                                           ;;;"python-i3ipc"
                                            "grimshot"
                                            "pamixer"
                                            "light"

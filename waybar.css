@@ -5,7 +5,7 @@
 
 /*
 :root {
-   --label-color-primary-bg: rgba(17, 40, 40, 1);
+   --label-color-primary-bg: rgba(23, 23, 23, 1);
    --label-color-primary-fg: rgba(100, 114, 125, 1);
    --label-color-background-bg: rgba(100, 114, 125, 1);
    --box-color-background-bg: rgba(17, 34, 34, 1);
@@ -24,7 +24,7 @@ window {
 }
 
 window#waybar > box {
-    background: rgba(17, 34, 34, 1);
+    background: rgba(13, 18, 24, 1);
     color: rgba(229, 233, 240, 1);
 }
 
@@ -36,9 +36,9 @@ window#waybar > box {
 }
 
 #workspaces button.focused {
-    color: #e5e9f0;
-    background-color: rgba(17, 40, 40, 1);
-    border: 1.5px solid rgba(17, 40, 40, 1);
+    color: #6d87a0; /*#e5e9f0;*/
+    background-color: rgba(23, 23, 23, 1);
+    border: 1.5px solid rgba(23, 23, 23, 1);
 }
 
 #workspaces button.urgent {
@@ -62,7 +62,7 @@ window#waybar > box {
 
 #custom-label {
     color: rgba(100, 114, 125, 1);
-    background-color: rgba(17, 40, 40, 1);
+    background-color: rgba(23, 23, 23, 1);
     /*padding: 5px 10px;*/
     padding: 0 10px;
     margin-left: 25px;
