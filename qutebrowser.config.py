@@ -14,7 +14,7 @@ c.fonts.contextmenu = '12pt monospace'
 c.qt.args=["blink-settings=darkMode=4"]
 
 c.content.cookies.accept = 'no-3rdparty'
-c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
+c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
 c.content.headers.accept_language = "ja-JP,js;q=0.9"
 c.url.searchengines = { "DEFAULT" : "https://searx.info/search?q={}" }
 
