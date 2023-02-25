@@ -121,6 +121,8 @@
                    (aliases '(("grep" . "grep --color=auto")
                               ("ll" . "ls -l")
                               ("ls" . "ls -p --color=auto")
+                              ("gup" . "guix pull && guix upgrade")
+                              ("gud" . "guix package --delete-generations")
                               ("ghr" . "guix home reconfigure")
                               ("gsr" . "sudo guix system reconfigure")))
                    (bashrc
