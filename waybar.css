@@ -30,15 +30,28 @@ window#waybar > box {
 
 #workspaces button {
     padding: 3px;
-    color: rgba(100, 114, 125, 1);
+    background-color: rgba(23, 23, 23, 1);
+    border: 1.5px solid rgba(23, 23, 23, 1);
+    /* color: rgba(100, 114, 125, 1);*/
+    color: #6d87a0; /*#e5e9f0;*/
     font-size: 13px;
     border-radius: 0;
 }
 
-#workspaces button.focused {
-    color: #6d87a0; /*#e5e9f0;*/
+#workspaces button.focused,
+#workspaces button:hover {
+    color: rgba(229, 233, 240, 1);
+    background: rgba(23, 23, 23, 0);
+    background-color: rgba(23, 23, 23, 0);
+    border: 1.5px solid rgba(23, 23, 23, 0);
+    border-color: rgba(23, 23, 23, 0);
+    font-weight: 500;
+    box-shadow: inherit;
+    text-shadow: inherit;
+    /*
     background-color: rgba(23, 23, 23, 1);
     border: 1.5px solid rgba(23, 23, 23, 1);
+   */
 }
 
 #workspaces button.urgent {
