@@ -3,37 +3,115 @@
 
 (use-modules (gnu)
              (gnu home)
-             (gnu packages admin)
              (gnu packages wm)
-             (gnu packages linux) ;; for light
+             (gnu packages ssh)
+             (gnu packages cups)
+             (gnu packages certs)
+             (gnu packages admin)
+             (gnu packages emacs)
+             (gnu packages linux)
              (gnu packages xdisorg)
              (gnu packages terminals)
              (gnu services)
+             (gnu services ssh)
+             (gnu services cups)
              (gnu services desktop)
+             (gnu services networking)
              (gnu system setuid)
-
              (guix packages)
              (guix download)
-             ;;(guixrus packages wayland-xyz)
              (nongnu packages linux)
              (nongnu system linux-initrd))
 
-(use-service-modules cups ssh networking)
-(use-package-modules cups ssh bootloaders certs emacs screen)
-
-(define %conf-dir
-    (dirname (current-filename)))
-
-(define (make-file path name)
+(define (make-file path)
   (local-file
-   (string-append %conf-dir "/" path)))
-   ;;name
-   ;;#:recursive? #t))
+   (string-append (dirname (current-filename)) "/" path)))
 
 (define %privileged-programs
   (list (file-append swaylock-effects "/bin/swaylock")
-        (file-append shepherd "/sbin/halt")
-        (file-append shepherd "/sbin/reboot")))
+        ;; (file-append shepherd "/sbin/halt")
+        ;; (file-append shepherd "/sbin/reboot")
+        ))
+
+(define (nonguixsub-service-create config)
+  (guix-configuration
+   (inherit config)
+   (substitute-urls
+    (cons* "https://nonguix.org"
+           %default-substitute-urls))
+   (authorized-keys
+    (cons* (origin
+            (method url-fetch)
+            (uri "https://substitutes.nonguix.org/signing-key.pub")
+            (file-name "nonguix.pub")
+            (sha256
+             (base32
+              "0j66nq1bxvbxf5n8q2py14sjbkn57my0mjwq7k1qm9ddghca7177")))
+           %default-authorized-guix-keys))))
+
+(define %services
+  (cons* (service cups-service-type
+                  (cups-configuration
+                   (web-interface? #t)
+                   (extensions
+                    (list cups-filters hplip))))
+         (udev-rules-service 'light light
+                             #:groups '("light"))
+         (service greetd-service-type
+                  (greetd-configuration
+                   (greeter-supplementary-groups
+                    (list "video" "input" "seat"))
+                   (terminals
+                    (list
+                     ;; we can make any terminal active by default
+                     (greetd-terminal-configuration
+                      (terminal-vt "1")
+                      (terminal-switch #t))
+                     ;;;(default-session-command
+                     ;;;  (greetd-wlgreet-sway-session
+                     ;;;   (sway sway)
+                     ;;;   (wlgreet-session
+                     ;;;    (greetd-wlgreet-session
+                     ;;;     (command (file-append sway "/bin/sway"))))
+                     ;;;   (sway-configuration
+                     ;;;    (make-file "sway-greetd.conf" "greeter")))))
+                     (greetd-terminal-configuration
+                      (terminal-vt "2"))
+                     (greetd-terminal-configuration
+                      (terminal-vt "3"))
+                     (greetd-terminal-configuration
+                      (terminal-vt "4"))
+                     (greetd-terminal-configuration
+                      (terminal-vt "5"))
+                     (greetd-terminal-configuration
+                      (terminal-vt "6"))
+                     ))))
+         (service mingetty-service-type
+                  (mingetty-configuration (tty "tty8")))
+         fontconfig-file-system-service
+         (service upower-service-type
+                  (upower-configuration
+                   (use-percentage-for-policy? #t)
+                   (percentage-low 12)
+                   (percentage-critical 8)
+                   (percentage-action 5)
+                   (critical-power-action 'power-off)))
+         (service dhcp-client-service-type)
+         (service seatd-service-type)
+         (service wpa-supplicant-service-type
+                  (wpa-supplicant-configuration
+                   (interface "wlp2s0")
+                   (config-file (make-file "wpa_supplicant.conf"))))
+         (service openssh-service-type
+                  (openssh-configuration
+                   (openssh openssh-sans-x)
+                   (port-number 2222)))
+         (modify-services %base-services
+                          (delete agetty-service-type)
+                          (delete mingetty-service-type)
+                          (guix-service-type
+                           config =>
+                           (nonguixsub-service-create config)))))
 
 (operating-system
   (host-name "guix-xps")
@@ -43,8 +121,7 @@
   (kernel linux)
   (initrd microcode-initrd)
   (firmware
-   (append (list iwlwifi-firmware
-                 i915-firmware)
+   (append (list iwlwifi-firmware)
            %base-firmware))
   (initrd-modules (cons "i915" %base-initrd-modules))
 
@@ -55,12 +132,10 @@
                (theme (grub-theme
                        (inherit (grub-theme))
                        (gfxmode '("auto"))
-                       (image (make-file "guix-checkered-16-10.svg" "checker"))))))
-
+                       (image (make-file "guix-checkered-16-10.svg"))))))
   (swap-devices
    (list
-    (swap-space (target (uuid "5b7826f3-fd1f-4b7d-a12b-9c5cabbf0087")))))
-
+    (swap-space (target (file-system-label "my-swap")))))
   (file-systems (append
                  (list (file-system
                          (device (file-system-label "my-root"))
@@ -71,113 +146,23 @@
                          (mount-point "/boot/efi")
                          (type "vfat")))
                  %base-file-systems))
-
-  ;; This is where user accounts are specified.  The "root"
-  ;; account is implicit, and is initially created with the
-  ;; empty password.
   (users (cons (user-account
                 (name "bumble")
                 (comment "honey worker")
                 (group "users")
                 (supplementary-groups
-                 (list "wheel" "netdev" "seat" "audio" "video" "light")))
+                 (list "wheel" "netdev" "seat"
+                       "audio" "video" "light")))
                %base-user-accounts))
-
-  ;; Globally-installed packages.
-  (packages (append (list screen
-                          emacs
+  (packages (append (list emacs
                           sway
                           swaylock-effects
                           nss-certs)
                     %base-packages))
-
   (setuid-programs
    (append (map (lambda (prog)
                   (setuid-program
                    (program prog)))
                 %privileged-programs)
            %setuid-programs))
-
-  ;; Add services to the baseline: a DHCP client and
-  ;; an SSH server.
-  (services (append (list (service cups-service-type
-                                   (cups-configuration
-                                    (web-interface? #t)
-                                    (extensions
-                                     (list cups-filters hplip))))
-                          (udev-rules-service 'light light
-                                              #:groups '("light"))
-                          (service greetd-service-type
-                                   (greetd-configuration
-                                    (greeter-supplementary-groups
-                                     (list "video" "input" "seat"))
-                                    (terminals
-                                     (list
-                                      ;; we can make any terminal active by default
-                                      (greetd-terminal-configuration
-                                       (terminal-vt "1")
-                                       (terminal-switch #t))
-                                       ;;;(default-session-command
-                                       ;;;  (greetd-wlgreet-sway-session
-                                       ;;;   (sway sway)
-                                       ;;;   (wlgreet-session
-                                       ;;;    (greetd-wlgreet-session
-                                       ;;;     (command (file-append sway "/bin/sway"))))
-                                       ;;;   (sway-configuration
-                                       ;;;    (make-file "sway-greetd.conf" "greeter")))))
-                                      (greetd-terminal-configuration
-                                       (terminal-vt "2"))
-                                      (greetd-terminal-configuration
-                                       (terminal-vt "3"))
-                                      (greetd-terminal-configuration
-                                       (terminal-vt "4"))
-                                      (greetd-terminal-configuration
-                                       (terminal-vt "5"))
-                                      (greetd-terminal-configuration
-                                       (terminal-vt "6"))
-                                      ))))
-                          (service mingetty-service-type
-                                   (mingetty-configuration (tty "tty8")))
-                          fontconfig-file-system-service
-                          ;;(service thermald-service-type)
-
-                          ;;;(pam-limits-service ;; Enables wireplumber to enter realtime
-                          ;;; (list
-                          ;;;  (pam-limits-entry "@realtime" 'both 'rtprio 99)
-                          ;;;  (pam-limits-entry "@realtime" 'both 'nice -11)
-                          ;;;  (pam-limits-entry "@realtime" 'both 'memlock 256)))
-                          (service upower-service-type
-                                   (upower-configuration
-                                    (use-percentage-for-policy? #t)
-                                    (percentage-low 12)
-                                    (percentage-critical 8)
-                                    (percentage-action 5)
-                                    (critical-power-action 'power-off)))
-                          (service dhcp-client-service-type)
-                          (service seatd-service-type) ;; for sway
-                          (service wpa-supplicant-service-type
-                                   (wpa-supplicant-configuration
-                                    (interface "wlp2s0")
-                                    (config-file (make-file "wpa_supplicant.conf" "wpa-supplicant"))))
-                          (service openssh-service-type
-                                   (openssh-configuration
-                                    (openssh openssh-sans-x)
-                                    (port-number 2222))))
-                    (modify-services %base-services
-                                     (delete agetty-service-type)
-                                     (delete mingetty-service-type)
-                                     (guix-service-type config =>
-                                                        (guix-configuration
-                                                         (inherit config)
-                                                         (substitute-urls
-                                                          (cons* "https://nonguix.org"
-                                                                 %default-substitute-urls))
-                                                         (authorized-keys
-                                                          (cons* (origin
-                                                                  (method url-fetch)
-                                                                  (uri "https://substitutes.nonguix.org/signing-key.pub")
-                                                                  (file-name "nonguix.pub")
-                                                                  (sha256
-                                                                   (base32
-                                                                    "0j66nq1bxvbxf5n8q2py14sjbkn57my0mjwq7k1qm9ddghca7177")))
-                                                                 %default-authorized-guix-keys))))))))
+  (services %services))
