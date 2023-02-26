@@ -22,12 +22,6 @@
 (primitive-load (string-append (dirname (current-filename))
                                "/guix.common.scm"))
 
-(define (make-file path name)
-  (local-file
-   (string-append (getenv "HOME") "/software/guix-home/" path)
-   name
-   #:recursive? #t))
-
 (define %xdg-config-files
   `(("foot.ini" . "foot/foot.ini")
     ("waybar.config" . "waybar/config")
@@ -112,10 +106,6 @@
                               ("ghr" . "guix home reconfigure")
                               ("gsr" . "sudo guix system reconfigure")))
                    (bashrc
-                    (list (local-file ".bashrc" "bashrc")))
+                    (list (config-file "bashrc")))
                    (bash-profile
-                    (list (local-file ".bash_profile" "bash_profile"))))))))
-                   ;;;(bashrc
-                   ;;; (map normalize-config '(".bashrc")))
-                   ;;;(bash-profile
-                   ;;; (map normalize-config '(".bash_profile"))))))))
+                    (list (config-file "bash_profile"))))))))
