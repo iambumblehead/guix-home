@@ -6,18 +6,21 @@
 
 (use-modules (gnu home)
              (gnu home services)
+             (gnu home services shells)
              (gnu packages)
              (gnu packages qt)
              (gnu packages fonts)
              (gnu services)
-             (guix gexp)
-             (gnu home services shells))
+             (guix gexp))
 
 (define wireplumber-sans-elogind
   (load "guix.package.wireplumber-sans-elogind.scm"))
 
 (define anki
   (load "guix.package.anki-bin.scm"))
+
+(primitive-load (string-append (dirname (current-filename))
+                               "/guix.common.scm"))
 
 (define (make-file path name)
   (local-file
@@ -26,41 +29,28 @@
    #:recursive? #t))
 
 (define %xdg-config-files
-  `(("foot/foot.ini"
-     ,(make-file
-       "foot.ini" "foot-config"))
-    ("waybar/config"
-     ,(make-file
-       "waybar.config" "waybar-config"))
-    ("waybar/style.css"
-     ,(make-file
-       "waybar.css" "waybarcss-config"))))
+  `(("foot.ini" . "foot/foot.ini")
+    ("waybar.config" . "waybar/config")
+    ("waybar.css" . "waybar/style.css")))
 
 (define %dotfiles
-  `((".git/gitconfig"
-     ,(make-file "git.config" "git-config"))
-    (".config/guix/channels.scm"
-     ,(make-file "guix.channels.scm" "channels-config"))
-    (".config/pipewire/pipewire.conf"
-     ,(make-file "pipewire.conf" "pipewire-conf"))
-    (".config/wireplumber/wireplumber.conf"
-     ,(make-file "wireplumber.conf" "wireplumber-conf"))
-    (".config/wireplumber/bluetooth.lua.d/80-disable-logind.lua"
-     ,(make-file "wireplumber.disable-logind.lua" "wireplumber-no-logind"))
-    (".config/wireplumber/main.lua.d/80-disable-dbus.lua"
-     ,(make-file "wireplumber.disable-dbus.lua" "wireplumber-no-dbus"))
-    (".config/sway/config"
-     ,(make-file "sway.config" "sway-config"))
-    (".config/sway/inactive-windows-transparent.py"
-     ,(make-file "sway.inactive-windows-transparent.py" "sway-inactive"))
-    (".config/qutebrowser/qutebrowser.theme.gruvbox.dark.py"
-     ,(make-file "qutebrowser.theme.gruvbox.dark.py" "qutebrowser-gruv"))
-    (".config/qutebrowser/qutebrowser.theme.city-lights.py"
-     ,(make-file "qutebrowser.theme.city-lights.py" "qutebrowser-city"))
-    (".config/qutebrowser/config.py"
-     ,(make-file "qutebrowser.config.py" "qutebrowser-config"))
-    (".icons/default/index.theme"
-     ,(make-file "icon.theme" "icon-theme"))))
+  `(("git.config" . ".git/gitconfig")
+    ("guix.channels.scm" . ".config/guix/channels.scm")
+    ("pipewire.conf" . ".config/pipewire/pipewire.conf")
+    ("wireplumber.conf" . ".config/wireplumber/wireplumber.conf")
+    ("wireplumber.disable-logind.lua" .
+     ".config/wireplumber/bluetooth.lua.d/80-disable-logind.lua")
+    ("wireplumber.disable-dbus.lua" .
+     ".config/wireplumber/main.lua.d/80-disable-dbus.lua")
+    ("sway.config" . ".config/sway/config")
+    ("sway.inactive-windows-transparent.py" .
+     ".config/sway/inactive-windows-transparent.py")
+    ("qutebrowser.theme.gruvbox.dark.py" .
+     ".config/qutebrowser/qutebrowser.theme.gruvbox.dark.py")
+    ("qutebrowser.theme.city-lights.py" .
+     ".config/qutebrowser/qutebrowser.theme.city-lights.py")
+    ("qutebrowser.config.py" . ".config/qutebrowser/config.py")
+    ("icon.theme" . ".icons/default/index.theme")))
 
 (home-environment
  (packages (specifications->packages (list "git"
@@ -96,8 +86,6 @@
                                            "foot"
                                            "zstd")))
 
-  ;; Below is the list of Home services.  To search for available
-  ;; services, run 'guix home search KEYWORD' in a terminal.
   (services
    (list (simple-service 'env-vars home-environment-variables-service-type
                          '(("EDITOR" . "emacs")
@@ -110,9 +98,9 @@
                            ("DESKTOP_SESSION" . "sway")
                            ("LIBSEAT_BACKEND" . "seatd")))
          (service home-xdg-configuration-files-service-type
-                  %xdg-config-files)
-         (simple-service 'dotfiles-installation home-files-service-type
-                         %dotfiles)
+                  (map normalize-config %xdg-config-files))
+         (service home-files-service-type
+                  (map normalize-config %dotfiles))
          (service home-bash-service-type
                   (home-bash-configuration
                    (guix-defaults? #f)
@@ -127,3 +115,7 @@
                     (list (local-file ".bashrc" "bashrc")))
                    (bash-profile
                     (list (local-file ".bash_profile" "bash_profile"))))))))
+                   ;;;(bashrc
+                   ;;; (map normalize-config '(".bashrc")))
+                   ;;;(bash-profile
+                   ;;; (map normalize-config '(".bash_profile"))))))))
