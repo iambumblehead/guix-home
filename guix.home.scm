@@ -63,6 +63,7 @@
                                            "swayidle"
                                            ;;;"python"
                                            ;;;"python-i3ipc"
+                                           "wlsunset"
                                            "grimshot"
                                            "pamixer"
                                            "light"
