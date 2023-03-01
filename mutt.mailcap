@@ -1,0 +1,6 @@
+image/*; muttimage %s ; copiousoutput
+application/pdf; openfile %s ;
+application/pgp-encrypted; gpg -d '%s'; copiousoutput;
+
+# auto view using w3m
+text/html; w3m -I %{charset} -T text/html; copiousoutput;

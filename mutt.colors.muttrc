@@ -1,0 +1,35 @@
+color normal            default         default
+color indicator         black           yellow
+color tree		yellow          default
+color index             yellow          default ~U # old messages
+
+color status default black
+
+# Regex highlighting:
+color header yellow default ".*"
+color header yellow default "^(Date)"
+color header yellow default "^(From)"
+color header yellow default "^(To)"
+color header cyan default "^(Subject)"
+color header white default "^(CC|BCC)"
+color body red default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" # Email addresses
+color body blue default "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+" # URL
+color body green default "\`[^\`]*\`" # Green text between ` and `
+color body blue default "^# \.*" # Headings as bold blue
+color body cyan default "^## \.*" # Subheadings as bold cyan
+color body green default "^### \.*" # Subsubheadings as bold green
+
+color body yellow default "^(\t| )*(-|\\*) \.*" # List items as yellow
+color body cyan default "[;:][-o][)/(|]" # emoticons
+color body cyan default "[;:][)(|]" # emoticons
+color body cyan default "[ ][*][^*]*[*][ ]?" # more emoticon?
+color body cyan default "[ ]?[*][^*]*[*][ ]" # more emoticon?
+
+color body red default "(BAD signature)"
+color body cyan default "(Good signature)"
+color body black default "^gpg: Good signature .*"
+color body yellow default "^gpg: "
+color body yellow red "^gpg: BAD signature from.*"
+mono body bold "^gpg: Good signature"
+mono body bold "^gpg: BAD signature from.*"
+
