@@ -15,9 +15,6 @@
  (license license:agpl3+)
  (source
   (local-file "/home/bumble/software/anki" "anki" #:recursive? #t))
- ;;
- ;; (source (local-dir "/home/bumble/software/anki/anki"))
- ;;
  ;; source expects tar.gz and tar.zst from github results in error
  ;;
  ;; (source
@@ -33,8 +30,9 @@
  (arguments
   `(#:patchelf-plan
     `(("anki" ("libc" "gcc:lib")))
+    #:validate-runpath? #f
     #:install-plan
-    `(("anki" "bin/")
+    `(("anki" "bin/anki")
       ("lib" "bin/lib"))
     #:phases
     (modify-phases %standard-phases
