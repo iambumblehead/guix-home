@@ -17,6 +17,10 @@
 
 (define %xdg-config-files
   `(("foot.ini" . "foot/foot.ini")
+    ("muttrc" . "mutt/muttrc")
+    ("mutt.colors.muttrc" . "mutt/mutt.colors.muttrc")
+    ("mutt.layout.muttrc" . "mutt/mutt.layout.muttrc")
+    ("mutt.mailcap" . "mutt/mutt.mailcap")
     ("waybar.config" . "waybar/config")
     ("waybar.css" . "waybar/style.css")))
 
@@ -63,6 +67,7 @@
                                            "swayidle"
                                            ;;;"python"
                                            ;;;"python-i3ipc"
+                                           "mutt"
                                            "wlsunset"
                                            "grimshot"
                                            "pamixer"
