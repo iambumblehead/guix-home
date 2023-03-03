@@ -53,7 +53,7 @@ set copy=yes                         # always save a copy of outgoing messages
 set delete=ask-no                    # purge deleted messages without asking
 set record=!                         # add sent messages to inbox's thread view
 
-set mailcap_path = mailcap
+set mailcap_path = mutt.mailcap
 auto_view text/html                  # automatically show html (mailcap uses w3m)
 auto_view application/pgp-encrypted
 alternative_order text/plain text/enriched text/html

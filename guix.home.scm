@@ -77,6 +77,7 @@
                                            "wob"
                                            "yt-dlp"
                                            "foot"
+                                           "w3m"
                                            "zstd")))
 
   (services
