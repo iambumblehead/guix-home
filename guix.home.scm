@@ -65,6 +65,7 @@
                                            "swayidle"
                                            ;;;"python"
                                            ;;;"python-i3ipc"
+                                           "i3-autotiling"
                                            "mutt"
                                            "wlsunset"
                                            "grimshot"
