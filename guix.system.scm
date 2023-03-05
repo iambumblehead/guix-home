@@ -18,6 +18,7 @@
              (gnu services desktop)
              (gnu services networking)
              (gnu system setuid)
+             (gnu system locale)
              (guix packages)
              (guix download)
              (nongnu packages linux)
@@ -116,7 +117,14 @@
 (operating-system
   (host-name "guix-xps")
   (timezone "America/Los_Angeles")
-  (locale "en_US.utf8")
+  (locale "ja_JP.utf8")
+  (locale-definitions
+   (append
+    (list (locale-definition (source "ja_JP")
+                             (name   "ja_JP.utf8"))
+          (locale-definition (source "en_US")
+                             (name   "en_US.utf8")))
+    %default-locale-definitions))
   (keyboard-layout (keyboard-layout "us" #:options '("ctrl:nocaps")))
   (kernel linux)
   (initrd microcode-initrd)
