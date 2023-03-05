@@ -10,9 +10,6 @@
 (define wireplumber-sans-elogind
   (load "guix.package.wireplumber-sans-elogind.scm"))
 
-(define anki
-  (load "guix.package.anki-bin.scm"))
-
 (primitive-load "guix.common.scm")
 
 (define %xdg-config-files
@@ -56,6 +53,7 @@
                                            "font-google-noto-serif-cjk"
                                            "font-liberation"
                                            "font-sarasa-gothic"
+                                           "font-jetbrains-mono"
                                            "qtwayland@5.15.5"
                                            "qutebrowser"
                                            "waybar"
@@ -101,8 +99,7 @@
                    (aliases '(("grep" . "grep --color=auto")
                               ("ll" . "ls -l")
                               ("ls" . "ls -p --color=auto")
-                              ("gupd" . "guix package --delete-generations")
-                              ("gusd" . "guix system --delete-generations")                              
+                              ("gud" . "guix system delete-generations")
                               ("gup" . "guix pull && guix upgrade")
                               ("ghr" . "guix home reconfigure")
                               ("gsr" . "sudo guix system reconfigure")))
