@@ -31,6 +31,7 @@ How to administer
  * `guix pull`
  * `sudo guix system reconfigure guix.system.scm`
  * `guix home reconfigure guix.system.scm`
+ * `guix system delete-generations`
  * `df -h`
 
 
