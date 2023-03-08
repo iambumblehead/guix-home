@@ -71,9 +71,12 @@
                                            "bemenu"
                                            "mpv"
                                            "wob"
+                                           "password-store"
                                            "yt-dlp"
                                            "foot"
                                            "w3m"
+                                           "gnupg"
+                                           "pinentry-tty"
                                            "zstd")))
 
   (services

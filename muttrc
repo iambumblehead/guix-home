@@ -1,0 +1,14 @@
+source ~/.config/mutt/mutt.layout.muttrc
+source ~/.config/mutt/mutt.colors.muttrc
+
+# note: use pgp elliptic curve25519 not rsa
+# encrypt details file this way:
+#   cat email.details.md | pass insert -m mutt/muttrc
+source "pass mutt/muttrc |"
+
+set ssl_force_tls = yes
+set spoolfile = +INBOX
+mailboxes     = +INBOX
+set record    = +SENT
+set realname  = "chris"
+set editor    = "emacs"
