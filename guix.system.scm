@@ -76,14 +76,14 @@
                      (greetd-terminal-configuration
                       (terminal-vt "1")
                       (terminal-switch #t))
-                     ;;;(default-session-command
-                     ;;;  (greetd-wlgreet-sway-session
+                     ;;; (default-session-command
+                     ;;;   (greetd-wlgreet-sway-session
                      ;;;   (sway sway)
                      ;;;   (wlgreet-session
                      ;;;    (greetd-wlgreet-session
                      ;;;     (command (file-append sway "/bin/sway"))))
-                     ;;;   (sway-configuration
-                     ;;;    (make-file "sway-greetd.conf" "greeter")))))
+                     ;;;    (sway-configuration
+                     ;;;     (make-file "sway-greetd.conf")))))
                      (greetd-terminal-configuration
                       (terminal-vt "2"))
                      (greetd-terminal-configuration
@@ -147,20 +147,27 @@
                (keyboard-layout keyboard-layout)
                (theme (grub-theme
                        (inherit (grub-theme))
-                       (gfxmode '("auto"))
+                       (gfxmode '("800x600" "auto"))
                        (image (make-file "guix-checkered-16-10.svg"))))))
   (swap-devices
    (list
     (swap-space (target (file-system-label "my-swap")))))
   (file-systems (append
                  (list (file-system
-                         (device (file-system-label "my-root"))
-                         (mount-point "/")
-                         (type "ext4"))
+                        (device (file-system-label "my-root"))
+                        (mount-point "/")
+                        (type "ext4"))
                        (file-system
-                         (device (uuid "2EBD-CDBC" 'fat32))
-                         (mount-point "/boot/efi")
-                         (type "vfat")))
+                        (device (uuid "2EBD-CDBC" 'fat32))
+                        (mount-point "/boot/efi")
+                        (type "vfat"))
+                       (file-system
+                        (device "/dev/sdb1")
+                        (mount-point "/mnt/usb")
+                        (type "ext4")
+                        (options "rw,noauto,user")
+                        (create-mount-point? #t)
+                        (mount? #f)))
                  %base-file-systems))
   (users (cons (user-account
                 (name "bumble")
