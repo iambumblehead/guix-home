@@ -6,6 +6,7 @@
              (gnu packages wm)
              (gnu packages ssh)
              (gnu packages cups)
+             (gnu packages fonts)
              (gnu packages certs)
              (gnu packages admin)
              (gnu packages emacs)
@@ -115,8 +116,15 @@
                   (openssh-configuration
                    (openssh openssh-sans-x)
                    (port-number 2222)))
+         (service console-font-service-type
+                  (map (lambda (tty)
+                         (cons tty (file-append
+                                    font-terminus
+                                    "/share/consolefonts/ter-124n")))
+                       '("tty1" "tty2" "tty3" "tty4" "tty5" "tty6")))
          (modify-services %base-services
                           (delete agetty-service-type)
+                          (delete console-font-service-type)
                           (delete mingetty-service-type)
                           (guix-service-type
                            config =>
