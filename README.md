@@ -44,3 +44,13 @@ Other good ones
 Links
  * https://rendaw.gitlab.io/blog/
  * https://toys.whereis.xn--q9jyb4c/
+
+
+Still to do
+ * setup emacs with guix powers
+   * https://issues.guix.gnu.org/58652
+   * https://guix.gnu.org/manual/en/html_node/The-Perfect-Setup.html
+   * https://guix.gnu.org/manual/en/html_node/Building-from-Git.html
+ * setup git sendmail
+   * https://git-send-email.io/#step-2
+ * add to gitconfig gpgsign
