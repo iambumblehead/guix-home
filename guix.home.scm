@@ -8,7 +8,7 @@
              (guix gexp))
 
 (define wireplumber-sans-elogind
-  (load "guix.package.wireplumber-sans-elogind.scm"))
+  (load "guix.pkg.wireplumber-sans-elogind.scm"))
 
 (primitive-load "guix.common.scm")
 
