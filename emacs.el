@@ -7,10 +7,10 @@
 
 (guix-emacs-autoload-packages)
 
-(load-file "emacs-nox.el")
-(load-file "emacs-font.el")
-(load-file "emacs-clipboard.el")
-(load-file "emacs-colorize-buffer.el")
+(load-file "~/.emacs.d/emacs-nox.el")
+(load-file "~/.emacs.d/emacs-font.el")
+(load-file "~/.emacs.d/emacs-clipboard.el")
+(load-file "~/.emacs.d/emacs-colorize-buffer.el")
 
 (bind-system-clipboard-paste-to)
 (bind-system-clipboard-copy-from)

@@ -9,6 +9,10 @@
 
 (define %packages
   (list "git"
+        ;; https://www.mail-archive.com/help-guix@gnu.org/msg09871.html
+        ;; hoping specifications->packages will be updated to handle this
+        ;; in future, for now: `guix install -i git:send-email`
+        "git:send-email"
         "curl"
         "bemenu"
         "ncurses"
