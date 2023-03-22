@@ -75,7 +75,7 @@
     ("waybar.css" . "waybar/style.css")))
 
 (define %dotfiles
-  `(("git.config" . ".git/gitconfig")
+  `(("git.config" . ".git/config")
     ("guix.channels.scm" . ".config/guix/channels.scm")
     ("pipewire.conf" . ".config/pipewire/pipewire.conf")
     ("wireplumber.conf" . ".config/wireplumber/wireplumber.conf")

@@ -1,7 +1,3 @@
-# repeats, if this is also defined in home config
-alias grep="grep --color=auto"
-alias ll="ls -l"
-alias ls="ls -p --color=auto"
 # Bash initialization for interactive non-login shells and
 # for remote shells (info "(bash) Bash Startup Files").
 
