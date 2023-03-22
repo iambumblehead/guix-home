@@ -5,9 +5,6 @@
              (gnu services)
              (guix gexp))
 
-(define wireplumber-sans-elogind
-  (load "guix.pkg.wireplumber-sans-elogind.scm"))
-
 (primitive-load "guix.common.scm")
 
 (define %packages
@@ -90,8 +87,12 @@
      ".config/qutebrowser/qutebrowser.theme.city-lights.py")
     ("qutebrowser.config.py" . ".config/qutebrowser/config.py")
     ("icon.theme" . ".icons/default/index.theme")
-    ("emacs.el" . ".config/emacs/init.el")
-    ))
+
+    ("emacs.el" . ".emacs.d/init.el")
+    ("emacs-nox.el" . ".emacs.d/emacs-nox.el")
+    ("emacs-font.el" . ".emacs.d/emacs-font.el")
+    ("emacs-clipboard.el" . ".emacs.d/emacs-clipboard.el")
+    ("emacs-colorize-buffer.el" . ".emacs.d/emacs-colorize-buffer.el")))
 
 (home-environment
 (packages (specifications->packages
