@@ -2,8 +2,6 @@
              (gnu home services)
              (gnu home services shells)
              (gnu packages)
-             (gnu packages qt)
-             (gnu packages fonts)
              (gnu services)
              (guix gexp))
 
