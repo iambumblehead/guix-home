@@ -10,8 +10,9 @@
 (define %packages
   (list "git"
         ;; https://www.mail-archive.com/help-guix@gnu.org/msg09871.html
-        ;; hoping specifications->packages will be updated to handle this
-        ;; in future, for now: `guix install -i git:send-email`
+        ;; https://github.com/guix-mirror/guix/blob/master/gnu/packages.scm
+        ;; hoping specifications->packages will be fixed to handle this
+        ;; again in future, for now: `guix install -i git:send-email`
         "git:send-email"
         "curl"
         "bemenu"
@@ -102,35 +103,35 @@
     ("emacs-colorize-buffer.el" . ".emacs.d/emacs-colorize-buffer.el")))
 
 (home-environment
-(packages (specifications->packages
-           (append %packages
-                   %packages-emacs)))
-(services
- (list (simple-service 'env-vars home-environment-variables-service-type
-                       '(("EDITOR" . "emacs")
-                         ("BROWSER" . "qutebrowser")
-                         ("QT_QPA_PLATFORM" . "wayland")
-                         ("QT_SCALE_FACTOR" . "1")
-                         ("XDG_SESSION_TYPE" . "wayland")
-                         ("XDG_SESSION_DESKTOP" . "sway")
-                         ("XDG_CURRENT_DESKTOP" . "sway")
-                         ("DESKTOP_SESSION" . "sway")
-                         ("LIBSEAT_BACKEND" . "seatd")))
-       (service home-xdg-configuration-files-service-type
-                (map normalize-config %xdg-config-files))
-       (service home-files-service-type
-                (map normalize-config %dotfiles))
-       (service home-bash-service-type
-                (home-bash-configuration
-                 (guix-defaults? #f)
-                 (aliases '(("grep" . "grep --color=auto")
-                            ("ll" . "ls -l")
-                            ("ls" . "ls -p --color=auto")
-                            ("gud" . "guix system delete-generations")
-                            ("gup" . "guix pull && guix upgrade")
-                            ("ghr" . "guix home reconfigure")
-                            ("gsr" . "sudo guix system reconfigure")))
-                 (bashrc
-                  (list (config-file "bashrc")))
-                 (bash-profile
-                  (list (config-file "bash_profile"))))))))
+ (packages (specifications->packages
+            (append %packages
+                    %packages-emacs)))
+ (services
+  (list (simple-service 'env-vars home-environment-variables-service-type
+                        '(("EDITOR" . "emacs")
+                          ("BROWSER" . "qutebrowser")
+                          ("QT_QPA_PLATFORM" . "wayland")
+                          ("QT_SCALE_FACTOR" . "1")
+                          ("XDG_SESSION_TYPE" . "wayland")
+                          ("XDG_SESSION_DESKTOP" . "sway")
+                          ("XDG_CURRENT_DESKTOP" . "sway")
+                          ("DESKTOP_SESSION" . "sway")
+                          ("LIBSEAT_BACKEND" . "seatd")))
+        (service home-xdg-configuration-files-service-type
+                 (map normalize-config %xdg-config-files))
+        (service home-files-service-type
+                 (map normalize-config %dotfiles))
+        (service home-bash-service-type
+                 (home-bash-configuration
+                  (guix-defaults? #f)
+                  (aliases '(("grep" . "grep --color=auto")
+                             ("ll" . "ls -l")
+                             ("ls" . "ls -p --color=auto")
+                             ("gud" . "guix system delete-generations")
+                             ("gup" . "guix pull && guix upgrade")
+                             ("ghr" . "guix home reconfigure")
+                             ("gsr" . "sudo guix system reconfigure")))
+                  (bashrc
+                   (list (config-file "bashrc")))
+                  (bash-profile
+                   (list (config-file "bash_profile"))))))))
