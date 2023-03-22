@@ -12,6 +12,59 @@
 
 (primitive-load "guix.common.scm")
 
+(define %packages
+  (list "git"
+        "curl"
+        "bemenu"
+        "ncurses"
+        "adwaita-icon-theme"
+        "glib:bin"
+        "gsettings-desktop-schemas"
+        "font-google-noto"
+        "font-google-noto-sans-cjk"
+        "font-google-noto-serif-cjk"
+        "font-liberation"
+        "font-sarasa-gothic"
+        "font-jetbrains-mono"
+        "qtwayland@5.15.5"
+        "qutebrowser"
+        "waybar"
+        "pipewire"
+        "wl-clipboard"
+        "swayidle"
+        "python"
+        "i3-autotiling"
+        "mutt"
+        "imv"
+        "wlsunset"
+        "grimshot"
+        "pamixer"
+        "light"
+        "bemenu"
+        "mpv"
+        "wob"
+        "password-store"
+        "yt-dlp"
+        "foot"
+        "w3m"
+        "gnupg"
+        "pinentry-tty"
+        "zstd"))
+
+(define %packages-emacs
+  (list "emacs-doom-themes"
+        "emacs-dash"
+        "emacs-web-mode"
+        "emacs-js2-mode"
+        "emacs-json-mode"
+        "emacs-flycheck"
+        "emacs-geiser"
+        "emacs-geiser-guile"
+        "emacs-markdown-mode"
+        "emacs-pinentry"
+        "emacs-smartparens"
+        "emacs-use-package"))
+
 (define %xdg-config-files
   `(("foot.ini" . "foot/foot.ini")
     ("muttrc" . "mutt/muttrc")
@@ -38,73 +91,40 @@
     ("qutebrowser.theme.city-lights.py" .
      ".config/qutebrowser/qutebrowser.theme.city-lights.py")
     ("qutebrowser.config.py" . ".config/qutebrowser/config.py")
-    ("icon.theme" . ".icons/default/index.theme")))
+    ("icon.theme" . ".icons/default/index.theme")
+    ("emacs.el" . ".config/emacs/init.el")
+    ))
 
 (home-environment
- (packages (specifications->packages (list "git"
-                                           "curl"
-                                           "bemenu"
-                                           "ncurses"
-                                           "adwaita-icon-theme"
-                                           "glib:bin"
-                                           "gsettings-desktop-schemas"
-                                           "font-google-noto"
-                                           "font-google-noto-sans-cjk"
-                                           "font-google-noto-serif-cjk"
-                                           "font-liberation"
-                                           "font-sarasa-gothic"
-                                           "font-jetbrains-mono"
-                                           "qtwayland@5.15.5"
-                                           "qutebrowser"
-                                           "waybar"
-                                           "pipewire"
-                                           "wl-clipboard"
-                                           "swayidle"
-                                           "python"
-                                           "i3-autotiling"
-                                           "mutt"
-                                           "imv"
-                                           "wlsunset"
-                                           "grimshot"
-                                           "pamixer"
-                                           "light"
-                                           "bemenu"
-                                           "mpv"
-                                           "wob"
-                                           "password-store"
-                                           "yt-dlp"
-                                           "foot"
-                                           "w3m"
-                                           "gnupg"
-                                           "pinentry-tty"
-                                           "zstd")))
-
-  (services
-   (list (simple-service 'env-vars home-environment-variables-service-type
-                         '(("EDITOR" . "emacs")
-                           ("BROWSER" . "qutebrowser")
-                           ("QT_QPA_PLATFORM" . "wayland")
-                           ("QT_SCALE_FACTOR" . "1")
-                           ("XDG_SESSION_TYPE" . "wayland")
-                           ("XDG_SESSION_DESKTOP" . "sway")
-                           ("XDG_CURRENT_DESKTOP" . "sway")
-                           ("DESKTOP_SESSION" . "sway")
-                           ("LIBSEAT_BACKEND" . "seatd")))
-         (service home-xdg-configuration-files-service-type
-                  (map normalize-config %xdg-config-files))
-         (service home-files-service-type
-                  (map normalize-config %dotfiles))
-         (service home-bash-service-type
-                  (home-bash-configuration
-                   (guix-defaults? #f)
-                   (aliases '(("grep" . "grep --color=auto")
-                              ("ll" . "ls -l")
-                              ("ls" . "ls -p --color=auto")
-                              ("gud" . "guix system delete-generations")
-                              ("gup" . "guix pull && guix upgrade")
-                              ("ghr" . "guix home reconfigure")
-                              ("gsr" . "sudo guix system reconfigure")))
-                   (bashrc
-                    (list (config-file "bashrc")))
-                   (bash-profile
-                    (list (config-file "bash_profile"))))))))
+(packages (specifications->packages
+           (append %packages
+                   %packages-emacs)))
+(services
+ (list (simple-service 'env-vars home-environment-variables-service-type
+                       '(("EDITOR" . "emacs")
+                         ("BROWSER" . "qutebrowser")
+                         ("QT_QPA_PLATFORM" . "wayland")
+                         ("QT_SCALE_FACTOR" . "1")
+                         ("XDG_SESSION_TYPE" . "wayland")
+                         ("XDG_SESSION_DESKTOP" . "sway")
+                         ("XDG_CURRENT_DESKTOP" . "sway")
+                         ("DESKTOP_SESSION" . "sway")
+                         ("LIBSEAT_BACKEND" . "seatd")))
+       (service home-xdg-configuration-files-service-type
+                (map normalize-config %xdg-config-files))
+       (service home-files-service-type
+                (map normalize-config %dotfiles))
+       (service home-bash-service-type
+                (home-bash-configuration
+                 (guix-defaults? #f)
+                 (aliases '(("grep" . "grep --color=auto")
+                            ("ll" . "ls -l")
+                            ("ls" . "ls -p --color=auto")
+                            ("gud" . "guix system delete-generations")
+                            ("gup" . "guix pull && guix upgrade")
+                            ("ghr" . "guix home reconfigure")
+                            ("gsr" . "sudo guix system reconfigure")))
+                 (bashrc
+                  (list (config-file "bashrc")))
+                 (bash-profile
+                  (list (config-file "bash_profile"))))))))

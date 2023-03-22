@@ -9,7 +9,6 @@
              (gnu packages fonts)
              (gnu packages certs)
              (gnu packages admin)
-             (gnu packages emacs)
              (gnu packages linux)
              (gnu packages xdisorg)
              (gnu packages terminals)
@@ -175,6 +174,13 @@
                         (type "ext4")
                         (options "rw,noauto,user")
                         (create-mount-point? #t)
+                        (mount? #f))
+                       (file-system
+                        (device "/dev/mmcblk0p1")
+                        (mount-point "/mnt/sd")
+                        (type "ext4")
+                        (options "rw,noauto,user")
+                        (create-mount-point? #t)
                         (mount? #f)))
                  %base-file-systems))
   (users (cons (user-account
@@ -185,11 +191,13 @@
                  (list "wheel" "netdev" "seat"
                        "audio" "video" "light")))
                %base-user-accounts))
-  (packages (append (list emacs
-                          sway
-                          swaylock-effects
-                          nss-certs)
-                    %base-packages))
+  (packages (append 
+             (specifications->packages
+              (list "emacs"
+                    "sway"
+                    "swaylock-effects"
+                    "nss-certs"))
+             %base-packages))
   (setuid-programs
    (append (map (lambda (prog)
                   (setuid-program
