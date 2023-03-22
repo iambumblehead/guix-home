@@ -39,13 +39,13 @@
 (global-hl-line-mode 1)
 
 ;; other good themes: 'zenburn, 'tsdh-dark
-;; different theme for window and terminal emacs
-;; different highlight for different theme
+;; different theme + highlight for window and terminal
 (if (display-graphic-p)
     (progn (load-theme 'doom-peacock t)
            (set-face-background 'hl-line "#1c1c1c"))
   (progn (load-theme 'doom-peacock t)
-         (set-face-background 'hl-line "#1c1c1c")))
+         (set-face-background 'hl-line "#1c1c1c")
+         (set-background-color "ARGBBB000000")))
 
 ;; streamline windowed emacs ui
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -67,6 +67,18 @@
 (add-to-list 'auto-mode-alist '("\\.m?js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
 
+;; Assuming the Guix checkout is in ~/src/guix.
+(with-eval-after-load 'geiser-guile
+  (add-to-list 'geiser-guile-load-path "~/software/guix"))
+;; Tempel configuration
+(with-eval-after-load 'tempel
+   ;; Ensure tempel-path is a list -- it may also be a string.
+   (unless (listp 'tempel-path)
+     (setq tempel-path (list tempel-path)))
+   (add-to-list 'tempel-path "~/software/guix/etc/snippets/tempel/*"))
 
-
-(load-file "~/software/DOTemacs/DOTemacs.el")
+(setq user-full-name "chris")
+(setq user-mail-address "chris@bumblehead.com")
+(load-file "~/software/guix/etc/copyright.el")
+(setq copyright-names-regexp
+      (format "%s <%s>" user-full-name user-mail-address))
