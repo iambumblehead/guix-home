@@ -39,6 +39,7 @@
         "wlsunset"
         "grimshot"
         "pamixer"
+        "imagemagick"
         "light"
         "bemenu"
         "mpv"
@@ -53,7 +54,6 @@
 
 (define %packages-emacs
   (list "emacs-next-pgtk"
-        "emacs-dirvish"
         "emacs-nov-el"
         "emacs-doom-themes"
         "emacs-dash"
