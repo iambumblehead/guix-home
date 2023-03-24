@@ -38,15 +38,6 @@
 (setq hl-line-face 'hl-line)
 (global-hl-line-mode 1)
 
-;; other good themes: 'zenburn, 'tsdh-dark
-;; different theme + highlight for window and terminal
-(if (display-graphic-p)
-    (progn (load-theme 'doom-peacock t)
-           (set-face-background 'hl-line "#1c1c1c"))
-  (progn (load-theme 'doom-peacock t)
-         (set-face-background 'hl-line "#1c1c1c")
-         (set-background-color "ARGBBB000000")))
-
 ;; streamline windowed emacs ui
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -72,13 +63,42 @@
   (add-to-list 'geiser-guile-load-path "~/software/guix"))
 ;; Tempel configuration
 (with-eval-after-load 'tempel
-   ;; Ensure tempel-path is a list -- it may also be a string.
-   (unless (listp 'tempel-path)
-     (setq tempel-path (list tempel-path)))
-   (add-to-list 'tempel-path "~/software/guix/etc/snippets/tempel/*"))
+  ;; Ensure tempel-path is a list -- it may also be a string.
+  (unless (listp 'tempel-path)
+    (setq tempel-path (list tempel-path)))
+  (add-to-list 'tempel-path "~/software/guix/etc/snippets/tempel/*"))
 
 (setq user-full-name "chris")
 (setq user-mail-address "chris@bumblehead.com")
 (load-file "~/software/guix/etc/copyright.el")
 (setq copyright-names-regexp
       (format "%s <%s>" user-full-name user-mail-address))
+
+;; other good themes: 'zenburn, 'tsdh-dark
+;; different theme + highlight for window and terminal
+(defun set-theme ()
+  (if (display-graphic-p)
+      (progn (load-theme 'doom-peacock t)
+             (set-frame-parameter nil 'alpha-background 60)
+             (set-face-background 'hl-line "#1c1c1c"))
+    (progn (load-theme 'doom-peacock t)
+           (set-background-color "ARGBBB000000")
+           (set-face-background 'hl-line "#1c1c1c"))))
+
+(set-theme)
+(add-hook 'emacs-startup-hook 'set-theme)
+
+;;; https://kristofferbalintona.me/posts/202206071000/
+(defun toggle-alpha-on ()
+  (interactive)
+  (set-frame-parameter nil 'alpha-background 30)
+  (set-background-color "ARGBBB000000"))
+
+(defun toggle-alpha-half ()
+  (interactive)
+  (set-frame-parameter nil 'alpha-background 50))
+
+(defun toggle-alpha-off ()
+  (interactive)
+  (set-frame-parameter nil 'alpha-background 100)
+  (set-background-color nil))

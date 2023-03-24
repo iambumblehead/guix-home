@@ -2,7 +2,7 @@
   (set-face-attribute
    'default nil
    :family "JetBrains Mono"
-   :height 180))
+   :height 92))
 
 (when (member "Menlo" (font-family-list))
   (set-face-attribute

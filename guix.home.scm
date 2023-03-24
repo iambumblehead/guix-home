@@ -52,7 +52,10 @@
         "zstd"))
 
 (define %packages-emacs
-  (list "emacs-doom-themes"
+  (list "emacs-next-pgtk"
+        "emacs-dirvish"
+        "emacs-nov-el"
+        "emacs-doom-themes"
         "emacs-dash"
         "emacs-web-mode"
         "emacs-js2-mode"
