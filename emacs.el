@@ -30,10 +30,30 @@
   "Split the window horizontally for temp buffers."
   (when (one-window-p t) (split-window-horizontally)))
 
-;; change backup file dir
-(setq backup-by-copying t)
-(setq backup-directory-alist `(("." . "~/.emacs.d/saves/")))
-(setq create-lockfiles nil)
+(defconst cache-directory
+  (concat (or (getenv "XDG_CACHE_HOME")
+              (concat (getenv "HOME")
+                      "/.cache"))
+          "/emacs"))
+
+(use-package emacs
+  :custom
+  (auto-save-file-name-transforms
+   `((".*" ,cache-directory t)))
+  (backup-directory-alist
+   `((".*" . ,cache-directory)))
+  (indent-tabs-mode nil)
+  (lock-file-name-transforms
+   `((".*" ,cache-directory t)))
+  (truncate-lines t)
+  (tab-width 2)
+  (tab-always-indent nil)
+  (user-full-name "chris")
+  (user-mail-address "chris@bumblhead.com")
+  :config
+  (make-directory cache-directory t)
+  (when (file-exists-p "~/software/guix/etc/copyright.el")
+    (load-file "~/software/guix/etc/copyright.el")))
 
 (setq hl-line-face 'hl-line)
 (global-hl-line-mode 1)
@@ -43,10 +63,12 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
-;; indent with spaces
-(setq-default indent-tabs-mode nil)
-(setq-default truncate-lines t)
-(setq tab-width 2)
+;; store configurations here rather than write-protected files
+(defconst cache-directory-custom-el
+  (concat cache-directory "/custom.el"))
+(setq custom-file cache-directory-custom-el)
+(when (file-exists-p cache-directory-custom-el)
+  (load-file cache-directory-custom-el))
 
 (line-number-mode 1)
 (column-number-mode 1)
