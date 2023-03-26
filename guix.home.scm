@@ -49,12 +49,14 @@
         "foot"
         "w3m"
         "gnupg"
+        "zathura"
+        "zathura-pdf-mupdf"
+        "unzip"
         "pinentry-tty"
         "zstd"))
 
 (define %packages-emacs
   (list "emacs-next-pgtk"
-        "emacs-nov-el"
         "emacs-doom-themes"
         "emacs-dash"
         "emacs-web-mode"
@@ -98,6 +100,7 @@
      ".config/qutebrowser/qutebrowser.theme.city-lights.py")
     ("qutebrowser.config.py" . ".config/qutebrowser/config.py")
     ("icon.theme" . ".icons/default/index.theme")
+    ("zathurarc" . ".config/zathura/zathurarc")
 
     ("emacs.el" . ".emacs.d/init.el")
     ("emacs-nox.el" . ".emacs.d/emacs-nox.el")
@@ -133,7 +136,8 @@
                              ("gud" . "guix system delete-generations")
                              ("gup" . "guix pull && guix upgrade")
                              ("ghr" . "guix home reconfigure")
-                             ("gsr" . "sudo guix system reconfigure")))
+                             ("gsr" . "sudo guix system reconfigure")
+                             ("zathura" . "zathura --plugins-dir=.guix-home/profile/lib/zathura")))
                   (bashrc
                    (list (config-file "bashrc")))
                   (bash-profile
