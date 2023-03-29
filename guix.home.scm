@@ -137,7 +137,7 @@
                              ("gup" . "guix pull && guix upgrade")
                              ("ghr" . "guix home reconfigure")
                              ("gsr" . "sudo guix system reconfigure")
-                             ("zathura" . "zathura --plugins-dir=.guix-home/profile/lib/zathura")))
+                             ("zathura" . "zathura --plugins-dir=$HOME/.guix-home/profile/lib/zathura")))
                   (bashrc
                    (list (config-file "bashrc")))
                   (bash-profile
