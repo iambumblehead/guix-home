@@ -42,3 +42,9 @@ myfunc() {
     export PS1="${BOLD}${YELLOW}\u${GREEN}@${BLUE}\h ${GREEN}\W$(day)\\$ ${RESET}"
 }
 PROMPT_COMMAND="myfunc"
+
+# myopener() {
+#    bash $XDG_CONFIG_HOME/sh/sh.opener.sh $1
+#    # bash /home/bumble/software/guix-home/bash.opener.sh $1
+# }
+# export OPENER="myopener"

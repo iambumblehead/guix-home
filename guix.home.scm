@@ -36,6 +36,7 @@
         "i3-autotiling"
         "mutt"
         "imv"
+        "cfm"
         "wlsunset"
         "grimshot"
         "pamixer"
@@ -115,6 +116,7 @@
  (services
   (list (simple-service 'env-vars home-environment-variables-service-type
                         '(("EDITOR" . "emacs")
+                          ("OPENER" . "sh.opener.sh")
                           ("BROWSER" . "qutebrowser")
                           ("QT_QPA_PLATFORM" . "wayland")
                           ("QT_SCALE_FACTOR" . "1")
@@ -139,6 +141,6 @@
                              ("gsr" . "sudo guix system reconfigure")
                              ("zathura" . "zathura --plugins-dir=$HOME/.guix-home/profile/lib/zathura")))
                   (bashrc
-                   (list (config-file "bashrc")))
+                   (list (config-file "sh.bashrc.sh")))
                   (bash-profile
-                   (list (config-file "bash_profile"))))))))
+                   (list (config-file "sh.bash_profile.sh"))))))))
