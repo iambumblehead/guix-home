@@ -104,6 +104,7 @@
     ("icon.theme" . ".icons/default/index.theme")
     ("zathurarc" . ".config/zathura/zathurarc")
     ("ranger.rc.conf" . ".config/ranger/rc.conf")
+    ("ranger.scope.sh" . ".config/ranger/scope.sh")
 
     ("emacs.el" . ".emacs.d/init.el")
     ("emacs-nox.el" . ".emacs.d/emacs-nox.el")

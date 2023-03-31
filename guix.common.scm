@@ -9,7 +9,7 @@
   (string-join args "/"))
 
 (define (config-file file)
-  (local-file (path-join %conf-dir file)))
+  (local-file (path-join %conf-dir file) #:recursive? #t))
 
 (define normalize-config
   (match-lambda
