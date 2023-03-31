@@ -48,8 +48,9 @@
         "password-store"
         "yt-dlp"
         "foot"
-        "w3m"
         "gnupg"
+        "ranger"
+        "highlight"
         "zathura"
         "zathura-pdf-mupdf"
         "unzip"
@@ -102,6 +103,7 @@
     ("qutebrowser.config.py" . ".config/qutebrowser/config.py")
     ("icon.theme" . ".icons/default/index.theme")
     ("zathurarc" . ".config/zathura/zathurarc")
+    ("ranger.rc.conf" . ".config/ranger/rc.conf")
 
     ("emacs.el" . ".emacs.d/init.el")
     ("emacs-nox.el" . ".emacs.d/emacs-nox.el")
