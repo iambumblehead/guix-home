@@ -109,18 +109,3 @@
 
 (set-theme)
 (add-hook 'emacs-startup-hook 'set-theme)
-
-;;; https://kristofferbalintona.me/posts/202206071000/
-(defun toggle-alpha-on ()
-  (interactive)
-  (set-frame-parameter nil 'alpha-background 30)
-  (set-background-color "ARGBBB000000"))
-
-(defun toggle-alpha-half ()
-  (interactive)
-  (set-frame-parameter nil 'alpha-background 50))
-
-(defun toggle-alpha-off ()
-  (interactive)
-  (set-frame-parameter nil 'alpha-background 100)
-  (set-background-color nil))
