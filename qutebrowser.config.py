@@ -5,6 +5,10 @@ c.colors.webpage.bg = "black"
 # c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.threshold.background = 205
 
+config.bind(',xs', 'config-cycle statusbar.show always never')
+config.bind(',xt', 'config-cycle tabs.show always never')
+config.bind(',xx', 'config-cycle tabs.show always never;; config-cycle statusbar.show always never')
+
 c.fonts.completion.category = 'bold 12pt monospace'
 c.fonts.completion.entry = '12pt monospace'
 c.fonts.statusbar = '12pt monospace'
