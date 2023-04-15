@@ -33,6 +33,7 @@ How to administer
  * `sudo guix system delete-generations`
  * `guix home reconfigure guix.home.scm`
  * `guix home delete-generations`
+ * `guix upgrade`
  * `df -h`
 
 

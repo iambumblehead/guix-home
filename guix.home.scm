@@ -26,7 +26,7 @@
         "font-liberation"
         "font-sarasa-gothic"
         "font-jetbrains-mono"
-        "qtwayland@5.15.5"
+        "qtwayland@5.15"
         "qutebrowser"
         "waybar"
         "pipewire"
