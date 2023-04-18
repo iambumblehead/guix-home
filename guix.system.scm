@@ -38,7 +38,7 @@
   (guix-configuration
    (inherit config)
    (substitute-urls
-    (cons* "https://nonguix.org"
+    (cons* "https://substitutes.nonguix.org"
            "https://guix.tobias.gr"
            %default-substitute-urls))
    (authorized-keys
