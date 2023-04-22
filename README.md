@@ -29,6 +29,7 @@ What's good
 
 How to administer
  * `guix pull`
+ * `guix pull delete-generations`
  * `sudo guix system reconfigure guix.system.scm`
  * `sudo guix system delete-generations`
  * `guix home reconfigure guix.home.scm`
