@@ -29,11 +29,11 @@ What's good
 
 How to administer
  * `guix pull`
- * `guix pull delete-generations`
+ * `guix pull --delete-generations`
  * `sudo guix system reconfigure guix.system.scm`
- * `sudo guix system delete-generations`
+ * `sudo guix system --delete-generations`
  * `guix home reconfigure guix.home.scm`
- * `guix home delete-generations`
+ * `guix home --delete-generations`
  * `guix upgrade`
  * `df -h`
 
