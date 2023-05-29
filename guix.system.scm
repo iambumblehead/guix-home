@@ -62,8 +62,9 @@
   (cons* (service cups-service-type
                   (cups-configuration
                    (web-interface? #t)
+                   (default-paper-size "Letter")
                    (extensions
-                    (list cups-filters hplip))))
+                    (list cups-filters hplip-minimal))))
          (udev-rules-service 'light light
                              #:groups '("light"))
          (service greetd-service-type
@@ -193,8 +194,7 @@
                %base-user-accounts))
   (packages (append 
              (specifications->packages
-              (list "emacs"
-                    "sway"
+              (list "sway"
                     "swaylock-effects"
                     "nss-certs"))
              %base-packages))

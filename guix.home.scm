@@ -16,6 +16,7 @@
         "git:send-email"
         "curl"
         "bemenu"
+        "btop"
         "ncurses"
         "adwaita-icon-theme"
         "glib:bin"
