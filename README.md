@@ -35,6 +35,8 @@ How to administer
  * `guix home reconfigure guix.home.scm`
  * `guix home delete-generations`
  * `guix upgrade`
+ * `guix package --delete-generations`
+ * `guix gc`
  * `df -h`
 
 

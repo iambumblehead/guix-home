@@ -63,9 +63,12 @@
          (udev-rules-service 'light light
                              #:groups '("light"))
 
+         ;;(service screen-locker-service-type
+         ;;         (screen-locker-configuration
+         ;;          "swaylock" (file-append swaylock "/bin/swaylock") #f))
          (service
           (service-type
-           (name 'screen-locker )
+           (name 'screen-locker)
            (extensions
             (list (service-extension pam-root-service-type
                                      (@@ (gnu services xorg) screen-locker-pam-services))))
