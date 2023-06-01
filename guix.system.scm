@@ -60,6 +60,13 @@
                    (default-paper-size "Letter")
                    (extensions
                     (list cups-filters hplip-minimal))))
+
+         ;; https://lists.gnu.org/archive/html/guix-devel/2023-05/msg00278.html
+         ;;(simple-service
+         ;; 'cups-pam-service
+         ;; pam-root-service-type
+         ;; (list (unix-pam-service "cups" #:allow-empty-passwords? #f)))
+
          (udev-rules-service 'light light
                              #:groups '("light"))
 
