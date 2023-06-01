@@ -13,6 +13,7 @@
              (gnu packages xdisorg)
              (gnu packages terminals)
              (gnu services)
+             (gnu services xorg)
              (gnu services ssh)
              (gnu services cups)
              (gnu services desktop)
@@ -27,12 +28,6 @@
 (define (make-file path)
   (local-file
    (string-append (dirname (current-filename)) "/" path)))
-
-(define %privileged-programs
-  (list (file-append swaylock-effects "/bin/swaylock")
-        ;; (file-append shepherd "/sbin/halt")
-        ;; (file-append shepherd "/sbin/reboot")
-        ))
 
 (define (subs-service-create config)
   (guix-configuration
@@ -67,6 +62,17 @@
                     (list cups-filters hplip-minimal))))
          (udev-rules-service 'light light
                              #:groups '("light"))
+
+         (service
+          (service-type
+           (name 'screen-locker )
+           (extensions
+            (list (service-extension pam-root-service-type
+                                     (@@ (gnu services xorg) screen-locker-pam-services))))
+           (description "-"))
+          (screen-locker-configuration
+           "swaylock" (file-append swaylock-effects "/bin/swaylock") #f))
+
          (service greetd-service-type
                   (greetd-configuration
                    (greeter-supplementary-groups
@@ -198,10 +204,5 @@
                     "swaylock-effects"
                     "nss-certs"))
              %base-packages))
-  (setuid-programs
-   (append (map (lambda (prog)
-                  (setuid-program
-                   (program prog)))
-                %privileged-programs)
-           %setuid-programs))
+  (setuid-programs %setuid-programs)
   (services %services))
