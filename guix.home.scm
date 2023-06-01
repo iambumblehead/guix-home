@@ -66,6 +66,7 @@
         "emacs-js2-mode"
         "emacs-json-mode"
         "emacs-flycheck"
+        "emacs-circe"
         "emacs-tempel"
         "emacs-eglot-tempel"
         "emacs-magit"

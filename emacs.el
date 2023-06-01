@@ -109,3 +109,11 @@
 
 (set-theme)
 (add-hook 'emacs-startup-hook 'set-theme)
+
+(use-package circe
+  :custom
+  (circe-network-options
+   `(("Libera Chat"
+      :tls t
+      :nick "bumblehead"
+      :channels ("#guix")))))
