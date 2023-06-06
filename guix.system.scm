@@ -1,6 +1,3 @@
-;; This is an operating system configuration template
-;; for a "bare bones" setup, w/ no display server.
-
 (use-modules (gnu)
              (gnu home)
              (gnu packages wm)
@@ -69,19 +66,18 @@
 
          (udev-rules-service 'light light
                              #:groups '("light"))
-
-         ;;(service screen-locker-service-type
-         ;;         (screen-locker-configuration
-         ;;          "swaylock" (file-append swaylock "/bin/swaylock") #f))
          (service
           (service-type
            (name 'screen-locker)
            (extensions
             (list (service-extension pam-root-service-type
                                      (@@ (gnu services xorg) screen-locker-pam-services))))
-           (description "-"))
+            (description "-"))
           (screen-locker-configuration
-           "swaylock" (file-append swaylock-effects "/bin/swaylock") #f))
+           (name "swaylock")
+           (program (file-append swaylock-effects "/bin/swaylock"))
+           (using-pam? #t)
+           (using-setuid? #f)))
 
          (service greetd-service-type
                   (greetd-configuration
