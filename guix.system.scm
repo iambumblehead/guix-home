@@ -136,7 +136,14 @@
                        '("tty1" "tty2" "tty3" "tty4" "tty5" "tty6")))
          (modify-services %base-services
                           (delete agetty-service-type)
+                          ;; greetd-service-type provides "greetd" PAM service
+                          (delete login-service-type)
                           (delete console-font-service-type)
+                          (delete mingetty-service-type)
+                          (delete mingetty-service-type)
+                          (delete mingetty-service-type)
+                          (delete mingetty-service-type)
+                          (delete mingetty-service-type)
                           (delete mingetty-service-type)
                           (guix-service-type
                            config =>
