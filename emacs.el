@@ -82,7 +82,12 @@
 
 ;; Assuming the Guix checkout is in ~/src/guix.
 (with-eval-after-load 'geiser-guile
-  (add-to-list 'geiser-guile-load-path "~/software/guix"))
+  (progn
+    (add-to-list 'geiser-guile-load-path "~/software/guix")
+    (add-to-list 'geiser-guile-load-path "~/software/gum")
+    (add-to-list 'geiser-guile-load-path "~/software/gum/gum")))
+
+
 ;; Tempel configuration
 (with-eval-after-load 'tempel
   ;; Ensure tempel-path is a list -- it may also be a string.
@@ -117,3 +122,20 @@
       :tls t
       :nick "bumblehead"
       :channels ("#guix")))))
+
+(use-package corfu
+  :bind (:map corfu-map
+         ("C-j" . corfu-next)
+         ("C-k" . corfu-previous)
+         ("C-f" . corfu-insert))
+  :custom (corfu-cycle t)
+  :init (global-corfu-mode)
+  :config (setq corfu-auto t
+                corfu-quit-no-match 'separator))
+
+(use-package geiser
+  :hook ((scheme-mode . geiser-mode))
+  :config
+  (setq geiser-default-implementation 'guile)
+  (geiser-smart-tab-mode)
+  (setq geiser-smart-tab-p t))
