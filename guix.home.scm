@@ -21,6 +21,11 @@
         "adwaita-icon-theme"
         "glib:bin"
         "gsettings-desktop-schemas"
+        "fcitx5"
+        "fcitx5-anthy"
+        "fcitx5-gtk"
+        "fcitx5-qt"
+        "fcitx5-material-color-theme"
         "font-google-noto"
         "font-google-noto-emoji"
         "font-google-noto-sans-cjk"
@@ -94,6 +99,7 @@
 (define %dotfiles
   `(("git.config" . ".config/git/config")
     ("guix.channels.scm" . ".config/guix/channels.scm")
+    ("fcitx5-profile.conf" . "./config/fcitx5/profile")
     ("pipewire.conf" . ".config/pipewire/pipewire.conf")
     ("wireplumber.conf" . ".config/wireplumber/wireplumber.conf")
     ("wireplumber.disable-logind.lua" .
@@ -128,6 +134,9 @@
                         '(("EDITOR" . "emacs")
                           ("OPENER" . "sh.opener.sh")
                           ("BROWSER" . "qutebrowser")
+                          ("GTK_IM_MODULE" . "fcitx")
+                          ("QT_IM_MODULE" . "fcitx")
+                          ("XMODIFIERS" . "@im=fcitx")
                           ("QT_QPA_PLATFORM" . "wayland")
                           ("QT_SCALE_FACTOR" . "1")
                           ("XDG_RUNTIME_DIR" . "/run/user/1000/")
