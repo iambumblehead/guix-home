@@ -22,6 +22,7 @@
         "glib:bin"
         "gsettings-desktop-schemas"
         "font-google-noto"
+        "font-google-noto-emoji"
         "font-google-noto-sans-cjk"
         "font-google-noto-serif-cjk"
         "font-liberation"
