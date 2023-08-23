@@ -45,7 +45,6 @@
         "i3-autotiling"
         "mutt"
         "imv"
-        "cfm"
         "wlsunset"
         "grimshot"
         "pamixer"
@@ -63,6 +62,7 @@
         "zathura"
         "zathura-pdf-mupdf"
         "unzip"
+        "wireplumber"
         "pinentry-tty"
         "zstd"))
 
