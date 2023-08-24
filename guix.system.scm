@@ -89,14 +89,10 @@
                      (greetd-terminal-configuration
                       (terminal-vt "1")
                       (terminal-switch #t))
-                     ;;; (default-session-command
-                     ;;;   (greetd-wlgreet-sway-session
-                     ;;;   (sway sway)
-                     ;;;   (wlgreet-session
-                     ;;;    (greetd-wlgreet-session
-                     ;;;     (command (file-append sway "/bin/sway"))))
-                     ;;;    (sway-configuration
-                     ;;;     (make-file "sway-greetd.conf")))))
+                      ;;(default-session-command
+                      ;;  (greetd-wlgreet-sway-session
+                      ;;   (sway-configuration
+                      ;;    (make-file "sway-greetd.conf")))))
                      (greetd-terminal-configuration
                       (terminal-vt "2"))
                      (greetd-terminal-configuration

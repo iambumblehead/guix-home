@@ -47,7 +47,7 @@ Other good ones
 
 Links
  * https://rendaw.gitlab.io/blog/
- * https://toys.whereis.xn--q9jyb4c/
+ * https://toys.whereis.みんな
 
 
 Still to do
