@@ -23,21 +23,23 @@
 ```                                                                                                                                                                                                                      
 
 What's good
- * wireplumber, screen lock, brightness and audio 
+ * wireplumber, screen lock, fcitx5, brightness and audio 
  * no: gtk4, firefox, systemd, dbus, elogind, ibus
 
 
 How to administer
- * `guix pull`
- * `guix pull --delete-generations`
- * `sudo guix system reconfigure guix.system.scm`
- * `sudo guix system delete-generations`
- * `guix home reconfigure guix.home.scm`
- * `guix home delete-generations`
- * `guix upgrade`
- * `guix package --delete-generations`
- * `guix gc`
- * `df -h`
+```bash
+guix pull
+guix pull --delete-generations
+sudo guix system reconfigure guix.system.scm
+sudo guix system delete-generations
+guix home reconfigure guix.home.scm
+guix home delete-generations
+guix upgrade
+guix package --delete-generations
+guix gc
+df -h
+```
 
 
 Other good ones
