@@ -99,7 +99,8 @@
 (define %dotfiles
   `(("git.config" . ".config/git/config")
     ("guix.channels.scm" . ".config/guix/channels.scm")
-    ("fcitx5-profile.conf" . "./config/fcitx5/profile")
+    ("fcitx5-config.conf" . ".config/fcitx5/config")
+    ("fcitx5-profile.conf" . ".config/fcitx5/profile")
     ("pipewire.conf" . ".config/pipewire/pipewire.conf")
     ("wireplumber.conf" . ".config/wireplumber/wireplumber.conf")
     ("wireplumber.disable-logind.lua" .
@@ -120,6 +121,7 @@
     ("ranger.scope.sh" . ".config/ranger/scope.sh")
 
     ("emacs.el" . ".emacs.d/init.el")
+    ("emacs-erc.el" . ".emacs.d/emacs-erc.el")
     ("emacs-nox.el" . ".emacs.d/emacs-nox.el")
     ("emacs-font.el" . ".emacs.d/emacs-font.el")
     ("emacs-clipboard.el" . ".emacs.d/emacs-clipboard.el")

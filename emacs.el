@@ -7,6 +7,7 @@
 
 (guix-emacs-autoload-packages)
 
+(load-file "~/.emacs.d/emacs-erc.el")
 (load-file "~/.emacs.d/emacs-nox.el")
 (load-file "~/.emacs.d/emacs-font.el")
 (load-file "~/.emacs.d/emacs-clipboard.el")
