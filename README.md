@@ -23,7 +23,7 @@
 ```                                                                                                                                                                                                                      
 
 What's good
- * wireplumber, screen lock, fcitx5, brightness and audio 
+ * wireplumber, screen lock, fcitx5, brightness and audio
  * no: gtk4, firefox, systemd, dbus, elogind, ibus
 
 
@@ -51,12 +51,8 @@ Links
  * https://rendaw.gitlab.io/blog/
  * https://toys.whereis.みんな
 
+Use `run-geiser` or `run-guile` with emacs and guile sources.
 
 Still to do
- * setup emacs with guix powers
-   * https://issues.guix.gnu.org/58652
-   * https://guix.gnu.org/manual/en/html_node/The-Perfect-Setup.html
-   * https://guix.gnu.org/manual/en/html_node/Building-from-Git.html
- * setup git sendmail
-   * https://git-send-email.io/#step-2
+ * setup git sendmail, https://git-send-email.io/#step-2
  * add to gitconfig gpgsign
