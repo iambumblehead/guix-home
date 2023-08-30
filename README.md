@@ -53,6 +53,7 @@ Links
 
 Use `run-geiser` or `run-guile` with emacs and guile sources.
 
-Send a patch upstream,
- * from `M-x magit-commit` use `tempel-insert [add]` for example and follow the message pattern of previous commits
- * then `git send-email --dry-run --to="guix-patches@gnu.org" HEAD^` see [git-send-email.io](https://git-send-email.io)
+Send a patch,
+ * see previous commit messages, then
+ * use `M-x magit-commit` and `tempel-insert [add]`
+ * `git send-email --dry-run --to="guix-patches@gnu.org" HEAD^` see [git-send-email.io](https://git-send-email.io)
