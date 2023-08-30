@@ -88,13 +88,26 @@
     (add-to-list 'geiser-guile-load-path "~/software/gum")
     (add-to-list 'geiser-guile-load-path "~/software/gum/gum")))
 
-
-;; Tempel configuration
-(with-eval-after-load 'tempel
-  ;; Ensure tempel-path is a list -- it may also be a string.
+(use-package tempel
+  :bind
+  (([M-tab] . tempel-complete)
+   ([M-return] . tempel-insert))
+  :config
   (unless (listp 'tempel-path)
     (setq tempel-path (list tempel-path)))
-  (add-to-list 'tempel-path "~/software/guix/etc/snippets/tempel/*"))
+  (add-to-list 'tempel-path "~/software/guix/etc/snippets/tempel/*")
+  (define-key tempel-map [tab] #'tempel-next)
+  (define-key tempel-map [backtab] #'tempel-previous)
+  (define-key tempel-map [return] #'tempel-done))
+
+(use-package corfu
+  :config
+  (global-corfu-mode)
+  :custom
+  (corfu-auto t)
+  (corfu-quit-no-match 'separator))
+
+(use-package tempel-collection)
 
 (setq user-full-name "chris")
 (setq user-mail-address "chris@bumblehead.com")
@@ -123,16 +136,6 @@
       :tls t
       :nick "bumblehead"
       :channels ("#guix")))))
-
-(use-package corfu
-  :bind (:map corfu-map
-         ("C-j" . corfu-next)
-         ("C-k" . corfu-previous)
-         ("C-f" . corfu-insert))
-  :custom (corfu-cycle t)
-  :init (global-corfu-mode)
-  :config (setq corfu-auto t
-                corfu-quit-no-match 'separator))
 
 (use-package geiser
   :hook ((scheme-mode . geiser-mode))

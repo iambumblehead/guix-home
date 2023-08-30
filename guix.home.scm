@@ -76,6 +76,7 @@
         "emacs-flycheck"
         "emacs-circe"
         "emacs-tempel"
+        "emacs-tempel-collection"
         "emacs-corfu"
         "emacs-corfu-terminal"
         "emacs-eglot-tempel"
@@ -98,6 +99,7 @@
 
 (define %dotfiles
   `(("git.config" . ".config/git/config")
+    ("git.sendemail.config" . ".config/git/git.sendemail.config")
     ("guix.channels.scm" . ".config/guix/channels.scm")
     ("fcitx5-config.conf" . ".config/fcitx5/config")
     ("fcitx5-profile.conf" . ".config/fcitx5/profile")

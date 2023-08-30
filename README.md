@@ -53,6 +53,6 @@ Links
 
 Use `run-geiser` or `run-guile` with emacs and guile sources.
 
-Still to do
- * setup git sendmail, https://git-send-email.io/#step-2
- * add to gitconfig gpgsign
+Send a patch upstream,
+ * from `M-x magit-commit` use `tempel-insert [add]` for example and follow the message pattern of previous commits
+ * then `git send-email --dry-run --to="guix-patches@gnu.org" HEAD^` see [git-send-email.io](https://git-send-email.io)
