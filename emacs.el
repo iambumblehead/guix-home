@@ -129,17 +129,27 @@
 (set-theme)
 (add-hook 'emacs-startup-hook 'set-theme)
 
-(use-package circe
-  :custom
-  (circe-network-options
-   `(("Libera Chat"
-      :tls t
-      :nick "bumblehead"
-      :channels ("#guix")))))
-
 (use-package geiser
   :hook ((scheme-mode . geiser-mode))
   :config
   (setq geiser-default-implementation 'guile)
   (geiser-smart-tab-mode)
   (setq geiser-smart-tab-p t))
+
+(use-package erc
+  :custom
+  (erc-nick "bumble")
+  (erc-password nil)
+  (erc-server "irc.libera.chat")
+  (erc-port 6697)
+  (erc-autojoin-channels-alist '(("irc.libera.chat" "#guix")))
+  (erc-autojoin-timing 'ident)
+  (erc-prompt-for-nickserv-password nil)
+  (erc-server-reconnect-attempts 5)
+  (erc-server-reconnect-timeout 3)
+  :init
+  (add-hook 'erc-insert-modify-hook 'erc-highlight-nicknames)
+  :config
+  (add-to-list 'erc-modules 'notifications)
+  (erc-services-mode 1)
+  (erc-update-modules))

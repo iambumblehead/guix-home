@@ -1,11 +1,11 @@
 (add-hook 'window-configuration-change-hook
-          '(lambda ()
-             (save-excursion
-               (walk-windows
-                (lambda (w)
-                  (let ((major (with-current-buffer (window-buffer w) major-mode)))
-                    (when (eq major 'erc-mode)
-                      (setq erc-fill-column (- (window-width w) 2)))))))))
+          #'(lambda ()
+              (save-excursion
+                (walk-windows
+                 (lambda (w)
+                   (let ((major (with-current-buffer (window-buffer w) major-mode)))
+                     (when (eq major 'erc-mode)
+                       (setq erc-fill-column (- (window-width w) 2)))))))))
 
 (defmacro unpack-color (color red green blue &rest body)
   `(let ((,red   (car ,color))
@@ -45,7 +45,4 @@
         (when (erc-get-server-user nick)
           (put-text-property
            (car bounds) (cdr bounds) 'face
-           ;;(cons 'foreground-color (erc-get-color-for-nick nick 'nil))))))))
            (cons 'foreground-color (erc-get-color-for-nick nick 't))))))))
-
-(add-hook 'erc-insert-modify-hook 'erc-highlight-nicknames)
