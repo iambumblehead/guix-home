@@ -41,19 +41,29 @@ guix gc
 df -h
 ```
 
+Test a change
+```bash
+# https://guix.gnu.org/manual/en/html_node/Contributing.html
+# https://guix.gnu.org/en/blog/2018/a-packaging-tutorial-for-guix/
+# use `M-x run-geiser` or `M-x run-guile` w/ guile sources
+guix shell -D guix --pure --check
+./bootstrap && ./configure && make
+./pre-inst-env guix build --keep-failed fonts-tlwg
+./pre-inst-env guix lint fonts-tlwg
+./pre-inst-env guix style fonts-tlwg
+```
 
 Send a patch
- * see https://git-send-email.io
- * use `M-x run-geiser` or `M-x run-guile` w/ guile sources
- * see previous commit messages, then
- * use `M-x magit-commit` and `tempel-insert [add]`
- * `git send-email --dry-run --to="guix-patches@gnu.org" HEAD^`
-
+```bash
+# see https://git-send-email.io
+# see previous commit message patterns
+# use `M-x magit-commit` and `tempel-insert [add]`
+git send-email --dry-run --base=master --to="guix-patches@gnu.org" -1
+```
 
 Other good ones
  * https://git.sr.ht/~unwox/etc/
  * https://git.sr.ht/~unmatched-paren/conf/
-
 
 Links
  * https://rendaw.gitlab.io/blog/
