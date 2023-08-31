@@ -1,4 +1,4 @@
-# GNU Guix system and home config files
+# GNU Guix system and home files
 
 ```diff
 +░░░                                     ░░░
@@ -20,14 +20,15 @@
 +| | |_ | . ' | |  | | | | |_ | | | | \ \/ /
 +| |__| | |\  | |__| | | |__| | |_| | |>  <
 + \_____|_| \_|\____/   \_____|\__,_|_/_/\_\
-```                                                                                                                                                                                                                      
+```
+
 
 What's good
  * wireplumber, screen lock, fcitx5, brightness and audio
  * no: gtk4, firefox, systemd, dbus, elogind, ibus
 
 
-How to administer
+Administer
 ```bash
 guix pull
 guix pull --delete-generations
@@ -55,7 +56,8 @@ guix shell -D guix --pure --check
 
 Send a patch
 ```bash
-# see https://git-send-email.io
+# https://guix.gnu.org/manual/en/html_node/Submitting-Patches.html
+# https://git-send-email.io
 # see previous commit message patterns
 # use `M-x magit-commit` and `tempel-insert [add]`
 git send-email --dry-run --base=master --to="guix-patches@gnu.org" -1
