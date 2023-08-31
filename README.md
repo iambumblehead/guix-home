@@ -42,6 +42,13 @@ df -h
 ```
 
 
+Send [a patch,](https://git-send-email.io)
+ * use `M-x run-geiser` or `M-x run-guile` w/ guile sources
+ * see previous commit messages, then
+ * use `M-x magit-commit` and `tempel-insert [add]`
+ * `git send-email --dry-run --to="guix-patches@gnu.org" HEAD^`
+
+
 Other good ones
  * https://git.sr.ht/~unwox/etc/
  * https://git.sr.ht/~unmatched-paren/conf/
@@ -50,10 +57,3 @@ Other good ones
 Links
  * https://rendaw.gitlab.io/blog/
  * https://toys.whereis.みんな
-
-Use `run-geiser` or `run-guile` with emacs and guile sources.
-
-Send a patch,
- * see previous commit messages, then
- * use `M-x magit-commit` and `tempel-insert [add]`
- * `git send-email --dry-run --to="guix-patches@gnu.org" HEAD^` see [git-send-email.io](https://git-send-email.io)
