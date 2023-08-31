@@ -42,7 +42,8 @@ df -h
 ```
 
 
-Send [a patch,](https://git-send-email.io)
+Send a patch
+ * see https://git-send-email.io
  * use `M-x run-geiser` or `M-x run-guile` w/ guile sources
  * see previous commit messages, then
  * use `M-x magit-commit` and `tempel-insert [add]`
