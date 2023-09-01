@@ -80,6 +80,7 @@
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.m?js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
 
 ;; Assuming the Guix checkout is in ~/src/guix.
 (with-eval-after-load 'geiser-guile
