@@ -136,11 +136,6 @@
                           (delete login-service-type)
                           (delete console-font-service-type)
                           (delete mingetty-service-type)
-                          (delete mingetty-service-type)
-                          (delete mingetty-service-type)
-                          (delete mingetty-service-type)
-                          (delete mingetty-service-type)
-                          (delete mingetty-service-type)
                           (guix-service-type
                            config =>
                            (subs-service-create config)))))
