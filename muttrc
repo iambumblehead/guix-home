@@ -11,4 +11,4 @@ set spoolfile = +INBOX
 mailboxes     = +INBOX
 set record    = +SENT
 set realname  = "chris"
-set editor    = "emacs"
+set editor    = "emacs -nw"

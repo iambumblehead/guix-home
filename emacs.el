@@ -81,6 +81,11 @@
 (add-to-list 'auto-mode-alist '("\\.m?js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
+(add-to-list 'auto-mode-alist '("mutt-*" . mail-mode))
+
+(add-hook 'mail-mode-hook
+          '(lambda ()
+             (visual-line-mode 1)))
 
 ;; Assuming the Guix checkout is in ~/src/guix.
 (with-eval-after-load 'geiser-guile
