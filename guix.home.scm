@@ -21,6 +21,7 @@
         "adwaita-icon-theme"
         "glib:bin"
         "gsettings-desktop-schemas"
+        "irssi"
         "fcitx5"
         "fcitx5-anthy"
         "fcitx5-gtk"

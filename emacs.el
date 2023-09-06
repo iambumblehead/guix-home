@@ -142,7 +142,7 @@
   (erc-nick "bumble")
   (erc-password nil)
   (erc-server "irc.libera.chat")
-  (erc-port 6697)
+  (erc-port 6667)
   (erc-autojoin-channels-alist '(("irc.libera.chat" "#guix")))
   (erc-autojoin-timing 'ident)
   (erc-prompt-for-nickserv-password nil)
@@ -151,6 +151,5 @@
   :init
   (add-hook 'erc-insert-modify-hook 'erc-highlight-nicknames)
   :config
-  (add-to-list 'erc-modules 'notifications)
   (erc-services-mode 1)
   (erc-update-modules))

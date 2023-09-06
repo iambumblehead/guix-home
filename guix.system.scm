@@ -85,14 +85,14 @@
                     (list "video" "input" "seat"))
                    (terminals
                     (list
-                     ;; we can make any terminal active by default
                      (greetd-terminal-configuration
                       (terminal-vt "1")
-                      (terminal-switch #t))
-                      ;;(default-session-command
-                      ;;  (greetd-wlgreet-sway-session
-                      ;;   (sway-configuration
-                      ;;    (make-file "sway-greetd.conf")))))
+                      (terminal-switch #t)
+                     ;; broken; use Alt+Fn+F2 to switch tty
+                      (default-session-command
+                        (greetd-wlgreet-sway-session
+                         (sway-configuration
+                          (make-file "sway-greetd.conf")))))
                      (greetd-terminal-configuration
                       (terminal-vt "2"))
                      (greetd-terminal-configuration
@@ -102,8 +102,7 @@
                      (greetd-terminal-configuration
                       (terminal-vt "5"))
                      (greetd-terminal-configuration
-                      (terminal-vt "6"))
-                     ))))
+                      (terminal-vt "6"))))))
          (service mingetty-service-type
                   (mingetty-configuration (tty "tty8")))
          fontconfig-file-system-service
