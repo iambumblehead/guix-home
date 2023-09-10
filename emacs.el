@@ -87,13 +87,6 @@
           '(lambda ()
              (visual-line-mode 1)))
 
-;; Assuming the Guix checkout is in ~/src/guix.
-(with-eval-after-load 'geiser-guile
-  (progn
-    (add-to-list 'geiser-guile-load-path "~/software/guix")
-    (add-to-list 'geiser-guile-load-path "~/software/gum")
-    (add-to-list 'geiser-guile-load-path "~/software/gum/gum")))
-
 (use-package tempel
   :bind
   (([M-tab] . tempel-complete)
@@ -138,9 +131,19 @@
 (use-package geiser
   :hook ((scheme-mode . geiser-mode))
   :config
+  (setq geiser-mode-start-repl-p t)
   (setq geiser-default-implementation 'guile)
   (geiser-smart-tab-mode)
   (setq geiser-smart-tab-p t))
+
+(use-package geiser-guile
+  :after geiser
+  :custom
+  (geiser-default-implementation 'guile)
+  :config
+  (add-to-list 'geiser-guile-load-path "~/software/guix")
+  (add-to-list 'geiser-guile-load-path "~/software/guf")
+  (add-to-list 'geiser-guile-load-path "~/software/guf/guf"))
 
 (use-package erc
   :custom

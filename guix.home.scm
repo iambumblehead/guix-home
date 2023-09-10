@@ -73,6 +73,7 @@
   (list "emacs-next-pgtk"
         "emacs-doom-themes"
         "emacs-dash"
+        "emacs-markdown-mode"
         "emacs-web-mode"
         "emacs-js2-mode"
         "emacs-json-mode"
