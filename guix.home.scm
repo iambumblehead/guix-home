@@ -113,6 +113,7 @@
      ".config/wireplumber/bluetooth.lua.d/80-disable-logind.lua")
     ("wireplumber.disable-dbus.lua" .
      ".config/wireplumber/main.lua.d/80-disable-dbus.lua")
+    ("swaynag.config" . ".config/swaynag/config")
     ("sway.config" . ".config/sway/config")
     ("sway.inactive-windows-transparent.py" .
      ".config/sway/inactive-windows-transparent.py")

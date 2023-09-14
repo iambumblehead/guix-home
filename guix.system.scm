@@ -139,6 +139,15 @@
                            config =>
                            (subs-service-create config)))))
 
+(define etc-sudoers-config
+  (plain-file "etc-sudoers-config"
+              (string-append "Defaults  timestamp_timeout=480" "\n"
+                             "root      ALL=(ALL) ALL" "\n"
+                             "%wheel    ALL=(ALL) ALL" "\n"
+                             "bumble  ALL=(ALL) NOPASSWD:"
+                             "/run/current-system/profile/sbin/halt,"
+                             "/run/current-system/profile/sbin/reboot")))
+
 (operating-system
   (host-name "guix-xps")
   (timezone "America/Los_Angeles")
@@ -193,6 +202,7 @@
                         (create-mount-point? #t)
                         (mount? #f)))
                  %base-file-systems))
+  (sudoers-file etc-sudoers-config)
   (users (cons (user-account
                 (name "bumble")
                 (comment "honey worker")
