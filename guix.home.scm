@@ -149,7 +149,6 @@
                           ("XMODIFIERS" . "@im=fcitx")
                           ("QT_QPA_PLATFORM" . "wayland")
                           ("QT_SCALE_FACTOR" . "1")
-                          ("XDG_RUNTIME_DIR" . "/run/user/1000/")
                           ("XDG_SESSION_TYPE" . "wayland")
                           ("XDG_SESSION_DESKTOP" . "sway")
                           ("XDG_CURRENT_DESKTOP" . "sway")
