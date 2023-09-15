@@ -93,46 +93,46 @@
         "emacs-use-package"))
 
 (define %xdg-config-files
-  `(("foot.ini" . "foot/foot.ini")
-    ("muttrc" . "mutt/muttrc")
-    ("mutt.colors.muttrc" . "mutt/mutt.colors.muttrc")
-    ("mutt.layout.muttrc" . "mutt/mutt.layout.muttrc")
-    ("mutt.mailcap" . "mutt/mutt.mailcap")
-    ("waybar.config" . "waybar/config")
-    ("waybar.css" . "waybar/style.css")))
+  `(("config/foot.ini" . "foot/foot.ini")
+    ("config/muttrc" . "mutt/muttrc")
+    ("config/mutt.colors.muttrc" . "mutt/mutt.colors.muttrc")
+    ("config/mutt.layout.muttrc" . "mutt/mutt.layout.muttrc")
+    ("config/mutt.mailcap" . "mutt/mutt.mailcap")
+    ("config/waybar.config" . "waybar/config")
+    ("config/waybar.css" . "waybar/style.css")))
 
 (define %dotfiles
-  `(("git.config" . ".config/git/config")
-    ("git.sendemail.config" . ".config/git/git.sendemail.config")
+  `(("git.sendemail.config" . ".config/git/git.sendemail.config")
     ("guix.channels.scm" . ".config/guix/channels.scm")
-    ("fcitx5-config.conf" . ".config/fcitx5/config")
-    ("fcitx5-profile.conf" . ".config/fcitx5/profile")
-    ("pipewire.conf" . ".config/pipewire/pipewire.conf")
-    ("wireplumber.conf" . ".config/wireplumber/wireplumber.conf")
-    ("wireplumber.disable-logind.lua" .
+    ("config/git.config" . ".config/git/config")
+    ("config/fcitx5-config.conf" . ".config/fcitx5/config")
+    ("config/fcitx5-profile.conf" . ".config/fcitx5/profile")
+    ("config/pipewire.conf" . ".config/pipewire/pipewire.conf")
+    ("config/wireplumber.conf" . ".config/wireplumber/wireplumber.conf")
+    ("config/wireplumber.disable-logind.lua" .
      ".config/wireplumber/bluetooth.lua.d/80-disable-logind.lua")
-    ("wireplumber.disable-dbus.lua" .
+    ("config/wireplumber.disable-dbus.lua" .
      ".config/wireplumber/main.lua.d/80-disable-dbus.lua")
-    ("swaynag.config" . ".config/swaynag/config")
-    ("sway.config" . ".config/sway/config")
-    ("sway.inactive-windows-transparent.py" .
+    ("config/swaynag.config" . ".config/swaynag/config")
+    ("config/sway.config" . ".config/sway/config")
+    ("config/sway.inactive-windows-transparent.py" .
      ".config/sway/inactive-windows-transparent.py")
-    ("qutebrowser.theme.gruvbox.dark.py" .
+    ("config/qutebrowser.theme.gruvbox.dark.py" .
      ".config/qutebrowser/qutebrowser.theme.gruvbox.dark.py")
-    ("qutebrowser.theme.city-lights.py" .
+    ("config/qutebrowser.theme.city-lights.py" .
      ".config/qutebrowser/qutebrowser.theme.city-lights.py")
-    ("qutebrowser.config.py" . ".config/qutebrowser/config.py")
-    ("icon.theme" . ".icons/default/index.theme")
-    ("zathurarc" . ".config/zathura/zathurarc")
-    ("ranger.rc.conf" . ".config/ranger/rc.conf")
-    ("ranger.scope.sh" . ".config/ranger/scope.sh")
+    ("config/qutebrowser.config.py" . ".config/qutebrowser/config.py")
+    ("config/icon.theme" . ".icons/default/index.theme")
+    ("config/zathurarc" . ".config/zathura/zathurarc")
+    ("config/ranger.rc.conf" . ".config/ranger/rc.conf")
+    ("config/ranger.scope.sh" . ".config/ranger/scope.sh")
 
-    ("emacs.el" . ".emacs.d/init.el")
-    ("emacs-erc.el" . ".emacs.d/emacs-erc.el")
-    ("emacs-nox.el" . ".emacs.d/emacs-nox.el")
-    ("emacs-font.el" . ".emacs.d/emacs-font.el")
-    ("emacs-clipboard.el" . ".emacs.d/emacs-clipboard.el")
-    ("emacs-colorize-buffer.el" . ".emacs.d/emacs-colorize-buffer.el")))
+    ("config/emacs.el" . ".emacs.d/init.el")
+    ("config/emacs-erc.el" . ".emacs.d/emacs-erc.el")
+    ("config/emacs-nox.el" . ".emacs.d/emacs-nox.el")
+    ("config/emacs-font.el" . ".emacs.d/emacs-font.el")
+    ("config/emacs-clipboard.el" . ".emacs.d/emacs-clipboard.el")
+    ("config/emacs-colorize-buffer.el" . ".emacs.d/emacs-colorize-buffer.el")))
 
 (home-environment
  (packages (specifications->packages
@@ -145,7 +145,7 @@
                           ("BROWSER" . "qutebrowser")
                           ("GTK_IM_MODULE" . "fcitx")
                           ("QT_IM_MODULE" . "fcitx")
-                          ("INPUTRC" . ,(config-file "sh.inputrc.sh"))
+                          ("INPUTRC" . ,(config-file "config/sh.inputrc.sh"))
                           ("XMODIFIERS" . "@im=fcitx")
                           ("QT_QPA_PLATFORM" . "wayland")
                           ("QT_SCALE_FACTOR" . "1")
@@ -171,6 +171,6 @@
                              ("gsr" . "sudo guix system reconfigure")
                              ("zathura" . "zathura --plugins-dir=$HOME/.guix-home/profile/lib/zathura")))
                   (bashrc
-                   (list (config-file "sh.bashrc.sh")))
+                   (list (config-file "config/sh.bashrc.sh")))
                   (bash-profile
-                   (list (config-file "sh.bash_profile.sh"))))))))
+                   (list (config-file "config/sh.bash_profile.sh"))))))))
