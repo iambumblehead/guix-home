@@ -140,11 +140,12 @@
                     %packages-emacs)))
  (services
   (list (simple-service 'env-vars home-environment-variables-service-type
-                        '(("EDITOR" . "emacs")
+                        `(("EDITOR" . "emacs")
                           ("OPENER" . "sh.opener.sh")
                           ("BROWSER" . "qutebrowser")
                           ("GTK_IM_MODULE" . "fcitx")
                           ("QT_IM_MODULE" . "fcitx")
+                          ("INPUTRC" . ,(config-file "sh.inputrc.sh"))
                           ("XMODIFIERS" . "@im=fcitx")
                           ("QT_QPA_PLATFORM" . "wayland")
                           ("QT_SCALE_FACTOR" . "1")
