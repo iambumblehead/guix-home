@@ -140,12 +140,11 @@
                     %packages-emacs)))
  (services
   (list (simple-service 'env-vars home-environment-variables-service-type
-                        `(("EDITOR" . "emacs")
+                        '(("EDITOR" . "emacs")
                           ("OPENER" . "sh.opener.sh")
                           ("BROWSER" . "qutebrowser")
                           ("GTK_IM_MODULE" . "fcitx")
                           ("QT_IM_MODULE" . "fcitx")
-                          ("INPUTRC" . ,(config-file "config/sh.inputrc.sh"))
                           ("XMODIFIERS" . "@im=fcitx")
                           ("QT_QPA_PLATFORM" . "wayland")
                           ("QT_SCALE_FACTOR" . "1")
@@ -154,6 +153,16 @@
                           ("XDG_CURRENT_DESKTOP" . "sway")
                           ("DESKTOP_SESSION" . "sway")
                           ("LIBSEAT_BACKEND" . "seatd")))
+        (service home-inputrc-service-type
+                 (home-inputrc-configuration
+                  (variables `(("show-all-if-unmodified" . #t)
+                               ("show-all-if-ambiguous" . #t)
+                               ("colored-stats" . #t)
+                               ("visible-stats" . #t)
+                               ("mark-symlinked-directories" . #t)
+                               ("colored-completion-prefix" . #t)
+                               ("colored-stats" . #t)
+                               ("menu-complete-display-prefix" . #t)))))
         (service home-xdg-configuration-files-service-type
                  (map normalize-config %xdg-config-files))
         (service home-files-service-type
