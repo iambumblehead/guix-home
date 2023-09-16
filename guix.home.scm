@@ -156,7 +156,6 @@
         (service home-inputrc-service-type
                  (home-inputrc-configuration
                   (variables `(("show-all-if-unmodified" . #t)
-                               ("show-all-if-ambiguous" . #t)
                                ("colored-stats" . #t)
                                ("visible-stats" . #t)
                                ("mark-symlinked-directories" . #t)
