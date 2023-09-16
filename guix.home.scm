@@ -99,40 +99,38 @@
     ("config/mutt.layout.muttrc" . "mutt/mutt.layout.muttrc")
     ("config/mutt.mailcap" . "mutt/mutt.mailcap")
     ("config/waybar.config" . "waybar/config")
-    ("config/waybar.css" . "waybar/style.css")))
+    ("config/waybar.css" . "waybar/style.css")
 
-(define %dotfiles
-  `(("git.sendemail.config" . ".config/git/git.sendemail.config")
-    ("guix.channels.scm" . ".config/guix/channels.scm")
-    ("config/git.config" . ".config/git/config")
-    ("config/fcitx5-config.conf" . ".config/fcitx5/config")
-    ("config/fcitx5-profile.conf" . ".config/fcitx5/profile")
-    ("config/pipewire.conf" . ".config/pipewire/pipewire.conf")
-    ("config/wireplumber.conf" . ".config/wireplumber/wireplumber.conf")
+    ("git.sendemail.config" . "git/git.sendemail.config")
+    ("guix.channels.scm" . "guix/channels.scm")
+    ("config/git.config" . "git/config")
+    ("config/fcitx5-config.conf" . "fcitx5/config")
+    ("config/fcitx5-profile.conf" . "fcitx5/profile")
+    ("config/pipewire.conf" . "pipewire/pipewire.conf")
+    ("config/wireplumber.conf" . "wireplumber/wireplumber.conf")
     ("config/wireplumber.disable-logind.lua" .
-     ".config/wireplumber/bluetooth.lua.d/80-disable-logind.lua")
+     "wireplumber/bluetooth.lua.d/80-disable-logind.lua")
     ("config/wireplumber.disable-dbus.lua" .
-     ".config/wireplumber/main.lua.d/80-disable-dbus.lua")
-    ("config/swaynag.config" . ".config/swaynag/config")
-    ("config/sway.config" . ".config/sway/config")
+     "wireplumber/main.lua.d/80-disable-dbus.lua")
+    ("config/swaynag.config" . "swaynag/config")
+    ("config/sway.config" . "sway/config")
     ("config/sway.inactive-windows-transparent.py" .
-     ".config/sway/inactive-windows-transparent.py")
+     "sway/inactive-windows-transparent.py")
     ("config/qutebrowser.theme.gruvbox.dark.py" .
-     ".config/qutebrowser/qutebrowser.theme.gruvbox.dark.py")
+     "qutebrowser/qutebrowser.theme.gruvbox.dark.py")
     ("config/qutebrowser.theme.city-lights.py" .
-     ".config/qutebrowser/qutebrowser.theme.city-lights.py")
-    ("config/qutebrowser.config.py" . ".config/qutebrowser/config.py")
-    ("config/icon.theme" . ".icons/default/index.theme")
-    ("config/zathurarc" . ".config/zathura/zathurarc")
-    ("config/ranger.rc.conf" . ".config/ranger/rc.conf")
-    ("config/ranger.scope.sh" . ".config/ranger/scope.sh")
+     "qutebrowser/qutebrowser.theme.city-lights.py")
+    ("config/qutebrowser.config.py" . "qutebrowser/config.py")
+    ("config/zathurarc" . "zathura/zathurarc")
+    ("config/ranger.rc.conf" . "ranger/rc.conf")
+    ("config/ranger.scope.sh" . "ranger/scope.sh")
 
-    ("config/emacs.el" . ".emacs.d/init.el")
-    ("config/emacs-erc.el" . ".emacs.d/emacs-erc.el")
-    ("config/emacs-nox.el" . ".emacs.d/emacs-nox.el")
-    ("config/emacs-font.el" . ".emacs.d/emacs-font.el")
-    ("config/emacs-clipboard.el" . ".emacs.d/emacs-clipboard.el")
-    ("config/emacs-colorize-buffer.el" . ".emacs.d/emacs-colorize-buffer.el")))
+    ("config/emacs.el" . "emacs/init.el")
+    ("config/emacs-erc.el" . "emacs/emacs-erc.el")
+    ("config/emacs-nox.el" . "emacs/emacs-nox.el")
+    ("config/emacs-font.el" . "emacs/emacs-font.el")
+    ("config/emacs-clipboard.el" . "emacs/emacs-clipboard.el")
+    ("config/emacs-colorize-buffer.el" . "emacs/emacs-colorize-buffer.el")))
 
 (home-environment
  (packages (specifications->packages
@@ -165,7 +163,8 @@
         (service home-xdg-configuration-files-service-type
                  (map normalize-config %xdg-config-files))
         (service home-files-service-type
-                 (map normalize-config %dotfiles))
+                 (map normalize-config
+                      `(("config/icon.theme" . ".icons/default/index.theme"))))
         (service home-bash-service-type
                  (home-bash-configuration
                   (guix-defaults? #f)

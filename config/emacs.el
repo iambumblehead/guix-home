@@ -7,11 +7,11 @@
 
 (guix-emacs-autoload-packages)
 
-(load-file "~/.emacs.d/emacs-erc.el")
-(load-file "~/.emacs.d/emacs-nox.el")
-(load-file "~/.emacs.d/emacs-font.el")
-(load-file "~/.emacs.d/emacs-clipboard.el")
-(load-file "~/.emacs.d/emacs-colorize-buffer.el")
+(load-file "$XDG_CONFIG_HOME/emacs/emacs-erc.el")
+(load-file "$XDG_CONFIG_HOME/emacs/emacs-nox.el")
+(load-file "$XDG_CONFIG_HOME/emacs/emacs-font.el")
+(load-file "$XDG_CONFIG_HOME/emacs/emacs-clipboard.el")
+(load-file "$XDG_CONFIG_HOME/emacs/emacs-colorize-buffer.el")
 
 (bind-system-clipboard-paste-to)
 (bind-system-clipboard-copy-from)
