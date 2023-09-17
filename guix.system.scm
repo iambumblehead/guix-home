@@ -92,7 +92,7 @@
                       (default-session-command
                         (greetd-wlgreet-sway-session
                          (sway-configuration
-                          (make-file "config/sway-greetd.conf")))))
+                          (make-file "config/sway/sway-greetd.conf")))))
                      (greetd-terminal-configuration
                       (terminal-vt "2"))
                      (greetd-terminal-configuration

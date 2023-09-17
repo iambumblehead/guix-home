@@ -6,6 +6,7 @@
              (guix gexp))
 
 (primitive-load "guix.common.scm")
+(primitive-load "guix.home-alist.scm")
 
 (define %packages
   (list "git"
@@ -92,46 +93,6 @@
         "emacs-smartparens"
         "emacs-use-package"))
 
-(define %xdg-config-files
-  `(("config/foot.ini" . "foot/foot.ini")
-    ("config/muttrc" . "mutt/muttrc")
-    ("config/mutt.colors.muttrc" . "mutt/mutt.colors.muttrc")
-    ("config/mutt.layout.muttrc" . "mutt/mutt.layout.muttrc")
-    ("config/mutt.mailcap" . "mutt/mutt.mailcap")
-    ("config/waybar.config" . "waybar/config")
-    ("config/waybar.css" . "waybar/style.css")
-
-    ("git.sendemail.config" . "git/git.sendemail.config")
-    ("guix.channels.scm" . "guix/channels.scm")
-    ("config/git.config" . "git/config")
-    ("config/fcitx5-config.conf" . "fcitx5/config")
-    ("config/fcitx5-profile.conf" . "fcitx5/profile")
-    ("config/pipewire.conf" . "pipewire/pipewire.conf")
-    ("config/wireplumber.conf" . "wireplumber/wireplumber.conf")
-    ("config/wireplumber.disable-logind.lua" .
-     "wireplumber/bluetooth.lua.d/80-disable-logind.lua")
-    ("config/wireplumber.disable-dbus.lua" .
-     "wireplumber/main.lua.d/80-disable-dbus.lua")
-    ("config/swaynag.config" . "swaynag/config")
-    ("config/sway.config" . "sway/config")
-    ("config/sway.inactive-windows-transparent.py" .
-     "sway/inactive-windows-transparent.py")
-    ("config/qutebrowser.theme.gruvbox.dark.py" .
-     "qutebrowser/qutebrowser.theme.gruvbox.dark.py")
-    ("config/qutebrowser.theme.city-lights.py" .
-     "qutebrowser/qutebrowser.theme.city-lights.py")
-    ("config/qutebrowser.config.py" . "qutebrowser/config.py")
-    ("config/zathurarc" . "zathura/zathurarc")
-    ("config/ranger.rc.conf" . "ranger/rc.conf")
-    ("config/ranger.scope.sh" . "ranger/scope.sh")
-
-    ("config/emacs.el" . "emacs/init.el")
-    ("config/emacs-erc.el" . "emacs/emacs-erc.el")
-    ("config/emacs-nox.el" . "emacs/emacs-nox.el")
-    ("config/emacs-font.el" . "emacs/emacs-font.el")
-    ("config/emacs-clipboard.el" . "emacs/emacs-clipboard.el")
-    ("config/emacs-colorize-buffer.el" . "emacs/emacs-colorize-buffer.el")))
-
 (home-environment
  (packages (specifications->packages
             (append %packages
@@ -161,7 +122,21 @@
                                ("colored-stats" . #t)
                                ("menu-complete-display-prefix" . #t)))))
         (service home-xdg-configuration-files-service-type
-                 (map normalize-config %xdg-config-files))
+                 (home-alists-create-from-dirs
+                  (list "config/emacs"
+                        "config/fcitx5"
+                        "config/pipewire"
+                        "config/ranger"
+                        "config/waybar"
+                        "config/wireplumber"
+                        "config/zathura"
+                        "config/guix"
+                        "config/foot"
+                        "config/git"
+                        "config/sway"
+                        "config/swaynag"
+                        "config/qutebrowser"
+                        "config/mutt")))
         (service home-files-service-type
                  (map normalize-config
                       `(("config/icon.theme" . ".icons/default/index.theme"))))
