@@ -1,5 +1,4 @@
 (use-modules (guix gexp)
-             ;;(guix utils)
              (srfi srfi-1)
              (srfi srfi-26)
              (ice-9 ftw)
@@ -7,12 +6,15 @@
              (ice-9 regex))
 
 (define %current-dir (dirname (current-filename)))
+(define isrootre (make-regexp "^\\/"))
+(define isdotre (make-regexp "^\\.\\.?"))
+(define istmpre (make-regexp "~$"))
 
 (define (path-join . args)
   (string-join args file-name-separator-string))
 
 (define (path-expand path)
-  (if (regexp-exec isrootstr-re path)
+  (if (regexp-exec isrootre path)
       path (path-join %current-dir path)))
 
 (define (path-diff path-sub path-full)
@@ -22,15 +24,9 @@
                         file-name-separator-string)))
     (string-replace-substring path-full path-sub-and-slash "")))
 
-(define isrootstr-re (make-regexp "^\\/"))
-
-(define isdotstr-re (make-regexp "^\\.\\.?"))
-
-(define istmpstr-re (make-regexp "~$"))
-
 (define (isnotdotortmpstr? str)
-  (and (not (regexp-exec isdotstr-re str))
-       (not (regexp-exec istmpstr-re str))))
+  (and (not (regexp-exec isdotre str))
+       (not (regexp-exec istmpre str))))
 
 (define (list-recursive pathOrDir . files)
   (let ((filestat (stat pathOrDir)))
@@ -43,8 +39,7 @@
                  (scandir pathOrDir isnotdotortmpstr?)))
           ((eq? (stat:type filestat) 'regular)
            (cons pathOrDir files))
-          (else
-           files))))
+          (else files))))
 
 (define (home-list-create-from-dir source home-lists)
   (let ((files (list-recursive source)))
@@ -61,8 +56,3 @@
           (home-list-create-from-dir source prev))
         alists
         sources))
-
-;;(display (home-alists-create-from-dirs
-;;          (list
-;;           "config/emacs"
-;;           "config/fcitx5")))
