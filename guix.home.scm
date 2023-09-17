@@ -5,7 +5,6 @@
              (gnu services)
              (guix gexp))
 
-(primitive-load "guix.common.scm")
 (primitive-load "guix.home-alist.scm")
 
 (define %packages
@@ -138,8 +137,12 @@
                         "config/qutebrowser"
                         "config/mutt")))
         (service home-files-service-type
-                 (map normalize-config
-                      `(("config/icon.theme" . ".icons/default/index.theme"))))
+                 (list (list ".icons/default/index.theme"
+                             (plain-file "gtk-waybar-needs"
+                                         (string-append
+                                          "[Icon Theme]" "\n"
+                                          "Name=Default" "\n"
+                                          "Inherits=Adwaita")))))
         (service home-bash-service-type
                  (home-bash-configuration
                   (guix-defaults? #f)
@@ -149,9 +152,10 @@
                              ("gud" . "guix system delete-generations")
                              ("gup" . "guix pull && guix upgrade")
                              ("ghr" . "guix home reconfigure")
-                             ("gsr" . "sudo guix system reconfigure")
-                             ("zathura" . "zathura --plugins-dir=$HOME/.guix-home/profile/lib/zathura")))
+                             ("gsr" . "sudo guix system reconfigure")))
                   (bashrc
-                   (list (config-file "config/sh.bashrc.sh")))
+                   (list (local-file "./config/sh.bashrc.sh"
+                                     #:recursive? #t)))
                   (bash-profile
-                   (list (config-file "config/sh.bash_profile.sh"))))))))
+                   (list (local-file "./config/sh.bash_profile.sh"
+                                     #:recursive? #t))))))))
