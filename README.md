@@ -39,6 +39,7 @@ guix home delete-generations
 guix upgrade
 guix package --delete-generations
 guix gc
+guix gc -d1w # delete generations older than 1 week
 df -h
 ```
 
