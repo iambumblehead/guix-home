@@ -22,6 +22,7 @@ c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.
 c.content.headers.accept_language = "ja-JP,js;q=0.9"
 c.url.searchengines = { "DEFAULT" : "https://searx.envs.net/searxng/search?q={}" }
 
+c.content.user_stylesheets = "no-ads.css"
 # c.content.user_stylesheets = "~/software/solarized-everything-css/css/apprentice/apprentice-all-sites.css"
 # config.bind(',ap', 'config-cycle content.user_stylesheets ~/software/solarized-everything-css/css/apprentice/apprentice-all-sites.css ""')
 # config.bind(',dr', 'config-cycle content.user_stylesheets ~/software/solarized-everything-css/css/darculized/darculized-all-sites.css ""')
