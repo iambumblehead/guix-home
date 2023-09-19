@@ -160,7 +160,7 @@
                   (aliases '(("grep" . "grep --color=auto")
                              ("ll" . "ls -l")
                              ("ls" . "ls -p --color=auto")
-                             ("gap" . "gaps outer 10")
+                             ("gap" . "swaymsg gaps outer 10")
                              ("gud" . "guix system delete-generations")
                              ("gup" . "guix pull && guix upgrade")
                              ("ghr" . "guix home reconfigure")
