@@ -42,10 +42,13 @@
         "wl-clipboard"
         "guile"
         "guile-ncurses"
+        "guile-readline"
+        "guile-colorized"
         "swayidle"
         "python"
         "i3-autotiling"
         "mutt"
+        "w3m"
         "imv"
         "wlsunset"
         "grimshot"
@@ -142,13 +145,22 @@
                                          (string-append
                                           "[Icon Theme]" "\n"
                                           "Name=Default" "\n"
-                                          "Inherits=Adwaita")))))
+                                          "Inherits=Adwaita")))
+                       (list ".guile"
+                             (plain-file "guile-config"
+                                         (string-append
+                                          "(use-modules"
+                                          " (ice-9 readline)"
+                                          " (ice-9 colorized))"
+                                          "(activate-readline)"
+                                          "(activate-colorized)")))))
         (service home-bash-service-type
                  (home-bash-configuration
                   (guix-defaults? #f)
                   (aliases '(("grep" . "grep --color=auto")
                              ("ll" . "ls -l")
                              ("ls" . "ls -p --color=auto")
+                             ("gap" . "gaps outer 10")
                              ("gud" . "guix system delete-generations")
                              ("gup" . "guix pull && guix upgrade")
                              ("ghr" . "guix home reconfigure")
