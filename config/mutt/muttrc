@@ -12,3 +12,6 @@ mailboxes     = +INBOX
 set record    = +SENT
 set realname  = "chris"
 set editor    = "emacs -nw"
+
+alias guix-bug bug-guix@gnu.org
+alias guix-patch guix-patches@gnu.org

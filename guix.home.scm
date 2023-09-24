@@ -76,6 +76,8 @@
   (list "emacs-next-pgtk"
         "emacs-doom-themes"
         "emacs-dash"
+        "emacs-debbugs"
+        "emacs-rainbow-delimiters"
         "emacs-markdown-mode"
         "emacs-web-mode"
         "emacs-js2-mode"
