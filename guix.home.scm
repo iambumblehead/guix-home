@@ -9,17 +9,12 @@
 
 (define %packages
   (list "git"
-        ;; https://www.mail-archive.com/help-guix@gnu.org/msg09871.html
-        ;; https://github.com/guix-mirror/guix/blob/master/gnu/packages.scm
-        ;; hoping specifications->packages will be fixed to handle this
-        ;; again in future, for now: `guix install -i git:send-email`
         "git:send-email"
         "curl"
         "bemenu"
         "btop"
         "ncurses"
         "adwaita-icon-theme"
-        "glib:bin"
         "gsettings-desktop-schemas"
         "irssi"
         "fcitx5"
@@ -98,9 +93,10 @@
         "emacs-use-package"))
 
 (home-environment
- (packages (specifications->packages
-            (append %packages
-                    %packages-emacs)))
+ (packages (append (map specification->package+output
+                        (append %packages
+                                %packages-emacs))))
+
  (services
   (list (simple-service 'env-vars home-environment-variables-service-type
                         '(("EDITOR" . "emacs")

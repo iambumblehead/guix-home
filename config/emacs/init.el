@@ -131,6 +131,7 @@
 (use-package geiser
   :hook ((scheme-mode . geiser-mode))
   :config
+  (setq geiser-repl-query-on-kill-p nil)
   (setq geiser-mode-start-repl-p t)
   (setq geiser-default-implementation 'guile)
   (geiser-smart-tab-mode)
