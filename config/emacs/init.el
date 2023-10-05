@@ -143,6 +143,7 @@
   (geiser-default-implementation 'guile)
   :config
   (add-to-list 'geiser-guile-load-path "~/software/guix")
+  (add-to-list 'geiser-guile-load-path "~/software/guix-home")
   (add-to-list 'geiser-guile-load-path "~/software/guf")
   (add-to-list 'geiser-guile-load-path "~/software/guf/guf"))
 

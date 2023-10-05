@@ -1,7 +1,9 @@
 (use-modules (gnu home)
              (gnu home services)
+             (gnu home services gnupg)
              (gnu home services shells)
              (gnu packages)
+             (gnu packages gnupg)
              (gnu services)
              (guix gexp))
 
@@ -152,6 +154,16 @@
                                           " (ice-9 colorized))"
                                           "(activate-readline)"
                                           "(activate-colorized)")))))
+        (service home-gpg-agent-service-type
+                 (home-gpg-agent-configuration
+                  (pinentry-program
+                   (file-append pinentry-tty "/bin/pinentry-tty"))
+                  (ssh-support? #t)
+                  (default-cache-ttl 3000)
+                  (max-cache-ttl 6000)
+                  (extra-content (string-append
+                                  "allow-loopback-pinentry" "\n"
+                                  "allow-emacs-pinentry" "\n"))))
         (service home-bash-service-type
                  (home-bash-configuration
                   (guix-defaults? #f)
