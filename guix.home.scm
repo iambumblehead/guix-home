@@ -157,7 +157,7 @@
         (service home-gpg-agent-service-type
                  (home-gpg-agent-configuration
                   (pinentry-program
-                   (file-append pinentry-tty "/bin/pinentry-tty"))
+                   (file-append pinentry "/bin/pinentry-curses"))
                   (ssh-support? #t)
                   (default-cache-ttl 3000)
                   (max-cache-ttl 6000)
