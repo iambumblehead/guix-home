@@ -18,7 +18,7 @@
         "ncurses"
         "adwaita-icon-theme"
         "gsettings-desktop-schemas"
-        "irssi"
+        "weechat"
         "fcitx5"
         "fcitx5-anthy"
         "fcitx5-gtk"
