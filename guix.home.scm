@@ -16,6 +16,7 @@
         "bemenu"
         "btop"
         "ncurses"
+        "node"
         "adwaita-icon-theme"
         "gsettings-desktop-schemas"
         "weechat"
