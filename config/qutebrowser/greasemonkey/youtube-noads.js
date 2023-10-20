@@ -5,7 +5,7 @@
 // @name:zh-HK   YouTube去廣告
 // @name:zh-MO   YouTube去廣告
 // @namespace    http://tampermonkey.net/
-// @version      5.7
+// @version      5.95
 // @description         这是一个去除YouTube广告的脚本，轻量且高效，它能丝滑的去除界面广告和视频广告，包括6s广告。This is a script that removes ads on YouTube, it's lightweight and efficient, capable of smoothly removing interface and video ads, including 6s ads.
 // @description:zh-CN   这是一个去除YouTube广告的脚本，轻量且高效，它能丝滑的去除界面广告和视频广告，包括6s广告。
 // @description:zh-TW   這是一個去除YouTube廣告的腳本，輕量且高效，它能絲滑地去除界面廣告和視頻廣告，包括6s廣告。
@@ -24,10 +24,9 @@
     const cssSeletorArr = [
         `#masthead-ad`,//首页顶部横幅广告.
         `ytd-rich-item-renderer.style-scope.ytd-rich-grid-row #content:has(.ytd-display-ad-renderer)`,//首页视频排版广告.
-        `ytd-rich-section-renderer #dismissible`,//首页中部横幅广告.
         `.video-ads.ytp-ad-module`,//播放器底部广告.
         `tp-yt-paper-dialog:has(yt-mealbar-promo-renderer)`,//播放页会员促销广告.
-        `#panels:has(*[target-id="engagement-panel-ads"])`,//播放页右上方推荐广告.
+        `ytd-engagement-panel-section-list-renderer[target-id="engagement-panel-ads"]`,//播放页右上方推荐广告.
         `#related #player-ads`,//播放页评论区右侧推广广告.
         `#related ytd-ad-slot-renderer`,//播放页评论区右侧视频排版广告.
         `ytd-ad-slot-renderer`,//搜索页广告.
@@ -35,8 +34,8 @@
         `ad-slot-renderer`,//M播放页第三方推荐广告
         `ytm-companion-ad-renderer`,//M可跳过的视频广告链接处
     ];
-    const dev = true;//开发使用
-    let video;//视频dom
+
+    window.dev=true;//开发使用
 
     /**
     * 将标准时间格式化
@@ -65,7 +64,7 @@
     * @return {undefined}
     */
     function log(msg) {
-        if(!dev){
+        if(!window.dev){
             return false;
         }
         console.log(`${moment(new Date())}  ${msg}`)
@@ -186,51 +185,41 @@
     * @return {undefined}
     */
     function skipAd(mutationsList, observer) {
+        let video = document.querySelector(`.ad-showing video`) || document.querySelector(`video`);//获取视频节点
         let skipButton = document.querySelector(`.ytp-ad-skip-button`);
         let shortAdMsg = document.querySelector(`.video-ads.ytp-ad-module .ytp-ad-player-overlay`);
 
         if(!skipButton && !shortAdMsg){
-            log(`******广告结束变动******`);
+            log(`######广告不存在######`);
             return false;
         }
 
-        const fn = () => {
-            //拥有跳过按钮的广告.
-            if(skipButton)
-            {
-                log(`普通视频广告~~~~~~~~~~~~~`);
-                log(`总时长:`);
-                log(`${video.duration}`)
-                log(`当前时间:`);
-                log(`${video.currentTime}`)
-                // 跳过广告.
-                skipButton.click();
-                nativeTouch.call(skipButton);
-                log(`按钮跳过了该广告~~~~~~~~~~~~~`);
-                return false;//终止
-            }
-
-            //没有跳过按钮的短广告.
-            if(shortAdMsg){
-                if(video.duration === NaN || video.duration === `NaN`){
-                    document.querySelector(`.ad-showing video`).currentTime=1024;
-                    log(`youtube行为改变~~~~~~~~~~~~~`);
-                    log(`强制结束了该广告~~~~~~~~~~~~~`);
-                    //alert(`youtube行为改变`);
-                    return false;//终止
-                }
-                log(`强制视频广告~~~~~~~~~~~~~`);
-                log(`总时长:`);
-                log(`${video.duration}`)
-                log(`当前时间:`);
-                log(`${video.currentTime}`)
-                video.currentTime = 1024;
-                log(`强制结束了该广告~~~~~~~~~~~~~`);
-                return false;//终止
-            }
-            log(`######广告此前已关闭######`);
+        //拥有跳过按钮的广告.
+        if(skipButton)
+        {
+            log(`普通视频广告~~~~~~~~~~~~~`);
+            log(`总时长:`);
+            log(`${video.duration}`)
+            log(`当前时间:`);
+            log(`${video.currentTime}`)
+            // 跳过广告.
+            skipButton.click();//PC
+            nativeTouch.call(skipButton);//Phone
+            log(`按钮跳过了该广告~~~~~~~~~~~~~`);
+            return false;//终止
         }
-        fn();//标准执行
+
+        //没有跳过按钮的短广告.
+        if(shortAdMsg){
+            log(`强制视频广告~~~~~~~~~~~~~`);
+            log(`总时长:`);
+            log(`${video.duration}`)
+            log(`当前时间:`);
+            log(`${video.currentTime}`)
+            video.currentTime = video.duration;
+            log(`强制结束了该广告~~~~~~~~~~~~~`);
+            return false;//终止
+        }
     }
 
     /**
@@ -249,13 +238,11 @@
         style.id = `removePlayerAD`;
         (document.querySelector(`head`) || document.querySelector(`body`)).appendChild(style);//将节点附加到HTML.
 
-
         let observer;//监听器
+        let timerID;//定时器
 
         //开始监听
         function startObserve(){
-            video = document.querySelector(`video`);//获取视频节点
-
             //广告节点监听
             const targetNode = document.querySelector(`.video-ads.ytp-ad-module`);
 
@@ -270,15 +257,7 @@
             observer = new MutationObserver(skipAd);// 创建一个观察器实例并设置处理广告的回调函数
             observer.observe(targetNode, config);// 以上述配置开始观察广告节点
 
-            //初始化监听，发现并处理广告
-            let skipButton = document.querySelector(`.ytp-ad-skip-button`);
-            let shortAdMsg = document.querySelector(`.video-ads.ytp-ad-module .ytp-ad-player-overlay`);
-            if(skipButton || shortAdMsg){
-                log(`初始化监听，发现并处理广告`);
-                skipAd();
-            }else{
-                log(`初始化监听，没有发现广告`);
-            }
+            timerID=setInterval(skipAd, 512);//漏网鱼
 
         }
 
@@ -286,6 +265,7 @@
         function closeObserve(){
             observer.disconnect();
             observer = null;
+            clearInterval(timerID);
         }
 
         //轮询任务
