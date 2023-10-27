@@ -12,6 +12,7 @@ mailboxes     = +INBOX
 set record    = +SENT
 set realname  = "chris"
 set editor    = "emacs -nw"
+set crypt_replyencrypt = yes
 
 alias guix-bug bug-guix@gnu.org
 alias guix-patch guix-patches@gnu.org
