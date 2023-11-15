@@ -10,13 +10,34 @@
 // @namespace   https://greasyfork.org/users/1188705
 // ==/UserScript==
 
-const domainsRe = /https:\/\/(twitter|x).com/gi;
-const nitterhost = 'https://nitter.net';
+
+const nitterDefault = "https://nitter.net";
+const instance = nitterDefault;
+
+function redirectTwitter(url) {
+  if (url.host.split(".")[0] === "pbs") {
+    return `${instance}/pic/${encodeURIComponent(url.href)}`;
+  } else if (url.host.split(".")[0] === "video") {
+    return `${instance}/gif/${encodeURIComponent(url.href)}`;
+  } else if (url.pathname.includes("tweets")) {
+    return `${instance}${url.pathname.replace("/tweets", "")}${url.search}`;
+  } else {
+    return `${instance}${url.pathname}${url.search}`;
+  }
+}
+
+const twitter_hosts = [
+  "twitter.com",
+  "www.twitter.com",
+  "mobile.twitter.com",
+  "pbs.twimg.com",
+  "video.twimg.com",
+];
 
 // Define a function to process and replace links and text on the page
-const go = doc => doc
-  .querySelectorAll('a[href*="twitter.com"], a[href*="x.com"]')
-  .map(elem => elem.href = String(elem.href).replace(domainsRe, nitterhost));
+const go = doc => Array.from(
+    doc.querySelectorAll('a[href*="twitter.com"], a[href*="x.com"]'))
+      .forEach(elem => elem.href = redirectTwitter(new URL(elem.href)));
 
 // Create a MutationObserver to detect changes in the DOM
 const mutationObserver = new MutationObserver(mutations => {
@@ -37,3 +58,11 @@ mutationObserver.observe(document, {
 
 // Initial processing of links and text
 go(document);
+
+if (twitter_hosts.includes(window.location.hostname)) {
+    const url = new URL(window.location);
+    const redirect = redirectTwitter(url);
+    console.info("Redirecting", `"${url.href}"`, "=>", `"${redirect}"`);
+    window.location = redirect;
+}
+
