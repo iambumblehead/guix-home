@@ -26,14 +26,6 @@ function redirectTwitter(url) {
   }
 }
 
-const twitter_hosts = [
-  "twitter.com",
-  "www.twitter.com",
-  "mobile.twitter.com",
-  "pbs.twimg.com",
-  "video.twimg.com",
-];
-
 // Define a function to process and replace links and text on the page
 const go = doc => Array.from(
     doc.querySelectorAll('a[href*="twitter.com"], a[href*="x.com"]'))
@@ -58,11 +50,3 @@ mutationObserver.observe(document, {
 
 // Initial processing of links and text
 go(document);
-
-if (twitter_hosts.includes(window.location.hostname)) {
-    const url = new URL(window.location);
-    const redirect = redirectTwitter(url);
-    console.info("Redirecting", `"${url.href}"`, "=>", `"${redirect}"`);
-    window.location = redirect;
-}
-
