@@ -9,18 +9,10 @@ output * bg /home/bumble/Downloads/valeriy-ryasnyanskiy-L21lWCqTlfE-unsplash.jpg
 exec_always killall -wqr "(pipewire|wireplumber)" \
   || sleep 1 && ((pipewire &); sleep 2 && (wireplumber &))
 
-# exec swayidle -w \
-#   timeout 300 'swaylock -f --screenshots --clock --effect-blur 9x7 --effect-vignette 0.25:0.5 --fade-in 0.25' \
-#   timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#   before-sleep 'swaylock -f --screenshots --clock --effect-blur 9x7 --effect-vignette 0.25:0.5 --fade-in 0.25'
-
 exec swayidle -w \
-  timeout 240 'wlsunset -g 0.6' \
-  resume 'pkill wlsunset' \
-  timeout 300 'swaylock -f --screenshots --clock --effect-blur 9x7 --effect-vignette 0.25:0.5 --fade-in 0.25' \
-  timeout 600 'swaymsg "output * dpms off"' \
-  resume 'swaymsg "output * dpms on"' \
-  before-sleep 'swaylock -f --screenshots --clock --effect-blur 9x7 --effect-vignette 0.25:0.5 --fade-in 0.25'
+  timeout 300 'swaylock -f --screenshots --clock --effect-blur 9x7 --effect-vignette 0.25:0.5 --grace 60 --fade-in 0.25' \
+  timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+  before-sleep 'swaylock -f --screenshots --clock --effect-blur 9x7 --effect-vignette 0.25:0.5 --grace 60 --fade-in 0.25'
 
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
