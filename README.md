@@ -22,9 +22,8 @@
 + \_____|_| \_|\____/   \_____|\__,_|_/_/\_\
 ```
 
-
 What's good
- * wireplumber, screen lock, fcitx5, brightness and audio
+ * wireplumber, screen lock, fcitx5 ctrl+shift, brightness and audio
  * no: gtk4, firefox, systemd, dbus, elogind, ibus
 
 
