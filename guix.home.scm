@@ -3,6 +3,7 @@
              (gnu home services gnupg)
              (gnu home services shells)
              (gnu packages)
+             (gnu packages qt)
              (gnu packages gnupg)
              (gnu services)
              (guix gexp))
@@ -33,8 +34,7 @@
         "font-liberation"
         "font-sarasa-gothic"
         "font-jetbrains-mono"
-        "qtwayland@5.15"
-        "qview"
+        "qtwayland"
         "qutebrowser"
         "waybar"
         "pipewire"
@@ -117,6 +117,13 @@
                           ("XDG_CURRENT_DESKTOP" . "sway")
                           ("DESKTOP_SESSION" . "sway")
                           ("LIBSEAT_BACKEND" . "seatd")))
+        ;; https://issues.guix.gnu.org/68483
+        (simple-service 'qtwayland-vars-service
+                        home-environment-variables-service-type
+                        `(("QT_PLUGIN_PATH" .
+                           ,(file-append qtwayland "/lib/qt6/plugins"))
+                          ("QT_QPA_PLATFORM_PLUGIN_PATH" .
+                           ,(file-append qtwayland "/lib/qt6/plugins/platforms"))))
         (service home-inputrc-service-type
                  (home-inputrc-configuration
                   (variables `(("show-all-if-unmodified" . #t)

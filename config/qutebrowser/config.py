@@ -1,9 +1,6 @@
 config.load_autoconfig(False)
 
 # c.qt.highdpi = True
-c.colors.webpage.bg = "black"
-# c.colors.webpage.darkmode.enabled = True
-c.colors.webpage.darkmode.threshold.background = 205
 
 config.bind(',xs', 'config-cycle statusbar.show always never')
 config.bind(',xt', 'config-cycle tabs.show always never')
@@ -35,16 +32,16 @@ c.url.default_page = 'https://searx.envs.net'
 c.url.start_pages = ['https://searx.envs.net']
 c.tabs.background = True
 
+c.colors.webpage.bg = "black"
 c.colors.webpage.preferred_color_scheme = 'dark'
 c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
 c.colors.webpage.darkmode.contrast = 0.0
 c.colors.webpage.darkmode.enabled = True
-c.colors.webpage.darkmode.grayscale.all = False
-c.colors.webpage.darkmode.grayscale.images = 0.0
 c.colors.webpage.darkmode.policy.images = 'smart'
 c.colors.webpage.darkmode.policy.page = 'smart'
-c.colors.webpage.darkmode.threshold.background = 128
-c.colors.webpage.darkmode.threshold.text = 128
+c.colors.webpage.darkmode.threshold.background = 205
+# c.colors.webpage.darkmode.threshold.background = 128
+c.colors.webpage.darkmode.threshold.foreground = 128
 
 c.qt.args = ['disable-seccomp-filter-sandbox']
 
