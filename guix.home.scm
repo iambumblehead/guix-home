@@ -67,7 +67,7 @@
         "zathura-pdf-mupdf"
         "bash-completion"
         "unzip"
-        "wireplumber"
+        "wireplumber-minimal"
         "pinentry-tty"
         "zstd"))
 

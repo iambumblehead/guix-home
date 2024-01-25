@@ -5,10 +5,6 @@
 output * bg /home/bumble/Downloads/valeriy-ryasnyanskiy-L21lWCqTlfE-unsplash.jpg fill
 # output * bg /etc/background.jpg fill
 
-# start pipewire then wireplumber, kill on exit
-exec_always killall -wqr "(pipewire|wireplumber)" \
-  || sleep 1 && ((pipewire &); sleep 2 && (wireplumber &))
-
 exec swayidle -w \
   timeout 300 'swaylock -f --screenshots --clock --effect-blur 9x7 --effect-vignette 0.25:0.5 --grace 60 --fade-in 0.25' \
   timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
@@ -152,3 +148,6 @@ bar {
   strip_workspace_numbers yes
   swaybar_command waybar
 }
+
+exec sleep 2 && pipewire
+exec sleep 4 && wireplumber
