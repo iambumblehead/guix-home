@@ -5,10 +5,23 @@
              (gnu packages)
              (gnu packages qt)
              (gnu packages gnupg)
+             (gnu packages linux)
              (gnu services)
              (guix gexp))
 
 (primitive-load "guix.home-alist.scm")
+
+(define (asoundrc)
+  (mixed-text-file
+   "asoundrc"
+   "<" pipewire "/share/alsa/alsa.conf.d/50-pipewire.conf>\n"
+   "<" pipewire "/share/alsa/alsa.conf.d/99-pipewire-default.conf>\n"
+   "pcm_type.pipewire {\n"
+   "  lib \"" pipewire "/lib/alsa-lib/libasound_module_pcm_pipewire.so\"\n"
+   "}\n"
+   "ctl_type.pipewire {\n"
+   "  lib \"" pipewire "/lib/alsa-lib/libasound_module_ctl_pipewire.so\"\n"
+   "}\n"))
 
 (define %packages
   (list "git"
@@ -150,7 +163,8 @@
                         "config/qutebrowser"
                         "config/mutt")))
         (service home-files-service-type
-                 (list (list ".icons/default/index.theme"
+                 (list (list ".asoundrc" (asoundrc))
+                       (list ".icons/default/index.theme"
                              (plain-file "gtk-waybar-needs"
                                          (string-append
                                           "[Icon Theme]" "\n"
