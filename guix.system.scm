@@ -118,6 +118,7 @@
          (service wpa-supplicant-service-type
                   (wpa-supplicant-configuration
                    (interface "wlp2s0")
+                   (dbus? #f)
                    (config-file (make-file "wpa_supplicant.conf"))))
          (service openssh-service-type
                   (openssh-configuration

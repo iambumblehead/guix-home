@@ -10,7 +10,7 @@
 0=Control+Shift_R
 
 [Hotkey/EnumerateBackwardKeys]
-0=Control+Shift_L
+0=Control+Super+space
 
 [Hotkey/EnumerateGroupForwardKeys]
 0=Super+space
