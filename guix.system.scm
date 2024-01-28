@@ -31,7 +31,6 @@
    (inherit config)
    (substitute-urls
     (cons* "https://substitutes.nonguix.org"
-           ;;"https://guix.tobias.gr"
            %default-substitute-urls))
    (authorized-keys
     (cons* (origin
@@ -41,13 +40,6 @@
             (sha256
              (base32
               "0j66nq1bxvbxf5n8q2py14sjbkn57my0mjwq7k1qm9ddghca7177")))
-           ;;(origin
-           ;; (method url-fetch)
-           ;; (uri "https://guix.tobias.gr/signing-key.pub")
-           ;; (file-name "tobias.pub")
-           ;; (sha256
-           ;;  (base32
-           ;;   "0m51azgj3xas6f598d5mq9716v57zw745dr8bwn4cki2p8l4inlg")))
            %default-authorized-guix-keys))))
 
 (define %services

@@ -23,9 +23,29 @@
 ```
 
 What's good
- * wireplumber, screen lock, fcitx5 ctrl+shift, brightness and audio
+ * pipewire with alsa, screen lock and brightness, fcitx5 ctrl+shift
  * no: gtk4, firefox, systemd, dbus, elogind, ibus
 
+Caution wifi; Guix's `wpa-supplicant-service-type` writes a read-only `wpa_supplicant.conf` file and `wpa_cli` is unable to persist and apply network changes. To change things, stop the service and use commands below,
+```bash
+$ sudo herd stop wpa-supplicant
+$ iwconfig # list network interfaces
+$ cat wpa_supplicant.conf
+ctrl_interface=/run/wpa_supplicant
+ctrl_interface_group=wheel
+update_config=1
+
+network={
+  ssid="YOURESSID"
+  key_mgmt=WPA-PSK
+  psk="YOURPASSWORD"
+}
+$ sudo wpa_supplicant -i wlp2s0 -c wpa_supplicant.conf
+$ sudo wpa_cli -p /run/wpa_supplicant
+> scan
+> scan_results # lists access points
+> quit
+```
 
 Administer
 ```bash
