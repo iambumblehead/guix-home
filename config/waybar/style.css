@@ -28,6 +28,11 @@ window#waybar > box {
     color: rgba(229, 233, 240, 1);
 }
 
+#language {
+    min-width: 50px;
+    font-weight: 700;
+}
+
 #workspaces button {
     padding: 3px;
     background-color: rgba(23, 23, 23, 1);
@@ -62,10 +67,15 @@ window#waybar > box {
     border-bottom: 3px solid #ffffff;
 }
 
-#clock, #battery, #network, #pulseaudio, #mode {
+#battery, #network, #pulseaudio, #mode {
     padding: 0 10px;
     margin: 0 5px;
 }
+#clock {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
 
 #clock.time,
 #clock.date {

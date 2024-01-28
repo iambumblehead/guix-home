@@ -2,7 +2,7 @@
   "position": "top",
   "height": 18,
   "modules-left": ["sway/workspaces", "sway/mode"],
-  "modules-center": [ "clock#date" ],
+  "modules-center": ["clock#date"],
   "modules-right": [
      "custom/label#battery",
      "battery",
@@ -16,6 +16,10 @@
   },
   "tray": {
     "spacing": 10
+  },
+  "sway/language": {
+    "format": "{shortDescription}",
+    "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
   },
   "clock#date": {
     "interval": 10,
