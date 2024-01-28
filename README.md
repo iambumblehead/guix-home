@@ -22,9 +22,10 @@
 + \_____|_| \_|\____/   \_____|\__,_|_/_/\_\
 ```
 
-What's good
- * pipewire with alsa, screen lock and brightness, fcitx5 ctrl+shift
+This guix configuration mainly provides a "current" system without dbus. What's good
+ * pipewire with alsa, screen lock and brightness, fcitx5 ctrl+shift, wayland
  * no: gtk4, firefox, systemd, dbus, elogind, ibus
+
 
 Caution wifi; Guix's `wpa-supplicant-service-type` writes a read-only `wpa_supplicant.conf` file and `wpa_cli` is unable to persist and apply network changes. To change things, stop the service and use commands below,
 ```bash
