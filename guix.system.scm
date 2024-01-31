@@ -52,8 +52,7 @@
                    (using-setuid? #f)))
          (service greetd-service-type
                   (greetd-configuration
-                   (greeter-supplementary-groups
-                    (list "video" "input" "seat"))
+                   (greeter-supplementary-groups '("video" "input" "seat"))
                    (terminals
                     (list
                      (greetd-terminal-configuration
@@ -115,8 +114,8 @@
                  (comment "honey worker")
                  (group "users")
                  (supplementary-groups
-                  (list "wheel" "netdev" "seat"
-                        "audio" "video" "light"))))
+                  '("wheel" "netdev" "seat"
+                    "audio" "video" "light"))))
           %base-user-accounts))
   (kernel linux)
   (initrd microcode-initrd)
@@ -124,7 +123,7 @@
   (firmware (cons iwlwifi-firmware %base-firmware))
   (bootloader (bootloader-configuration
                (bootloader grub-efi-bootloader)
-               (targets (list "/boot/efi"))
+               (targets '("/boot/efi"))
                (keyboard-layout keyboard-layout)
                (theme (grub-theme
                        (inherit (grub-theme))
@@ -166,9 +165,7 @@
                               "/run/current-system/profile/sbin/reboot")))
   (packages (append
              (specifications->packages
-              (list "sway"
-                    "swaylock-effects"
-                    "nss-certs"))
+              '("sway" "swaylock-effects" "nss-certs"))
              %base-packages))
   (setuid-programs %setuid-programs)
   (services %services))
