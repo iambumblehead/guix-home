@@ -1,11 +1,6 @@
 (use-modules (gnu)
-             (gnu home)
              (gnu packages wm)
-             (gnu packages ssh)
              (gnu packages cups)
-             (gnu packages certs)
-             (gnu packages admin)
-             (gnu packages linux)
              (gnu services)
              (gnu services xorg)
              (gnu services ssh)
@@ -41,7 +36,9 @@
 
 (define %services
   (cons* fontconfig-file-system-service
-         (udev-rules-service 'light light #:groups '("light"))
+         (udev-rules-service 'light
+                             (specification->package "light")
+                             #:groups '("light"))
          (service cups-service-type
                   (cups-configuration
                    (web-interface? #t)
@@ -88,7 +85,7 @@
                    (config-file (make-file "wpa_supplicant.conf"))))
          (service openssh-service-type
                   (openssh-configuration
-                   (openssh openssh-sans-x)
+                   (openssh (specification->package "openssh-sans-x"))
                    (port-number 2222)))
          (modify-services %base-services
                           (delete agetty-service-type)
