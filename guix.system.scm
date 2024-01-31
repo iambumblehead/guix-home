@@ -3,12 +3,9 @@
              (gnu packages wm)
              (gnu packages ssh)
              (gnu packages cups)
-             (gnu packages fonts)
              (gnu packages certs)
              (gnu packages admin)
              (gnu packages linux)
-             (gnu packages xdisorg)
-             (gnu packages terminals)
              (gnu services)
              (gnu services xorg)
              (gnu services ssh)
@@ -43,34 +40,19 @@
            %default-authorized-guix-keys))))
 
 (define %services
-  (cons* (service cups-service-type
+  (cons* fontconfig-file-system-service
+         (udev-rules-service 'light light #:groups '("light"))
+         (service cups-service-type
                   (cups-configuration
                    (web-interface? #t)
                    (default-paper-size "Letter")
-                   (extensions
-                    (list cups-filters hplip-minimal))))
-
-         ;; https://lists.gnu.org/archive/html/guix-devel/2023-05/msg00278.html
-         (simple-service 'cups-pam-service
-                         pam-root-service-type
-                         (list (unix-pam-service
-                                "cups" #:allow-empty-passwords? #f)))
-
-         (udev-rules-service 'light light
-                             #:groups '("light"))
-         (service
-          (service-type
-           (name 'screen-locker)
-           (extensions
-            (list (service-extension pam-root-service-type
-                                     (@@ (gnu services xorg) screen-locker-pam-services))))
-            (description "-"))
-          (screen-locker-configuration
-           (name "swaylock")
-           (program (file-append swaylock-effects "/bin/swaylock"))
-           (using-pam? #t)
-           (using-setuid? #f)))
-
+                   (extensions (list cups-filters hplip-minimal))))
+         (service screen-locker-service-type
+                  (screen-locker-configuration
+                   (name "swaylock")
+                   (program (file-append swaylock-effects "/bin/swaylock"))
+                   (using-pam? #t)
+                   (using-setuid? #f)))
          (service greetd-service-type
                   (greetd-configuration
                    (greeter-supplementary-groups
@@ -97,14 +79,6 @@
                       (terminal-vt "6"))))))
          (service mingetty-service-type
                   (mingetty-configuration (tty "tty8")))
-         fontconfig-file-system-service
-         (service upower-service-type
-                  (upower-configuration
-                   (use-percentage-for-policy? #t)
-                   (percentage-low 12)
-                   (percentage-critical 8)
-                   (percentage-action 5)
-                   (critical-power-action 'power-off)))
          (service dhcp-client-service-type)
          (service seatd-service-type)
          (service wpa-supplicant-service-type
@@ -116,12 +90,6 @@
                   (openssh-configuration
                    (openssh openssh-sans-x)
                    (port-number 2222)))
-         (service console-font-service-type
-                  (map (lambda (tty)
-                         (cons tty (file-append
-                                    font-terminus
-                                    "/share/consolefonts/ter-124n")))
-                       '("tty1" "tty2" "tty3" "tty4" "tty5" "tty6")))
          (modify-services %base-services
                           (delete agetty-service-type)
                           (delete login-service-type)
@@ -135,21 +103,28 @@
   (host-name "guix-xps")
   (timezone "America/Los_Angeles")
   (locale "ja_JP.utf8")
-  (locale-definitions
-   (append
-    (list (locale-definition (source "ja_JP")
-                             (name   "ja_JP.utf8"))
-          (locale-definition (source "en_US")
-                             (name   "en_US.utf8")))
-    %default-locale-definitions))
   (keyboard-layout (keyboard-layout "us" #:options '("ctrl:nocaps")))
+  (locale-definitions (append
+                       (list (locale-definition (source "ja_JP")
+                                                (name   "ja_JP.utf8"))
+                             (locale-definition (source "en_US")
+                                                (name   "en_US.utf8"))
+                             (locale-definition (source "th_TH")
+                                                (name   "th_TH.utf8")))
+                       %default-locale-definitions))
+  (users (append
+          (list (user-account
+                 (name "bumble")
+                 (comment "honey worker")
+                 (group "users")
+                 (supplementary-groups
+                  (list "wheel" "netdev" "seat"
+                        "audio" "video" "light"))))
+          %base-user-accounts))
   (kernel linux)
   (initrd microcode-initrd)
-  (firmware
-   (append (list iwlwifi-firmware)
-           %base-firmware))
   (initrd-modules (cons "i915" %base-initrd-modules))
-
+  (firmware (cons iwlwifi-firmware %base-firmware))
   (bootloader (bootloader-configuration
                (bootloader grub-efi-bootloader)
                (targets (list "/boot/efi"))
@@ -158,9 +133,8 @@
                        (inherit (grub-theme))
                        (gfxmode '("800x600" "auto"))
                        (image (make-file "config/guix-checkered-16-10.svg"))))))
-  (swap-devices
-   (list
-    (swap-space (target (file-system-label "my-swap")))))
+  (swap-devices (list (swap-space
+                       (target (file-system-label "my-swap")))))
   (file-systems (append
                  (list (file-system
                         (device (file-system-label "my-root"))
@@ -193,15 +167,7 @@
                               "bumble    ALL=(ALL) NOPASSWD:"
                               "/run/current-system/profile/sbin/halt,"
                               "/run/current-system/profile/sbin/reboot")))
-  (users (cons (user-account
-                (name "bumble")
-                (comment "honey worker")
-                (group "users")
-                (supplementary-groups
-                 (list "wheel" "netdev" "seat"
-                       "audio" "video" "light")))
-               %base-user-accounts))
-  (packages (append 
+  (packages (append
              (specifications->packages
               (list "sway"
                     "swaylock-effects"
