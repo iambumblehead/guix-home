@@ -58,21 +58,15 @@
                      (greetd-terminal-configuration
                       (terminal-vt "1")
                       (terminal-switch #t)
-                      ;; https://issues.guix.gnu.org/65769
                       (default-session-command
                         (greetd-wlgreet-sway-session
-                         (sway-configuration
+                         (sway-configuration ;; issues.guix.gnu.org/65769
                           (make-file "config/sway/sway-greetd.conf")))))
-                     (greetd-terminal-configuration
-                      (terminal-vt "2"))
-                     (greetd-terminal-configuration
-                      (terminal-vt "3"))
-                     (greetd-terminal-configuration
-                      (terminal-vt "4"))
-                     (greetd-terminal-configuration
-                      (terminal-vt "5"))
-                     (greetd-terminal-configuration
-                      (terminal-vt "6"))))))
+                     (greetd-terminal-configuration (terminal-vt "2"))
+                     (greetd-terminal-configuration (terminal-vt "3"))
+                     (greetd-terminal-configuration (terminal-vt "4"))
+                     (greetd-terminal-configuration (terminal-vt "5"))
+                     (greetd-terminal-configuration (terminal-vt "6"))))))
          (service mingetty-service-type
                   (mingetty-configuration (tty "tty8")))
          (service dhcp-client-service-type)
@@ -100,14 +94,11 @@
   (timezone "America/Los_Angeles")
   (locale "ja_JP.utf8")
   (keyboard-layout (keyboard-layout "us" #:options '("ctrl:nocaps")))
-  (locale-definitions (append
-                       (list (locale-definition (source "ja_JP")
-                                                (name   "ja_JP.utf8"))
-                             (locale-definition (source "en_US")
-                                                (name   "en_US.utf8"))
-                             (locale-definition (source "th_TH")
-                                                (name   "th_TH.utf8")))
-                       %default-locale-definitions))
+  (locale-definitions
+   (append (list (locale-definition (source "ja_JP") (name "ja_JP.utf8"))
+                 (locale-definition (source "en_US") (name "en_US.utf8"))
+                 (locale-definition (source "th_TH") (name "th_TH.utf8")))
+           %default-locale-definitions))
   (users (append
           (list (user-account
                  (name "bumble")
