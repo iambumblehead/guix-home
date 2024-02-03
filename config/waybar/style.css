@@ -22,10 +22,10 @@
 window {
     background: transparent;
 }
-/* 229, 233, 240 */
+/* 245, 232, 170 */
 window#waybar > box {
     background: rgba(13, 18, 24, 1);
-    color: rgba(245, 232, 170, 1);
+    color: rgba(229, 233, 240, 1);
 }
 
 #language {
@@ -33,13 +33,23 @@ window#waybar > box {
     font-weight: 700;
 }
 
+#window {
+    padding-left: 2px;
+}
+
+button:hover {
+  box-shadow: none; /* Remove predefined box-shadow */
+  text-shadow: none; /* Remove predefined text-shadow */
+  background: none; /* Remove predefined background color (white) */
+  transition: none; /* Disable predefined animations */
+}
+
 #workspaces button {
-    padding: 3px;
+    padding: 0px 4px 2px 4px;
     background-color: rgba(23, 23, 23, 1);
-    border: 1.5px solid rgba(23, 23, 23, 1);
+    border: 0;
     color: #6d87a0; /*#e5e9f0;*/
     font-size: 13px;
-    border-radius: 0;
     font-weight: 500;
     box-shadow: inherit;
     text-shadow: inherit;    
@@ -47,13 +57,12 @@ window#waybar > box {
 
 #workspaces button.focused,
 #workspaces button:hover {
-    padding: 3px;
-    color: rgba(245, 232, 170, 1);
+    padding: 2px 4px 2px 4px;
+    color: rgba(229, 233, 240, 1);
     background: rgba(23, 23, 23, 0);
     background-color: rgba(23, 23, 23, 0);
-    border: 1.5px solid rgba(23, 23, 23, 0);
-    border-color: rgba(23, 23, 23, 0);
-    font-weight: 500;
+    border: 0;
+    font-weight: 700;
     box-shadow: inherit;
     text-shadow: inherit;
 }
@@ -85,7 +94,6 @@ window#waybar > box {
 #custom-label {
     color: rgba(100, 114, 125, 1);
     background-color: rgba(23, 23, 23, 1);
-    /*padding: 5px 10px;*/
     padding: 0 10px;
     margin-left: 25px;
     border-radius: 0;

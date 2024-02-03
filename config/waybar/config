@@ -1,8 +1,11 @@
 {
   "position": "top",
-  "height": 18,
-  "modules-left": ["sway/workspaces", "sway/mode"],
+  "height": 20,
+  "modules-left": ["sway/workspaces", "sway/window"],
   "modules-center": ["clock#date"],
+  "sway/window": {
+    "max-length": 50
+  },
   "modules-right": [
      "custom/label#battery",
      "battery",

@@ -42,6 +42,9 @@ hide_edge_borders smart
 default_border none
 seat * xcursor_theme Adwaita 20
 
+gaps inner 8
+gaps outer 10
+
 # not working yet
 #set $exit "exit: [s]leep, [p]oweroff, [r]eboot, [l]ogout"
 #mode $exit {
