@@ -22,10 +22,10 @@
 window {
     background: transparent;
 }
-
+/* 229, 233, 240 */
 window#waybar > box {
     background: rgba(13, 18, 24, 1);
-    color: rgba(229, 233, 240, 1);
+    color: rgba(245, 232, 170, 1);
 }
 
 #language {
@@ -48,7 +48,7 @@ window#waybar > box {
 #workspaces button.focused,
 #workspaces button:hover {
     padding: 3px;
-    color: rgba(229, 233, 240, 1);
+    color: rgba(245, 232, 170, 1);
     background: rgba(23, 23, 23, 0);
     background-color: rgba(23, 23, 23, 0);
     border: 1.5px solid rgba(23, 23, 23, 0);
