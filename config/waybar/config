@@ -26,15 +26,15 @@
   },
   "clock#date": {
     "interval": 10,
-    "format": "{:<span weight=\"bold\">%m月%d日  %H:%M</span>}"
+    "format": "{:<span weight=\"600\">%m月%d日  %H:%M</span>}"
   },  
   "battery": {
     "interval": 3,
-    "format": "<span weight=\"bold\">{capacity}%</span>",
+    "format": "<span weight=\"600\">{capacity}%</span>",
     "on-click": "swaynag -t warning -m '' -b 'halt' 'sudo halt' -b 'reboot' 'sudo reboot' -b 'exit' 'swaymsg exit' --background=#0C1218 --button-background=#171717 --text=#ffffff --button-text=#ffffff"
   },
   "network": {
-    "format-wifi": "<span weight=\"bold\">{signalStrength}% {essid}</span>"
+    "format-wifi": "<span weight=\"600\">{signalStrength}% {essid}</span>"
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",
@@ -53,7 +53,7 @@
      "on-click": "pavucontrol"
   },
   "pulseaudio": {
-    "format": "<span weight=\"bold\">{volume}%</span>",
+    "format": "<span weight=\"600\">{volume}%</span>",
     "scroll-step": 1
   },
   "custom/label#battery": {

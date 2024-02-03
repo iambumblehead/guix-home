@@ -26,6 +26,10 @@ window {
 window#waybar > box {
     background: rgba(13, 18, 24, 1);
     color: rgba(229, 233, 240, 1);
+    /*color: rgba(88, 233, 240, 1);*/
+}
+window#waybar > box span {
+    font-weight: 600;
 }
 
 #language {
@@ -35,6 +39,7 @@ window#waybar > box {
 
 #window {
     padding-left: 2px;
+    /* color: rgba(099, 103, 110, 1); */
 }
 
 button:hover {
@@ -59,10 +64,10 @@ button:hover {
 #workspaces button:hover {
     padding: 2px 4px 2px 4px;
     color: rgba(229, 233, 240, 1);
+    font-weight: 600;
     background: rgba(23, 23, 23, 0);
     background-color: rgba(23, 23, 23, 0);
     border: 0;
-    font-weight: 700;
     box-shadow: inherit;
     text-shadow: inherit;
 }
