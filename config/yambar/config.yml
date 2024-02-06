@@ -1,0 +1,14 @@
+bar:
+  height: 64
+  location: top
+  background: 000000ff
+  font: Noto Sans:size=20
+
+  right:
+    - clock:
+        content:
+          - string: {text: "test" }
+          - string: {text: "test", font: "Noto Sans:style=solid:size=28"}
+          - string: {text: "{date}", right-margin: 5}
+          - string: {text: , font: "Font Awesome 6 Free:style=solid:size=12"}
+          - string: {text: "{time}"}

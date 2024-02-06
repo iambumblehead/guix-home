@@ -79,6 +79,7 @@
         "zathura-pdf-mupdf"
         "bash-completion"
         "unzip"
+        "vifm"
         "wireplumber-minimal"
         "pinentry-tty"
         "zstd"))
@@ -151,8 +152,10 @@
                         "config/fcitx5"
                         "config/pipewire"
                         "config/ranger"
+                        "config/yambar"
                         "config/waybar"
                         "config/wireplumber"
+                        "config/vifm"
                         "config/zathura"
                         "config/guix"
                         "config/foot"
