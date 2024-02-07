@@ -104,19 +104,17 @@ set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 " List of color schemes to try (picks the first one supported by the terminal)
 " colorscheme gruvbox near-default Default-256 Default
 " colorscheme near-default Default-256 Default
-colorscheme gruvbox Default-256 Default
+colorscheme rancho-cucomonga Default-256 Default
 
 set millerview
 set milleroptions=lsize:1,csize:2
 
-" out: easter, zellner, ide-xcode, moe, acid, bright, vim-dark
-" maybe: pablo, neon, darkness; a little hard to read
-" better: night, orion
+
 " cat DOTemacs-nox.el | highlight -O xterm256 --style blacknblue --syntax lisp
 " tried HIGHLIGHT_DATADIR=/home/bumble/.config/highlight/
-"
-fileviewer *.js highlight -O xterm256 --style blacknblue --syntax javascript
-fileviewer *.el highlight -O xterm256 --style blacknblue --syntax lisp
+" fileviewer *.js highlight -O xterm256 --style blacknblue --syntax javascript
+fileviewer *.js highlight -O xterm256 --syntax javascript
+fileviewer *.el highlight -O xterm256 --syntax lisp
 fileviewer *.scm highlight -O xterm256 --syntax lisp
 fileviewer *.py highlight -O xterm256 --syntax python
 fileviewer *.json highlight -O xterm256 --syntax json

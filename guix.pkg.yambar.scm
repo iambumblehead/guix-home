@@ -1,4 +1,4 @@
-(define-module (yambar)
+(define-module (yambar-wayland)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix gexp)
   #:use-module (guix download)
@@ -18,10 +18,11 @@
   #:use-module (gnu packages mpd)
   #:use-module (gnu packages man))
 
+; gnu: Add yambar-wayland.
 ;;; guix package --install-from-file=guix.pkg.yambar.scm
-(define-public yambar
+(define-public yambar-wayland
  (package
-   (name "yambar")
+   (name "yambar-wayland")
    (version "1.10.0")
    (home-page "https://codeberg.org/dnkl/yambar")
    (source
@@ -35,16 +36,13 @@
         (base32
          "14lxhgyyia7sxyqjwa9skps0j9qlpqi8y7hvbsaidrwmy4857czr"))))
    (build-system meson-build-system)
-   ;; "release" build and flags follow the official PKGBUILD files
-   ;;   https://codeberg.org/dnkl/yambar/src/branch/master/PKGBUILD.wayland-only
-   ;;   https://codeberg.org/dnkl/yambar/src/branch/master/PKGBUILD
-    (arguments
-     (list
+   (arguments
+    (list
       #:build-type "release"
       #:configure-flags #~'("-Db_lto=true"
                             "-Dbackend-x11=disabled"
                             "-Dbackend-wayland=enabled")))
-    (native-inputs (list pkg-config tllist scdoc wayland-protocols))
+    (native-inputs (list pkg-config tllist scdoc wayland-protocols flex bison))
     (inputs (list
              fcft
              wayland
@@ -54,10 +52,8 @@
              alsa-lib
              json-c
              libmpdclient
-             eudev ;; libpulse
-             flex
-             bison))
-    (synopsis "Wayland-native status panel")
+             eudev))
+    (synopsis "X11 and Wayland status panel")
     (description
      "@command{yambar} is a lightweight and configurable status
  panel (bar, for short) for X11 and Wayland, that goes to great
@@ -65,4 +61,4 @@
  done when absolutely necessary.")
     (license license:expat)))
 
-yambar
+yambar-wayland

@@ -69,7 +69,9 @@ Test a change
 # https://guix.gnu.org/en/blog/2018/a-packaging-tutorial-for-guix/
 # use `M-x run-geiser` or `M-x run-guile` w/ guile sources
 guix shell -D guix --pure --check
-./bootstrap && ./configure && make
+./bootstrap
+./configure --localstatedir=/var
+make
 ./pre-inst-env guix build --keep-failed fonts-tlwg
 ./pre-inst-env guix lint fonts-tlwg
 ./pre-inst-env guix style fonts-tlwg
@@ -80,7 +82,9 @@ Send a patch
 # https://guix.gnu.org/manual/en/html_node/Submitting-Patches.html
 # https://git-send-email.io
 # see previous commit message patterns
-# use `M-x magit-commit` and `tempel-insert [add]`
+# use a different branch for the commit, do not use master
+# use `M-x magit-commit` and `tempel-insert` enter `add`
+# add details, then C-c C-c to commit the message
 git send-email --dry-run --base=master --to="guix-patches@gnu.org" -1
 ```
 
