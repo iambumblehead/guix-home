@@ -79,7 +79,7 @@
         "zathura-pdf-mupdf"
         "bash-completion"
         "unzip"
-        "vifm"
+        "vifm" "perl-image-exiftool" "bc"
         "wireplumber-minimal"
         "pinentry-tty"
         "zstd"))
