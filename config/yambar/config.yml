@@ -1,14 +1,64 @@
 bar:
-  height: 64
+  height: 38
   location: top
-  background: 000000ff
-  font: Noto Sans:size=20
-
-  right:
-    - clock:
+  background: 0d1218ff
+  foreground: e5e9f0ff
+  font: Noto Sans:size=23
+  # https://www.mankier.com/5/yambar-modules-battery
+  left:
+    - i3:
         content:
-          - string: {text: "test" }
-          - string: {text: "test", font: "Noto Sans:style=solid:size=28"}
-          - string: {text: "{date}", right-margin: 5}
-          - string: {text: , font: "Font Awesome 6 Free:style=solid:size=12"}
-          - string: {text: "{time}"}
+          "":
+            map:
+              default: {string: {text: "{name}"}}
+              conditions:
+                state == focused: {string: {text: "{name}*"}}
+          current: { string: {text: "{title}", max: 50}}
+  right:
+    - battery:
+        name: BAT0
+        poll-interval: 30000
+        content:
+          - string: {text: "電池", right-margin: 8}
+          - string: {text: "{capacity}%", font: "Noto Sans:weight=170:size=24"}
+    - network:
+        name: wlp2s0
+        poll-interval: 20000
+        content:
+         - string: {text: "ワイ", right-margin: 8}
+         - string: {text: "{dl-speed} {ssid}", font: "Noto Sans:weight=170:size=24"}
+    - pipewire:
+        anchors:
+          volume: &volume
+            conditions:
+              # content maps into sink and source, how to get rid of source
+              # and leading 0 on day
+              # volume never achieves 0
+              muted: {string: {text: "*{cubic_volume}%*", foreground: ff0000ff}}
+              ~muted: {string: {text: "~{cubic_volume}%~"}}
+        content:
+          list:
+            items:
+              - map:
+                  conditions:
+                    type == "sink":
+                      map:
+                        conditions:
+                          icon == "audio-headset-bluetooth":
+                            string: {text: "音量 🎧 "}
+                        default:
+                          - ramp:
+                              tag: cubic_volume
+                              items:
+                                - string: {text: "音量 🔈"}
+                                - string: {text: "音量 🔉"}
+                                - string: {text: "音量 🔊"}
+              - map:
+                  <<: *volume
+  center:
+    - clock:
+        time-format: "%H:%M"
+        date-format: "%B%d%a"
+        content:
+          - string: {text: "{date}", font: "Noto Sans:weight=170:size=24", right-margin: 8}
+          - string: {text: "{time}", font: "Noto Sans:weight=170:size=24"}

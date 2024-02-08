@@ -153,7 +153,7 @@
                         "config/fcitx5"
                         "config/pipewire"
                         "config/ranger"
-                        "config/yambar"
+                        ;"config/yambar"
                         "config/waybar"
                         "config/wireplumber"
                         "config/vifm"
