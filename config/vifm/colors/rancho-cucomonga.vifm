@@ -7,23 +7,21 @@
 highlight clear
 
 highlight Border	cterm=none	ctermfg=235	ctermbg=default
-
-highlight TopLine	cterm=none	ctermfg=230	ctermbg=16
-highlight TopLineSel	cterm=none	ctermfg=230	ctermbg=16
+highlight TopLine	cterm=none	ctermfg=230	ctermbg=none
+highlight TopLineSel	cterm=none	ctermfg=none	ctermbg=none
 
 highlight Win		cterm=none	ctermfg=230	ctermbg=default
 highlight Directory	cterm=bold	ctermfg=220	ctermbg=default
 highlight CurrLine	cterm=bold,inverse	ctermfg=default	ctermbg=default
 highlight OtherLine	cterm=bold	ctermfg=default	ctermbg=16
 highlight Selected	cterm=none	ctermfg=230	ctermbg=237
-
 highlight JobLine	cterm=bold	ctermfg=116	ctermbg=38
-highlight StatusLine	cterm=none	ctermfg=230	ctermbg=16
+highlight StatusLine	cterm=none	ctermfg=230	ctermbg=234
 highlight ErrorMsg	cterm=bold	ctermfg=167	ctermbg=default
 highlight WildMenu	cterm=bold	ctermfg=16	ctermbg=144
 highlight CmdLine	cterm=none	ctermfg=230	ctermbg=default
 
-highlight Executable	cterm=bold	ctermfg=142	ctermbg=default
+highlight Executable	cterm=bold	ctermfg=84	ctermbg=default
 highlight Link		cterm=none	ctermfg=132	ctermbg=default
 highlight BrokenLink	cterm=bold	ctermfg=167	ctermbg=default
 highlight Device	cterm=none,standout	ctermfg=214	ctermbg=default

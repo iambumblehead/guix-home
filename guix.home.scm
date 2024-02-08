@@ -34,6 +34,7 @@
         "adwaita-icon-theme"
         "gsettings-desktop-schemas"
         "weechat"
+        "ffmpeg"
         "fcitx5"
         "fcitx5-anthy"
         "fcitx5-qt"
