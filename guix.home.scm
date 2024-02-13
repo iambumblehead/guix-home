@@ -35,6 +35,7 @@
         "gsettings-desktop-schemas"
         "weechat"
         "ffmpeg"
+        "moc"
         "fcitx5"
         "fcitx5-anthy"
         "fcitx5-qt"

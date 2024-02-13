@@ -23,8 +23,8 @@
 ```
 
 This guix configuration mainly provides a "current" system without dbus. What's good
- * pipewire with alsa, screen lock and brightness, fcitx5 ctrl+shift, wayland
- * no: gtk4, firefox, systemd, dbus, elogind, ibus
+ * pipewire with alsa, screen lock and brightness, fcitx5 r_shift+ctrl, wayland
+ * no: firefox, systemd, dbus, elogind, ibus
 
 
 Caution wifi; Guix's `wpa-supplicant-service-type` writes a read-only `wpa_supplicant.conf` file and `wpa_cli` is unable to persist and apply network changes. To change things, stop the service and use commands below,
@@ -63,31 +63,6 @@ guix gc -d1w # delete generations older than 1 week
 df -h
 ```
 
-Test a change
-```bash
-# https://guix.gnu.org/manual/en/html_node/Contributing.html
-# https://guix.gnu.org/en/blog/2018/a-packaging-tutorial-for-guix/
-# use `M-x run-geiser` or `M-x run-guile` w/ guile sources
-guix shell -D guix --pure --check
-./bootstrap
-./configure --localstatedir=/var
-make
-./pre-inst-env guix build --keep-failed fonts-tlwg
-./pre-inst-env guix lint fonts-tlwg
-./pre-inst-env guix style fonts-tlwg
-```
-
-Send a patch
-```bash
-# https://guix.gnu.org/manual/en/html_node/Submitting-Patches.html
-# https://git-send-email.io
-# see previous commit message patterns
-# use a different branch for the commit, do not use master
-# use `M-x magit-commit` and `tempel-insert` enter `add`
-# add details, then C-c C-c to commit the message
-git send-email --dry-run --base=master --to="guix-patches@gnu.org" -1
-```
-
 Other good ones
  * https://git.sr.ht/~unwox/etc/
  * https://git.sr.ht/~unmatched-paren/conf/
@@ -95,3 +70,5 @@ Other good ones
 Links
  * https://rendaw.gitlab.io/blog/
  * https://toys.whereis.みんな
+ * https://github.com/iambumblehead/guix-xps13-9343
+ * https://github.com/iambumblehead/guix-notes
