@@ -48,6 +48,11 @@ $ sudo wpa_cli -p /run/wpa_supplicant
 > quit
 ```
 
+Caution sound; wireplumber can be un-muted this way,
+```bash
+wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+```
+
 Administer
 ```bash
 guix pull
@@ -61,6 +66,8 @@ guix package --delete-generations
 guix gc
 guix gc -d1w # delete generations older than 1 week
 df -h
+
+wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 ```
 
 Other good ones
