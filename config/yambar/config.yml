@@ -18,10 +18,12 @@ bar:
                   text: "{name}"
                   margin: 12
                   foreground: 6d87a0ff
+                  #on-click: "swaymsg --quiet workspace 1:{name}"
+                  on-click: "swaymsg --quiet workspace {name}"
                   deco: {background: {color: 171717ff}}
               conditions:
                 state == focused: {string: {text: "{name}", font: "Noto Sans:weight=170:size=23", margin: 12}}
-          current: { string: {text: "{title}", margin: 4, max: 64}}
+          current: { string: {text: "{title}", left-margin: 4, max: 58}}
   right:
     - battery:
         name: BAT0
@@ -65,7 +67,14 @@ bar:
                               margin: 12
                               foreground: 6d87a0ff
                               deco: {background: {color: 171717ff}}
-                          - string: {text: "{cubic_volume}%", font: "Noto Sans:weight=170:size=23", margin: 32}
+                          - string:
+                              on-click:
+                                left: "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+                                wheel-up: "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ --limit 1.0"
+                                wheel-down: "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
+                              text: "{cubic_volume}%"
+                              font: "Noto Sans:weight=170:size=23"
+                              margin: 32
                   <<: *volume
   center:
     - clock:
