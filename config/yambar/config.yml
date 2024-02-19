@@ -7,33 +7,46 @@ bar:
   # https://www.mankier.com/5/yambar-modules-battery
   left:
     - i3:
+        # for colors and lines see this link
+        # https://codeberg.org/dnkl/yambar/src/branch/master/doc/yambar-decorations.5.scd
+        strip-workspace-numbers: true
         content:
           "":
             map:
-              default: {string: {text: "{name}"}}
+              default:
+                string:
+                  text: "{name}"
+                  margin: 12
+                  foreground: 6d87a0ff
+                  deco: {background: {color: 171717ff}}
               conditions:
-                state == focused: {string: {text: "{name}*"}}
-          current: { string: {text: "{title}", max: 50}}
+                state == focused: {string: {text: "{name}", font: "Noto Sans:weight=170:size=23", margin: 12}}
+          current: { string: {text: "{title}", margin: 4, max: 64}}
   right:
     - battery:
         name: BAT0
         poll-interval: 30000
         content:
-          - string: {text: "電池", right-margin: 8}
-          - string: {text: "{capacity}%", font: "Noto Sans:weight=170:size=24"}
+          - string:
+              text: "電池"
+              margin: 12
+              foreground: 6d87a0ff
+              deco: {background: {color: 171717ff}}
+          - string: {text: "{capacity}%", font: "Noto Sans:weight=170:size=23", left-margin: 32, right-margin: 80}
     - network:
         name: wlp2s0
         poll-interval: 20000
         content:
-         - string: {text: "ワイ", right-margin: 8}
-         - string: {text: "{dl-speed} {ssid}", font: "Noto Sans:weight=170:size=24"}
+         - string:
+             text: "ワイ"
+             margin: 12
+             foreground: 6d87a0ff
+             deco: {background: {color: 171717ff}}
+         - string: {text: "{dl-speed} {ssid}", font: "Noto Sans:weight=170:size=23", left-margin: 32, right-margin: 80}
     - pipewire:
         anchors:
           volume: &volume
             conditions:
-              # content maps into sink and source, how to get rid of source
-              # and leading 0 on day
-              # volume never achieves 0
               muted: {string: {text: "*{cubic_volume}%*", foreground: ff0000ff}}
               ~muted: {string: {text: "~{cubic_volume}%~"}}
         content:
@@ -47,18 +60,17 @@ bar:
                           icon == "audio-headset-bluetooth":
                             string: {text: "音量 🎧 "}
                         default:
-                          - ramp:
-                              tag: cubic_volume
-                              items:
-                                - string: {text: "音量 🔈"}
-                                - string: {text: "音量 🔉"}
-                                - string: {text: "音量 🔊"}
-              - map:
+                          - string:
+                              text: "音量"
+                              margin: 12
+                              foreground: 6d87a0ff
+                              deco: {background: {color: 171717ff}}
+                          - string: {text: "{cubic_volume}%", font: "Noto Sans:weight=170:size=23", margin: 32}
                   <<: *volume
   center:
     - clock:
         time-format: "%H:%M"
         date-format: "%B%d%a"
         content:
-          - string: {text: "{date}", font: "Noto Sans:weight=170:size=24", right-margin: 8}
-          - string: {text: "{time}", font: "Noto Sans:weight=170:size=24"}
+          - string: {text: "{date}", font: "Noto Sans:weight=170:size=23", right-margin: 8}
+          - string: {text: "{time}", font: "Noto Sans:weight=170:size=23"}
