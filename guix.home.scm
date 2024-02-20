@@ -27,12 +27,9 @@
   (list "git"
         "git:send-email"
         "curl"
-        "bemenu"
         "btop"
         "ncurses"
         "node"
-        "adwaita-icon-theme"
-        "gsettings-desktop-schemas"
         "weechat"
         "ffmpeg"
         "moc"
@@ -64,7 +61,6 @@
         "imv"
         "wlsunset"
         "grimshot"
-        "pamixer"
         "imagemagick"
         "light"
         "mpv"
@@ -151,8 +147,7 @@
                         "config/fcitx5"
                         "config/pipewire"
                         "config/ranger"
-                        ;"config/yambar"
-                        "config/waybar"
+                        "config/yambar"
                         "config/wireplumber"
                         "config/vifm"
                         "config/zathura"
@@ -165,12 +160,6 @@
                         "config/mutt")))
         (service home-files-service-type
                  (list (list ".asoundrc" (asoundrc))
-                       (list ".icons/default/index.theme"
-                             (plain-file "gtk-waybar-needs"
-                                         (string-append
-                                          "[Icon Theme]" "\n"
-                                          "Name=Default" "\n"
-                                          "Inherits=Adwaita")))
                        (list ".guile"
                              (plain-file "guile-config"
                                          (string-append
