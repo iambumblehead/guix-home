@@ -10,6 +10,7 @@ bar:
         # for colors and lines see this link
         # https://codeberg.org/dnkl/yambar/src/branch/master/doc/yambar-decorations.5.scd
         strip-workspace-numbers: true
+        sort: ascending
         content:
           "1:一":
             map:

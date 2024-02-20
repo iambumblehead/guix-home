@@ -147,10 +147,14 @@ input type:touchpad {
   natural_scroll enabled
 }
 
-bar {
-  strip_workspace_numbers yes
-  swaybar_command waybar
-}
+
+# exec yambar
+
+#bar {
+#  strip_workspace_numbers yes
+#   swaybar_command waybar
+#}
 
 exec sleep 2 && pipewire
 exec sleep 4 && wireplumber
+exec_always sleep 5 && sh -c "killall yambar; yambar &"
