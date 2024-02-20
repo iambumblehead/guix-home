@@ -40,7 +40,6 @@ font "Noto Sans" 12, "Noto Sans JP" 10
 output * scale 2
 hide_edge_borders smart
 default_border none
-seat * xcursor_theme Adwaita 20
 
 gaps inner 8
 gaps outer 10
@@ -155,6 +154,8 @@ input type:touchpad {
 #   swaybar_command waybar
 #}
 
-exec sleep 2 && pipewire
-exec sleep 4 && wireplumber
-exec_always sleep 5 && sh -c "killall yambar; yambar &"
+# XCURSOR_THEME=Bibata-Modern-Classic
+seat * xcursor_theme Bibata-Modern-Classic 16
+exec pipewire
+exec sleep 2 && wireplumber
+exec_always sleep 3 && sh -c "killall yambar; yambar &"

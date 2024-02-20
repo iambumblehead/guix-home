@@ -26,6 +26,7 @@
 (define %packages
   (list "git"
         "git:send-email"
+        "bibata-cursor-theme"
         "curl"
         "btop"
         "ncurses"
@@ -160,6 +161,10 @@
                         "config/mutt")))
         (service home-files-service-type
                  (list (list ".asoundrc" (asoundrc))
+                       (list ".moc/config"
+                             (plain-file "moc-config"
+                                         (string-append "\n"
+                                          "Theme = transparent-background" "\n")))
                        (list ".guile"
                              (plain-file "guile-config"
                                          (string-append
