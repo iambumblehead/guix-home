@@ -3,7 +3,9 @@ color indicator         black           blue
 color tree	            blue            default
 color index             blue            default ~U # old messages
 
-color status default black
+# color status brightyellow magenta
+# color status default black
+color status brightyellow default
 
 # Regex highlighting:
 color header blue default ".*"

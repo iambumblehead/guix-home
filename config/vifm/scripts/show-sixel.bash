@@ -7,8 +7,10 @@ fi
 
 dim=( $(exiftool -p '$ImageWidth $ImageHeight' "$1") )
 
-pw=$(($2*8))
-ph=$(($3*14))
+#pw=$(($2*8))
+pw=$(($2*14))
+#ph=$(($3*14))
+ph=$(($3*26))
 
 w=${dim[0]}
 h=${dim[1]}

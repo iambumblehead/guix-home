@@ -11,6 +11,126 @@ bar:
         # https://codeberg.org/dnkl/yambar/src/branch/master/doc/yambar-decorations.5.scd
         strip-workspace-numbers: true
         content:
+          "1:一":
+            map:
+              default:
+                string:
+                  text: "{name}"
+                  margin: 12
+                  foreground: 6d87a0ff
+                  #on-click: "swaymsg --quiet workspace 1:{name}"
+                  on-click: "swaymsg --quiet workspace 1:{name}"
+                  deco: {background: {color: 171717ff}}
+              conditions:
+                state == focused: {string: {text: "{name}", font: "Noto Sans:weight=170:size=23", margin: 12}}
+          "2:二":
+            map:
+              default:
+                string:
+                  text: "{name}"
+                  margin: 12
+                  foreground: 6d87a0ff
+                  #on-click: "swaymsg --quiet workspace 1:{name}"
+                  on-click: "swaymsg --quiet workspace 2:{name}"
+                  deco: {background: {color: 171717ff}}
+              conditions:
+                state == focused: {string: {text: "{name}", font: "Noto Sans:weight=170:size=23", margin: 12}}
+          "3:三":
+            map:
+              default:
+                string:
+                  text: "{name}"
+                  margin: 12
+                  foreground: 6d87a0ff
+                  #on-click: "swaymsg --quiet workspace 1:{name}"
+                  on-click: "swaymsg --quiet workspace 3:{name}"
+                  deco: {background: {color: 171717ff}}
+              conditions:
+                state == focused: {string: {text: "{name}", font: "Noto Sans:weight=170:size=23", margin: 12}}
+          "4:四":
+            map:
+              default:
+                string:
+                  text: "{name}"
+                  margin: 12
+                  foreground: 6d87a0ff
+                  #on-click: "swaymsg --quiet workspace 1:{name}"
+                  on-click: "swaymsg --quiet workspace 4:{name}"
+                  deco: {background: {color: 171717ff}}
+              conditions:
+                state == focused: {string: {text: "{name}", font: "Noto Sans:weight=170:size=23", margin: 12}}
+          "5:五":
+            map:
+              default:
+                string:
+                  text: "{name}"
+                  margin: 12
+                  foreground: 6d87a0ff
+                  #on-click: "swaymsg --quiet workspace 1:{name}"
+                  on-click: "swaymsg --quiet workspace 5:{name}"
+                  deco: {background: {color: 171717ff}}
+              conditions:
+                state == focused: {string: {text: "{name}", font: "Noto Sans:weight=170:size=23", margin: 12}}
+          "6:六":
+            map:
+              default:
+                string:
+                  text: "{name}"
+                  margin: 12
+                  foreground: 6d87a0ff
+                  #on-click: "swaymsg --quiet workspace 1:{name}"
+                  on-click: "swaymsg --quiet workspace 6:{name}"
+                  deco: {background: {color: 171717ff}}
+              conditions:
+                state == focused: {string: {text: "{name}", font: "Noto Sans:weight=170:size=23", margin: 12}}
+          "7:七":
+            map:
+              default:
+                string:
+                  text: "{name}"
+                  margin: 12
+                  foreground: 6d87a0ff
+                  #on-click: "swaymsg --quiet workspace 1:{name}"
+                  on-click: "swaymsg --quiet workspace 7:{name}"
+                  deco: {background: {color: 171717ff}}
+              conditions:
+                state == focused: {string: {text: "{name}", font: "Noto Sans:weight=170:size=23", margin: 12}}
+          "8:八":
+            map:
+              default:
+                string:
+                  text: "{name}"
+                  margin: 12
+                  foreground: 6d87a0ff
+                  #on-click: "swaymsg --quiet workspace 1:{name}"
+                  on-click: "swaymsg --quiet workspace 8:{name}"
+                  deco: {background: {color: 171717ff}}
+              conditions:
+                state == focused: {string: {text: "{name}", font: "Noto Sans:weight=170:size=23", margin: 12}}
+          "9:九":
+            map:
+              default:
+                string:
+                  text: "{name}"
+                  margin: 12
+                  foreground: 6d87a0ff
+                  #on-click: "swaymsg --quiet workspace 1:{name}"
+                  on-click: "swaymsg --quiet workspace 9:{name}"
+                  deco: {background: {color: 171717ff}}
+              conditions:
+                state == focused: {string: {text: "{name}", font: "Noto Sans:weight=170:size=23", margin: 12}}
+          "10:十":
+            map:
+              default:
+                string:
+                  text: "{name}"
+                  margin: 12
+                  foreground: 6d87a0ff
+                  #on-click: "swaymsg --quiet workspace 1:{name}"
+                  on-click: "swaymsg --quiet workspace 10:{name}"
+                  deco: {background: {color: 171717ff}}
+              conditions:
+                state == focused: {string: {text: "{name}", font: "Noto Sans:weight=170:size=23", margin: 12}}
           "":
             map:
               default:
@@ -23,7 +143,7 @@ bar:
                   deco: {background: {color: 171717ff}}
               conditions:
                 state == focused: {string: {text: "{name}", font: "Noto Sans:weight=170:size=23", margin: 12}}
-          current: { string: {text: "{title}", left-margin: 4, max: 58}}
+          current: {string: {text: "{title}", left-margin: 12, max: 44}}
   right:
     - battery:
         name: BAT0
