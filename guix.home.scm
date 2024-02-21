@@ -24,7 +24,7 @@
    "}\n"))
 
 (define %packages
-  (list "git"
+  (list "git-minimal"
         "git:send-email"
         "bibata-cursor-theme"
         "curl"
