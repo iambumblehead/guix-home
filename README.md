@@ -22,8 +22,8 @@
 + \_____|_| \_|\____/   \_____|\__,_|_/_/\_\
 ```
 
-This guix configuration mainly provides a "current" system without dbus. What's good
- * pipewire with alsa, screen lock and brightness, fcitx5 r_shift+ctrl, wayland
+This guix configuration mainly provides a "current" system sans dbus. What's good
+ * pipewire, screen lock and brightness, fcitx5 r_shift+ctrl, wayland
  * no: firefox, systemd, dbus, elogind, ibus
 
 
@@ -48,11 +48,6 @@ $ sudo wpa_cli -p /run/wpa_supplicant
 > quit
 ```
 
-Caution sound; wireplumber can be un-muted this way,
-```bash
-wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-```
-
 Administer
 ```bash
 guix pull
@@ -66,8 +61,6 @@ guix package --delete-generations
 guix gc
 guix gc -d1w # delete generations older than 1 week
 df -h
-
-wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 ```
 
 Other good ones
