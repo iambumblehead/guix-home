@@ -1,0 +1,4 @@
+vo=gpu
+hwdec=vaapi
+gpu-context=waylandvk
+hdr-compute-peak=no

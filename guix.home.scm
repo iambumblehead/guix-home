@@ -153,6 +153,7 @@
                         "config/vifm"
                         "config/zathura"
                         "config/guix"
+                        "config/mpv"
                         "config/foot"
                         "config/git"
                         "config/sway"
