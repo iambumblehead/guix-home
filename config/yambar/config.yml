@@ -182,6 +182,21 @@ bar:
                         conditions:
                           icon == "audio-headset-bluetooth":
                             string: {text: "音量 🎧 "}
+                          muted:
+                            - string:
+                                text: "音量"
+                                margin: 12
+                                foreground: 6d87a0ff
+                                deco: {background: {color: 171717ff}}
+                            - string:
+                                on-click:
+                                  left: "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+                                  wheel-up: "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ --limit 1.0"
+                                  wheel-down: "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
+                                text: "{cubic_volume}%"
+                                foreground: 7ecfd4ff
+                                font: "Noto Sans:weight=170:size=23"
+                                margin: 32
                         default:
                           - string:
                               text: "音量"
