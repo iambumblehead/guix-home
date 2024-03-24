@@ -28,7 +28,7 @@ bindsym Mod4+Print   exec grimshot save area   $psf && echo 100 > $WOBSOCK
 bindsym Mod1+Print   exec grimshot save window $psf && echo 100 > $WOBSOCK
 bindsym Mod4+Mod1+p  exec grimshot save output $psf && echo 100 > $WOBSOCK
 
-# Claremont CA, lat/long
+# CA lat/long
 exec wlsunset -l 34.1 -L -117.7
 
 # exec python3 ~/.config/sway/inactive-windows-transparent.py -o 0.75

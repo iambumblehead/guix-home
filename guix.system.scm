@@ -58,6 +58,9 @@
                      (greetd-terminal-configuration
                       (terminal-vt "1")
                       (terminal-switch #t)
+                      ;; (default-session-command
+                      ;;   (greetd-agreety-session)))
+                      ;; wlgreet === low-quality + un-stable
                       (default-session-command
                         (greetd-wlgreet-sway-session
                          (sway-configuration ;; issues.guix.gnu.org/65769
@@ -146,14 +149,14 @@
                         (create-mount-point? #t)
                         (mount? #f)))
                  %base-file-systems))
-  (sudoers-file
-   (plain-file "etc-sudoers-config"
-               (string-append "Defaults  timestamp_timeout=480" "\n"
-                              "root      ALL=(ALL) ALL" "\n"
-                              "%wheel    ALL=(ALL) ALL" "\n"
-                              "bumble    ALL=(ALL) NOPASSWD:"
-                              "/run/current-system/profile/sbin/halt,"
-                              "/run/current-system/profile/sbin/reboot")))
+  ;; (sudoers-file
+  ;;  (plain-file "etc-sudoers-config"
+  ;;              (string-append "Defaults  timestamp_timeout=480" "\n"
+  ;;                             "root      ALL=(ALL) ALL" "\n"
+  ;;                             "%wheel    ALL=(ALL) ALL" "\n"
+  ;;                             "bumble    ALL=(ALL) NOPASSWD:"
+  ;;                             "/run/current-system/profile/sbin/halt,"
+  ;;                             "/run/current-system/profile/sbin/reboot")))
   (packages (append
              (specifications->packages
               '("sway" "swaylock-effects" "nss-certs"))

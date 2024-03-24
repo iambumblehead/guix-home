@@ -113,7 +113,8 @@
 
  (services
   (list (simple-service 'env-vars home-environment-variables-service-type
-                        '(("EDITOR" . "emacs")
+                        `(("EDITOR" . "emacs")
+                          ("GUILE_WARN_DEPRECATED" . "detailed")
                           ("OPENER" . "sh.opener.sh")
                           ("BROWSER" . "qutebrowser")
                           ("GTK_IM_MODULE" . "fcitx")
@@ -125,11 +126,9 @@
                           ("XDG_SESSION_DESKTOP" . "sway")
                           ("XDG_CURRENT_DESKTOP" . "sway")
                           ("DESKTOP_SESSION" . "sway")
-                          ("LIBSEAT_BACKEND" . "seatd")))
-        ;; https://issues.guix.gnu.org/68483
-        (simple-service 'qtwayland-vars-service
-                        home-environment-variables-service-type
-                        `(("QT_PLUGIN_PATH" .
+                          ("LIBSEAT_BACKEND" . "seatd")
+                          ;; https://issues.guix.gnu.org/68483
+                          ("QT_PLUGIN_PATH" .
                            ,(file-append qtwayland "/lib/qt6/plugins"))
                           ("QT_QPA_PLATFORM_PLUGIN_PATH" .
                            ,(file-append qtwayland "/lib/qt6/plugins/platforms"))))
