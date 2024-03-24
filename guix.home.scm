@@ -39,6 +39,7 @@
         "fcitx5-qt"
         "fcitx5-material-color-theme"
         "fonts-tlwg"
+        "yambar-wayland"
         "font-google-noto"
         "font-google-noto-emoji"
         "font-google-noto-sans-cjk"
