@@ -24,8 +24,8 @@
    "}\n"))
 
 (define %packages
-  (list "git-minimal"
-        "git:send-email"
+  (list "git:send-email"
+        "git-minimal"
         "bibata-cursor-theme"
         "curl"
         "btop"
@@ -108,10 +108,9 @@
         "emacs-use-package"))
 
 (home-environment
- (packages (append (map specification->package+output
-                        (append %packages
-                                %packages-emacs))))
-
+ (packages (map (compose list specification->package+output)
+                (append %packages
+                        %packages-emacs)))
  (services
   (list (simple-service 'env-vars home-environment-variables-service-type
                         `(("EDITOR" . "emacs")
