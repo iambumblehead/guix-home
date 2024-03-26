@@ -108,9 +108,9 @@
         "emacs-use-package"))
 
 (home-environment
- (packages (map (compose list specification->package+output)
-                (append %packages
-                        %packages-emacs)))
+ (packages (specifications->packages
+            (append %packages
+                    %packages-emacs)))
  (services
   (list (simple-service 'env-vars home-environment-variables-service-type
                         `(("EDITOR" . "emacs")
