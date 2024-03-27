@@ -41,7 +41,8 @@ set trash
 
 " What should be saved automatically on restarting vifm.  Drop "savedirs"
 " value if you don't want vifm to remember last visited directories for you.
-set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
+" set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
+set vifminfo=dhistory,chistory,state,tui,shistory,
             \phistory,fhistory,dirstack,registers,bookmarks,bmarks
 
 " This is how many directories to store in the directory history.
@@ -111,17 +112,21 @@ set milleroptions=lsize:1,csize:2
 
 
 " cat DOTemacs-nox.el | highlight -O xterm256 --style blacknblue --syntax lisp
-" tried HIGHLIGHT_DATADIR=/home/bumble/.config/highlight/
 " fileviewer *.js highlight -O xterm256 --style blacknblue --syntax javascript
-fileviewer *.js highlight -O xterm256 --syntax javascript
-fileviewer *.el highlight -O xterm256 --syntax lisp
-fileviewer *.scm highlight -O xterm256 --syntax lisp
+" ls $(guix build highlight)/share/highlight/themes
+" https://fossies.org/select_hl_style_text?m=h&s=leo
+"
+fileviewer *.js highlight -O xterm256 --style camo --syntax javascript
+fileviewer *.css highlight -O xterm256 --style camo --syntax javascript
+fileviewer *.sh highlight -O xterm256 --style camo --syntax bash
+fileviewer *.el highlight -O xterm256 --style camo --syntax lisp
+fileviewer *.scm highlight -O xterm256 --style camo --syntax lisp
 fileviewer *.py highlight -O xterm256 --syntax python
-fileviewer *.json highlight -O xterm256 --syntax json
-fileviewer *.xml highlight -O xterm256 --syntax xml 
-fileviewer *.xhtml highlight -O xterm256 --syntax html
+fileviewer *.json highlight -O xterm256 --style camo --syntax json
+fileviewer *.xml highlight -O xterm256 --style camo --syntax xml 
+fileviewer *.xhtml highlight -O xterm256 --style camo --syntax html
 fileviewer *.opf highlight -O xterm256 --syntax xml 
-fileviewer *.md highlight -O xterm256 --syntax markdown
+fileviewer *.md highlight -O xterm256 --style camo --syntax markdown
 
 " highlight Win cterm=none ctermfg=white ctermbg=none
 
@@ -232,10 +237,10 @@ filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus,
        \ mpv --no-video %f %s,
        \ {Play using ffplay}
        \ ffplay -nodisp -hide_banner -autoexit %c,
-fileviewer {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus,
-           \*.aac,*.mpga},
-          \<audio/*>
-         \ ffprobe -hide_banner -pretty %c 2>&1
+" fileviewer {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus,
+"            \*.aac,*.mpga},
+"           \<audio/*>
+"          \ ffprobe -hide_banner -pretty %c 2>&1
 
 " Video
 filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
@@ -250,11 +255,11 @@ filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
         \ mplayer %f,
         \ {Play using mpv}
         \ mpv --no-video %f,
-fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-           \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-           \*.as[fx],*.unknown_video},
-          \<video/*>
-         \ ffprobe -hide_banner -pretty %c 2>&1
+" fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+"            \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+"            \*.as[fx],*.unknown_video},
+"           \<video/*>
+"          \ ffprobe -hide_banner -pretty %c 2>&1
 
 " Web
 filextype {*.xhtml,*.html,*.htm},<text/html>
@@ -298,8 +303,8 @@ filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ gpicview %c,
         \ {View in shotwell}
         \ shotwell,
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-         \ show-sixel.bash %c %pw %ph %pd
+" fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+"          \ show-sixel.bash %c %pw %ph %pd
 " fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
 "         \ identify %f
 
@@ -588,3 +593,24 @@ nnoremap <c-u> <c-w>x
 " ------------------------------------------------------------------------------
 
 " https://github.com/cirala/vifm_devicons
+
+
+" generates state session string with esc queried values,
+" for example, cell pixel width and height and maximum supported image size
+let $SESS = system('thu.sh -j')
+
+" thu.sh is called with -ck
+" '-c' tells thu.sh to process %pw and %ph as cell units
+" '-k' tells thu.sh to use the state state session string from the '-j' call above
+" '-z 3' include this with foot terminal emulator on scaled desktop
+fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.svg,*.pdf,*.epub,
+           \*.ttf,*.otf,*.woff,*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,
+           \*.ac3,*.og[agx],*.spx,*.opus,*.aac,*.mpga,*.avi,*.mp4,
+           \*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+           \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],
+           \*.qt,*.divx,*.as[fx],*.unknown_video},
+        \ thu.sh -ckz 2 %c %pw %ph %pd
+
+" scroll preview with pageup pagedn
+nnoremap <PageDown>  <C-w>w5j<C-w>w
+nnoremap <PageUp>    <C-w>w5k<C-w>w
