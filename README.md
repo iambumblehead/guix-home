@@ -65,7 +65,10 @@ df -h
 
 Other good ones
  * https://git.sr.ht/~unwox/etc/
- * https://git.sr.ht/~unmatched-paren/conf/
+ * https://git.sr.ht/~unmatched-paren/conf/ (T420, T480)
+ * https://git.sr.ht/~efraim/guix-config (Pine64, Rock64)
+ * https://github.com/logoraz/guix-craft (X1 Carbon)
+ * https://codeberg.org/hako/Testament
 
 Links
  * https://rendaw.gitlab.io/blog/

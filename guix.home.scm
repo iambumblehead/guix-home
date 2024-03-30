@@ -71,12 +71,11 @@
         "yt-dlp"
         "foot"
         "gnupg"
-        "highlight"
         "zathura"
         "zathura-pdf-mupdf"
         "bash-completion"
         "unzip"
-        "vifm" "perl-image-exiftool" "bc"
+        "vifm" "perl-image-exiftool" "bc" "highlight"
         "wireplumber-minimal"
         "pinentry-tty"
         "zstd"))
