@@ -92,6 +92,10 @@ bindsym Mod4+ctrl+h resize shrink width  10px
 bindsym Mod4+ctrl+j resize grow   height 10px
 bindsym Mod4+ctrl+l resize grow   width  10px
 
+bindsym Mod4+Alt+j exec swaymsg gaps inner all plus 12
+bindsym Mod4+Alt+k exec swaymsg gaps inner all minus 12
+bindsym Mod4+Alt+o exec swaymsg gaps inner all set 0
+
 bindsym Mod4+1 workspace 1:一
 bindsym Mod4+2 workspace 2:二
 bindsym Mod4+3 workspace 3:三

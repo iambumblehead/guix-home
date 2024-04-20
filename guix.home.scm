@@ -187,12 +187,7 @@
                   (guix-defaults? #f)
                   (aliases '(("grep" . "grep --color=auto")
                              ("ll" . "ls -l")
-                             ("ls" . "ls -p --color=auto")
-                             ("gap" . "swaymsg gaps outer 10")
-                             ("gud" . "guix system delete-generations")
-                             ("gup" . "guix pull && guix upgrade")
-                             ("ghr" . "guix home reconfigure")
-                             ("gsr" . "sudo guix system reconfigure")))
+                             ("ls" . "ls -p --color=auto")))
                   (bashrc
                    (list (local-file "./config/sh.bashrc.sh"
                                      #:recursive? #t)))

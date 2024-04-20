@@ -1,3 +1,12 @@
+;; use M-x menu font-set to browse available fonts
+(set-fontset-font t 'thai "Tlwg Typewriter")
+
+(when (member "Tlwg Typewriter" (font-family-list))
+  (set-face-attribute
+   'default nil
+   :family "Tlwg Typewriter Regular"
+   :height 180))
+
 (when (member "JetBrains Mono" (font-family-list))
   (set-face-attribute
    'default nil

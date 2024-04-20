@@ -159,7 +159,7 @@
   ;;                             "/run/current-system/profile/sbin/reboot")))
   (packages (append
              (specifications->packages
-              '("sway" "swaylock-effects" "nss-certs"))
+              '("sway" "swaylock-effects"))
              %base-packages))
   (setuid-programs %setuid-programs)
   (services %services))
