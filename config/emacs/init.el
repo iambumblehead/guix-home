@@ -7,6 +7,7 @@
 
 (guix-emacs-autoload-packages)
 
+(load-file "$XDG_CONFIG_HOME/emacs/emacs-js.el")
 (load-file "$XDG_CONFIG_HOME/emacs/emacs-erc.el")
 (load-file "$XDG_CONFIG_HOME/emacs/emacs-nox.el")
 (load-file "$XDG_CONFIG_HOME/emacs/emacs-font.el")
@@ -120,10 +121,14 @@
   (if (display-graphic-p)
       (progn (load-theme 'doom-peacock t)
              (set-frame-parameter nil 'alpha-background 60)
-             (set-face-background 'hl-line "#1c1c1c"))
+             (set-face-background 'hl-line "#1c1c1c")
+             ;;(set-face-foreground 'font-lock-string-face "red")
+             (set-face-foreground 'font-lock-comment-face "light salmon")
+             )
     (progn (load-theme 'doom-peacock t)
            (set-background-color "ARGBBB000000")
-           (set-face-background 'hl-line "#1c1c1c"))))
+           (set-face-background 'hl-line "#1c1c1c")
+           (set-face-foreground 'font-lock-comment-face "light salmon"))))
 
 (set-theme)
 (add-hook 'emacs-startup-hook 'set-theme)
