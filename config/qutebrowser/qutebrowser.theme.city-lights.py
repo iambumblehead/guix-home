@@ -317,3 +317,7 @@ c.colors.tabs.selected.even.bg = clr["bg-lightened"]
 # Background color for webpages if unset (or empty to use the theme's
 # color).
 # c.colors.webpage.bg = clr["bg"]
+c.colors.statusbar.insert.bg = "black"
+c.colors.statusbar.insert.fg = "#008b94"
+c.colors.statusbar.normal.bg = "black"
+c.colors.statusbar.normal.fg = "#008b94"

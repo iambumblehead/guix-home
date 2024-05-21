@@ -38,10 +38,16 @@ day() {
     date +%a
 }
 
-myfunc() { 
-    export PS1="${BOLD}${YELLOW}\u${GREEN}@${BLUE}\h ${GREEN}\W$(day)\\$ ${RESET}"
-}
-PROMPT_COMMAND="myfunc"
+#myfunc() { 
+#    export PS1="${BOLD}${YELLOW}\u${GREEN}@${BLUE}\h ${GREEN}\W$(day)\\$ ${RESET}"
+#}
+#PROMPT_COMMAND="myfunc"
+
+# works on _both_ `bash` _and_ `ash`
+PS1='`echo -ne "${BOLD}${YELLOW}\u${GREEN}@${BLUE}\h ${GREEN}\W$(day)\\$ ${RESET}"`'
+
+export MUSL_LOCPATH=/usr/share/i18n/locales/musl
+
 
 # enable foot to open same directory Ctrl+shift+n
 osc7_cwd() {
