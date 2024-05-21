@@ -1,18 +1,29 @@
-(setq guix-emacs-packages-path
-      (expand-file-name
-       "~/.guix-home/profile/share/emacs/site-lisp/"))
+(when (file-directory-p "/run/current-system/profile/bin/env")
+  (let ((guix-emacs-packages-path
+         (expand-file-name
+          "~/.guix-home/profile/share/emacs/site-lisp/")))
+    (add-to-list 'load-path guix-emacs-packages-path)
+    (load-file (concat guix-emacs-packages-path "subdirs.el"))
+    (guix-emacs-autoload-packages)))
+;;(setq guix-emacs-packages-path
+;;      (expand-file-name
+;;       "~/.guix-home/profile/share/emacs/site-lisp/"))
+;;
+;;(add-to-list 'load-path guix-emacs-packages-path)
+;;(load-file (concat guix-emacs-packages-path "subdirs.el"))
+;;(guix-emacs-autoload-packages)
 
-(add-to-list 'load-path guix-emacs-packages-path)
-(load-file (concat guix-emacs-packages-path "subdirs.el"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
-(guix-emacs-autoload-packages)
+(setq xdghome (or (getenv "XDG_CONFIG_HOME")
+                  (and (getenv "HOME") (concat (getenv "HOME") "/.config"))
+                  (expand-file-name "~/.config")))
 
-(load-file "$XDG_CONFIG_HOME/emacs/emacs-js.el")
-(load-file "$XDG_CONFIG_HOME/emacs/emacs-erc.el")
-(load-file "$XDG_CONFIG_HOME/emacs/emacs-nox.el")
-(load-file "$XDG_CONFIG_HOME/emacs/emacs-font.el")
-(load-file "$XDG_CONFIG_HOME/emacs/emacs-clipboard.el")
-(load-file "$XDG_CONFIG_HOME/emacs/emacs-colorize-buffer.el")
+(load-file (concat xdghome "/emacs/emacs-erc.el"))
+(load-file (concat xdghome "/emacs/emacs-nox.el"))
+(load-file (concat xdghome "/emacs/emacs-font.el"))
+(load-file (concat xdghome "/emacs/emacs-clipboard.el"))
+(load-file (concat xdghome "/emacs/emacs-colorize-buffer.el"))
 
 (bind-system-clipboard-paste-to)
 (bind-system-clipboard-copy-from)
