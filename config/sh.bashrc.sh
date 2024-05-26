@@ -38,14 +38,15 @@ day() {
     date +%a
 }
 
-#myfunc() { 
-#    export PS1="${BOLD}${YELLOW}\u${GREEN}@${BLUE}\h ${GREEN}\W$(day)\\$ ${RESET}"
-#}
-#PROMPT_COMMAND="myfunc"
-
-# works on _both_ `bash` _and_ `ash`
-PS1='`echo -ne "${BOLD}${YELLOW}\u${GREEN}@${BLUE}\h ${GREEN}\W$(day)\\$ ${RESET}"`'
-
+if [ -n "$BASH_VERSION" ]; then
+    myfunc() {
+        export PS1="${BOLD}${YELLOW}\u${GREEN}@${BLUE}\h ${GREEN}\W$(day)\\$ ${RESET}"
+    }
+    PROMPT_COMMAND="myfunc"
+else
+    # works on _both_ `bash` _and_ `ash`
+    PS1='`echo -ne "${BOLD}${YELLOW}\u${GREEN}@${BLUE}\h ${GREEN}\W$(day)\\$ ${RESET}"`'
+fi
 export MUSL_LOCPATH=/usr/share/i18n/locales/musl
 
 

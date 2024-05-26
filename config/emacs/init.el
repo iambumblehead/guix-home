@@ -13,7 +13,8 @@
 ;;(load-file (concat guix-emacs-packages-path "subdirs.el"))
 ;;(guix-emacs-autoload-packages)
 
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(when (boundp 'package-archives)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
 (setq xdghome (or (getenv "XDG_CONFIG_HOME")
                   (and (getenv "HOME") (concat (getenv "HOME") "/.config"))
