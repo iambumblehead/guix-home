@@ -23,6 +23,7 @@
 (load-file (concat xdghome "/emacs/emacs-erc.el"))
 (load-file (concat xdghome "/emacs/emacs-nox.el"))
 (load-file (concat xdghome "/emacs/emacs-font.el"))
+(load-file (concat xdghome "/emacs/emacs-eslint.el"))
 (load-file (concat xdghome "/emacs/emacs-clipboard.el"))
 (load-file (concat xdghome "/emacs/emacs-colorize-buffer.el"))
 
@@ -61,7 +62,7 @@
    `((".*" ,cache-directory t)))
   (truncate-lines t)
   (tab-width 2)
-  (tab-always-indent nil)
+  (tab-always-indent t)
   (user-full-name "chris")
   (user-mail-address "chris@bumblhead.com")
   :config
@@ -91,7 +92,6 @@
  ;; break long lines w/ newline
 (add-hook 'markdown-mode-hook 'visual-line-mode)
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.m?js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
 (add-to-list 'auto-mode-alist '("mutt-*" . mail-mode))
@@ -180,3 +180,64 @@
   :config
   (erc-services-mode 1)
   (erc-update-modules))
+
+(use-package treesit
+  :defer t
+  :hook ((html-ts-mode js-ts-mode typescript-ts-mode
+          json-ts-mode css-ts-mode yaml-ts-mode) . lsp-deferred)
+  :init
+  (setq treesit-font-lock-level 6)
+  (setq treesit-language-source-alist
+   '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+     (c "https://github.com/tree-sitter/tree-sitter-c")
+     (cmake "https://github.com/uyha/tree-sitter-cmake")
+     (common-lisp "https://github.com/theHamsta/tree-sitter-commonlisp")
+     (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
+     (css "https://github.com/tree-sitter/tree-sitter-css")
+     (csharp "https://github.com/tree-sitter/tree-sitter-c-sharp")
+     (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+     (go "https://github.com/tree-sitter/tree-sitter-go")
+     (go-mod "https://github.com/camdencheek/tree-sitter-go-mod")
+     (html "https://github.com/tree-sitter/tree-sitter-html")
+     (js . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
+     (json "https://github.com/tree-sitter/tree-sitter-json")
+     (lua "https://github.com/Azganoth/tree-sitter-lua")
+     (make "https://github.com/alemuller/tree-sitter-make")
+     (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+     (python "https://github.com/tree-sitter/tree-sitter-python")
+     (r "https://github.com/r-lib/tree-sitter-r")
+     (rust "https://github.com/tree-sitter/tree-sitter-rust")
+     (toml "https://github.com/tree-sitter/tree-sitter-toml")
+     (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
+     (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
+     (yaml "https://github.com/ikatyang/tree-sitter-yaml"))))
+
+(use-package js2-mode
+  :ensure t
+  :init
+  (setq js-basic-indent 2
+        js-indent-level 2)
+  (setq-default js2-basic-indent 2
+                js2-basic-offset 2
+                
+                js2-auto-indent-p t
+                js2-bounce-indent-p t
+                js2-cleanup-whitespace t
+                js2-strict-missing-semi-warning nil
+                js2-enter-indents-newline nil
+                js2-indent-on-enter-key nil
+                js2-global-externs (list "window" "module" "require"
+                                         "assert" "setTimeout" "clearTimeout"
+                                         "setInterval" "clearInterval"
+                                         "console" "JSON" "fetch"))
+  (add-to-list 'auto-mode-alist '("\\.js$" . js-ts-mode))
+  (add-hook 'js2-mode-hook
+            (lambda () (flycheck-select-checker "javascript-eslint")))
+  (add-hook 'js2-mode-hook 'flycheck-mode))
+
+;; M-x flycheck-verify-setup
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode)
+  (add-hook 'flycheck-mode-hook #'use-eslint-from-node-modules)
+  (flycheck-add-mode 'javascript-eslint 'js-ts-mode))

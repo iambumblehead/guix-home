@@ -6,6 +6,7 @@ source ~/.config/mutt/mutt.colors.muttrc
 #   cat email.details.md | pass insert -m mutt/muttrc
 source "pass mutt/muttrc |"
 
+set markers = no
 set ssl_force_tls = yes
 set spoolfile = +INBOX
 mailboxes     = +INBOX

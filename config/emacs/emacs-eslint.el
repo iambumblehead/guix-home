@@ -3,7 +3,7 @@
 ;;
 ;; useful for mono-repos that locate eslint to a parent project directory
 (defun findupward (root path)
-  (when (file-directory-p root)
+  (when (and root (file-directory-p root))
     (let* ((fullroot (expand-file-name root))
            (eslint (and root (expand-file-name path root))))
       (if (or (file-exists-p eslint)
@@ -18,6 +18,3 @@
          (eslint (findupward root "node_modules/eslint/bin/eslint.js")))
     (when (and eslint (file-executable-p eslint))
       (setq-local flycheck-javascript-eslint-executable eslint))))
-
-(require 'flycheck)
-(add-hook 'flycheck-mode-hook #'use-eslint-from-node-modules)
