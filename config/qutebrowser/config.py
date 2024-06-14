@@ -1,7 +1,7 @@
 config.load_autoconfig(False)
 
 # c.qt.highdpi = True
-
+config.bind(';M', 'spawn --detach mpv {url}')
 config.bind(',b', 'config-cycle content.blocking.enabled true false')
 config.bind(',xs', 'config-cycle statusbar.show always never')
 config.bind(',xt', 'config-cycle tabs.show always never')
