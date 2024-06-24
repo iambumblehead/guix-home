@@ -157,15 +157,26 @@ bar:
               deco: {background: {color: 171717ff}}
           - string: {text: "{capacity}%", font: "Noto Sans:weight=170:size=23", left-margin: 32, right-margin: 80}
     - network:
-        name: wlp2s0
         poll-interval: 20000
         content:
-         - string:
-             text: "ワイ"
-             margin: 12
-             foreground: 6d87a0ff
-             deco: {background: {color: 171717ff}}
-         - string: {text: "{dl-speed} {ssid}", font: "Noto Sans:weight=170:size=23", left-margin: 32, right-margin: 80}
+          map:
+            default: {empty: {}}
+            conditions:
+              name == wlp2s0:
+                map:
+                  default: {string: {text: "ワイ", font: "Noto Sans:weight=170:size=23", margin: 12, foreground: 6d87a0ff, deco: {background: {color: 171717ff}}}}
+                  conditions:
+                    state == down: {string: {text: "---", font: "Noto Sans:weight=170:size=23", foreground: ff0000ff}}
+                    state == up:
+                      map:
+                        default:
+                          - string: {text: "ワイ", font: "Noto Sans:weight=170:size=23", margin: 12, foreground: 6d87a0ff, deco: {background: {color: 171717ff}}}
+                          - string: {text: "{dl-speed} {ssid}", font: "Noto Sans:weight=170:size=23", left-margin: 32, right-margin: 80}
+
+                        conditions:
+                          ipv4 == "":
+                            - string: {text: "ワイ", font: "Noto Sans:weight=170:size=23", margin: 12, foreground: 6d87a0ff, deco: {background: {color: 171717ff}}}
+                            - string: {text: "{dl-speed} {ssid}", font: "Noto Sans:weight=170:size=23", foreground: ffffff66, left-margin: 32, right-margin: 80}
     - pipewire:
         anchors:
           volume: &volume
