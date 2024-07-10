@@ -147,7 +147,7 @@
                         "config/pipewire"
                         "config/ranger"
                         "config/yambar"
-                        "config/wireplumber"
+                        ;;"config/wireplumber"
                         "config/vifm"
                         "config/zathura"
                         "config/guix"
