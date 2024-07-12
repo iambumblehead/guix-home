@@ -8,6 +8,7 @@ config.bind(',xt', 'config-cycle tabs.show always never')
 config.bind(',xx', 'config-cycle tabs.show always never;; config-cycle statusbar.show always never')
 
 c.fonts.web.family.fixed = 'JetBrains Mono'
+#c.fonts.web.family.sans_serif = 'Cantarell'
 c.fonts.default_family = ['JetBrains Mono']
 c.fonts.completion.category = 'bold 12pt monospace'
 c.fonts.completion.entry = '12pt monospace'
