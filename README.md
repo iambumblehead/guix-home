@@ -1,31 +1,14 @@
 # GNU Guix system and home files
 
-```diff
-+░░░                                     ░░░
-+░░▒▒░░░░░░░░░               ░░░░░░░░░▒▒░░
-+ ░░▒▒▒▒▒░░░░░░░           ░░░░░░░▒▒▒▒▒░
-+     ░▒▒▒░░▒▒▒▒▒         ░░░░░░░▒▒░
-+           ░▒▒▒▒░       ░░░░░░
-+            ▒▒▒▒▒      ░░░░░░
-+             ▒▒▒▒▒     ░░░░░
-+             ░▒▒▒▒▒   ░░░░░
-+              ▒▒▒▒▒   ░░░░░
-+               ▒▒▒▒▒ ░░░░░
-+               ░▒▒▒▒▒░░░░░
-+                ▒▒▒▒▒▒░░░
-+                 ▒▒▒▒▒▒░
-+  _____ _   _ _    _    _____       _
-+ / ____| \ | | |  | |  / ____|     (_)
-+| |  __|  \| | |  | | | |  __ _   _ ___  __
-+| | |_ | . ' | |  | | | | |_ | | | | \ \/ /
-+| |__| | |\  | |__| | | |__| | |_| | |>  <
-+ \_____|_| \_|\____/   \_____|\__,_|_/_/\_\
-```
+<a href="https://ibb.co/jb6GGFC"><img src="https://i.ibb.co/FmxJJtQ/screen-20240219-11-37.png" alt="screen-20240219-11-37" border="0" height="300px" /></a>
+
+<a href="https://ibb.co/gST6X9V"><img src="https://i.ibb.co/m9qSYT8/screen-20240711-23-32.png" alt="screen-20240711-23-32" border="0" height="300px" /></a>
 
 This guix configuration mainly provides a "current" system sans dbus. What's good
  * pipewire, screen lock and brightness, fcitx5 r_shift+ctrl, wayland
  * no: firefox, systemd, dbus, elogind, ibus
 
+_note: dbus, elogind and ibus are installed but are not used. guix does not yet support parameterized dependency-trees_
 
 Caution wifi; Guix's `wpa-supplicant-service-type` writes a read-only `wpa_supplicant.conf` file and `wpa_cli` is unable to persist and apply network changes. To change things, stop the service and use commands below,
 ```bash
