@@ -160,7 +160,7 @@
   ;;                             "/run/current-system/profile/sbin/reboot")))
   (packages (append
              (specifications->packages
-              '("sway" "swaylock-effects"))
+              '("sway" "swaylock-effects" "glibc-locales"))
              %base-packages))
   (setuid-programs %setuid-programs)
   (services %services))

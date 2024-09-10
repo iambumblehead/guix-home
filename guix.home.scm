@@ -32,7 +32,7 @@
         "ncurses"
         "node"
         "weechat"
-        "ffmpeg"
+        ;; "ffmpeg"
         "moc"
         "fcitx5"
         "fcitx5-anthy"

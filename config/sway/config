@@ -136,6 +136,9 @@ bindsym Mod4+n       exec emacs
 bindsym Mod4+space   exec foot
 bindsym Mod4+m       exec env XCURSOR_SIZE=16 qutebrowser
 
+bindgesture swipe:right workspace prev
+bindgesture swipe:left workspace next
+
 input type:keyboard {
   xkb_layout us
   xkb_options ctrl:nocaps
