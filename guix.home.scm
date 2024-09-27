@@ -143,6 +143,7 @@
         (service home-xdg-configuration-files-service-type
                  (home-alists-create-from-dirs
                   (list "config/emacs"
+                        "config/guilerc"
                         "config/fcitx5"
                         "config/pipewire"
                         "config/ranger"
@@ -163,15 +164,7 @@
                        (list ".moc/config"
                              (plain-file "moc-config"
                                          (string-append "\n"
-                                          "Theme = transparent-background" "\n")))
-                       (list ".guile"
-                             (plain-file "guile-config"
-                                         (string-append
-                                          "(use-modules"
-                                          " (ice-9 readline)"
-                                          " (ice-9 colorized))"
-                                          "(activate-readline)"
-                                          "(activate-colorized)")))))
+                                          "Theme = transparent-background" "\n")))))
         (service home-gpg-agent-service-type
                  (home-gpg-agent-configuration
                   (pinentry-program
