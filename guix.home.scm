@@ -32,7 +32,7 @@
         "ncurses"
         "node"
         "weechat"
-        ;; "ffmpeg"
+        ;;"ffmpeg"
         "moc"
         "fcitx5"
         "fcitx5-anthy"
@@ -179,7 +179,6 @@
                  (home-bash-configuration
                   (guix-defaults? #f)
                   (aliases '(("grep" . "grep --color=auto")
-                             ("ll" . "ls -l")
                              ("ls" . "ls -p --color=auto")))
                   (bashrc
                    (list (local-file "./config/sh.bashrc.sh"
