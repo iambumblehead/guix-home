@@ -52,19 +52,19 @@
                    (using-setuid? #f)))
          (service greetd-service-type
                   (greetd-configuration
-                   (greeter-supplementary-groups '("video" "input" "seat"))
+                   (greeter-supplementary-groups '("video" "input" "seat" "users"))
                    (terminals
                     (list
                      (greetd-terminal-configuration
                       (terminal-vt "1")
                       (terminal-switch #t)
-                      (default-session-command
-                        (greetd-agreety-session)))
-                      ;; wlgreet often breaks, comment-out this section
                       ;;(default-session-command
-                      ;;  (greetd-wlgreet-sway-session
-                      ;;   (sway-configuration ;; issues.guix.gnu.org/65769
-                      ;;    (make-file "config/sway/sway-greetd.conf")))))
+                      ;;  (greetd-agreety-session)))
+                      ;; wlgreet often breaks, comment-out this section
+                      (default-session-command
+                        (greetd-wlgreet-sway-session
+                         (sway-configuration ;; issues.guix.gnu.org/65769
+                          (make-file "config/sway/sway-greetd.conf")))))
                      (greetd-terminal-configuration (terminal-vt "2"))
                      (greetd-terminal-configuration (terminal-vt "3"))
                      (greetd-terminal-configuration (terminal-vt "4"))
