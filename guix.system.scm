@@ -52,7 +52,8 @@
                    (using-setuid? #f)))
          (service greetd-service-type
                   (greetd-configuration
-                   (greeter-supplementary-groups '("video" "input" "seat" "users"))
+                   (greeter-supplementary-groups
+                    '("video" "input" "seat" "users"))
                    (terminals
                     (list
                      (greetd-terminal-configuration
@@ -113,9 +114,13 @@
                     "audio" "video" "light"))))
           %base-user-accounts))
   (kernel linux)
+  (kernel-arguments (append (list "modprobe.blacklist=pcspkr")
+                            %default-kernel-arguments))
   (initrd microcode-initrd)
   (initrd-modules (cons "i915" %base-initrd-modules))
-  (firmware (cons iwlwifi-firmware %base-firmware))
+  (firmware (append (list iwlwifi-firmware
+                          ibt-hw-firmware)
+                    %base-firmware))
   (bootloader (bootloader-configuration
                (bootloader grub-efi-bootloader)
                (targets '("/boot/efi"))
