@@ -125,10 +125,8 @@
                (bootloader grub-efi-bootloader)
                (targets '("/boot/efi"))
                (keyboard-layout keyboard-layout)
-               (theme (grub-theme
-                       (inherit (grub-theme))
-                       (gfxmode '("800x600" "auto"))
-                       (image (make-file "config/guix-checkered-16-10.svg"))))))
+               (theme (grub-theme (inherit (grub-theme))
+                                  (resolution '(2880 . 1800))))))
   (swap-devices (list (swap-space
                        (target (file-system-label "my-swap")))))
   (file-systems (append
