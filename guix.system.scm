@@ -80,7 +80,7 @@
                    (interface "wlp2s0")
                    (dbus? #f)
                    (config-file (make-file "wpa_supplicant.conf"))))
-         ;; ssh user@host -p 2222
+         ;; arp-scan --interface=wlan0 --localnet; ssh user@host -p 2222
          (service openssh-service-type
                   (openssh-configuration
                    (openssh (specification->package "openssh-sans-x"))
