@@ -232,7 +232,7 @@
                                          "console" "JSON" "fetch"))
   (add-to-list 'auto-mode-alist '("\\.js$" . js-ts-mode))
   (add-hook 'js2-mode-hook
-            (lambda () (flycheck-select-checker "javascript-eslint")))
+            (lambda () (flycheck-select-checker 'javascript-eslint)))
   (add-hook 'js2-mode-hook 'flycheck-mode))
 
 ;; M-x flycheck-verify-setup
